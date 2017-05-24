@@ -1,0 +1,72 @@
+.suitability {
+    font-family: Avenir, Calibri, Minion;
+}
+
+.sectionButtons {
+    display: inline;
+    padding: 0 10 0 10;
+    margin: 0 2 0 2;
+    float: left;
+    box-shadow: 0px 0px 0px 1px rgba(0,0,0,0.1);
+}
+
+.sectionBtnGroup {
+    margin-bottom: 40px;
+}
+
+.sectionBtnGroup>li:focus, .sectionBtnGroup>li:hover {
+    background-color: #333f48;
+    color: #fff;
+    cursor: pointer;
+    transition: .6s;
+}
+
+.active {
+    background-color: #333f48;
+    color: #fff;
+}
+
+.formInput {
+    padding-top: 7px;
+}
+
+.formInput span {
+    margin-right: 10px;
+    white-space: nowrap;
+}
+
+.nextButton {
+  position: absolute;
+  top:-78px;
+  cursor:pointer;
+  background-color: #fff;
+  color: #333f48;
+  display: inline;
+  padding: 5 10 5 10;
+  border: 0px solid;
+}
+
+.nextButton:hover {
+  background-color: #333f48;
+  color:  #fff;
+  border: 0px solid;
+  transition: .2s;
+}
+
+.saveButton {
+  position: absolute;
+  top:-78px;
+  cursor:pointer;
+  background-color: #fff;
+  color: #64a70b;
+  display: inline;
+  padding: 5 10 5 10;
+  border: 0px solid;
+}
+
+.saveButton:hover {
+  background-color: #64a70b;
+  color: #fff;
+  border: 0px solid;
+  transition: .2s;
+}

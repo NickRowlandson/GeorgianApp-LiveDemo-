@@ -1,0 +1,30 @@
+.students {
+  font-family: Avenir, Calibri, Minion;
+  color: #333f48;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Avenir, Calibri, Minion;
+  color: #333f48;
+}
+
+.inline {
+  display:inline;
+}
+
+button {
+    min-width: 80px;
+}
+
+.actionColumn {
+  width:20%;
+}
+
+.middle{
+  text-align:center;
+}
+
+.backButton {
+  position: fixed;
+  bottom: 25px;
+}

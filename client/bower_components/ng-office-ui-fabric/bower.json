@@ -1,0 +1,30 @@
+{
+  "name": "ng-office-ui-fabric",
+  "description": "Angular directives for Microsoft's Office UI Fabric.",
+  "version": "0.14.0",
+  "author": {
+    "name": "https://github.com/ngOfficeUIFabric/ng-officeuifabric/graphs/contributors"
+  },
+  "license": "MIT",
+  "homepage": "https://ngOfficeUiFabric.com",
+  "main": [
+    "ngOfficeUiFabric.min.js"
+  ],
+  "dependencies": {
+    "angular": "1.5.8",
+    "office-ui-fabric": "2.6.2"
+  },
+  "keywords": [
+    "angular",
+    "office",
+    "office-ui-fabric",
+    "client-side",
+    "office-365",
+    "office365",
+    "sharepoint"
+  ],
+  "ignore": [
+    ".npmignore",
+    "circle.yml"
+  ]
+}

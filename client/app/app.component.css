@@ -1,0 +1,21 @@
+.georgianBlue {
+  background-color: #004B87;
+  color: white;
+  position: relative;
+  min-height: 50px;
+  margin-bottom: 20px;
+  border: 1px solid transparent;
+}
+
+.navbarItem {
+  color:white !important;
+  font-family: Avenir, Calibri, Minion;
+}
+
+.nav>li>a:focus, .nav>li>a:hover {
+    background-color: #0072ce;
+    /* Firefox */
+    -moz-transition: all 1s ease-in;
+    /* Standard */
+    transition: all 0.4s ease-in;
+}
