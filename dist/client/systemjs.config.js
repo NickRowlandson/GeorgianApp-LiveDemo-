@@ -6,7 +6,7 @@ var isPublic = typeof window != "undefined";
     'app':                        'app', // 'dist',
     '@angular':                   (isPublic)? '@angular' : 'node_modules/@angular',
     'moment':                     (isPublic)? 'moment': 'bower_components/moment/moment',
-    'ng2-charts':                 (isPublic)? 'ng2-charts': 'node_modules/ng2-charts/charts/charts',
+    'ng2-charts':                 (isPublic)? 'ng2-charts': 'node_modules/ng2-charts',
     'rxjs':                       (isPublic)? 'rxjs' : 'node_modules/rxjs'
   };
   // packages tells the System loader how to load when no filename and/or no extension
