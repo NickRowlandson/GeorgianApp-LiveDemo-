@@ -1,5 +1,10 @@
 <div class="dashboard">
-    <h2>Dashboard</h2>
+    <div *ngIf="userType === 'Client'">
+      <h2>Welcome, {{client}}</h2>
+    </div>
+    <div *ngIf="userType === 'Admin' || userType === 'Staff'">
+      <h2>Dashboard</h2>
+    </div>
     <hr>
     <div class="row">
         <div class="col-md-4 dashboardItem" *ngIf="clientStatus">
@@ -62,7 +67,19 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-4 dashboardItem" *ngIf="consent">
+        <div class="col-md-4 dashboardItem" *ngIf="caseNotes">
+            <div class="itemBorder">
+                <a routerLink="/case-notes" routerLinkActive="active">
+                    <div>
+                        <i class="fa fa-commenting fa-lg-icon" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h1 class="dashboardItemText">Case Notes</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 dashboardItem" *ngIf="consent && consentForm">
             <div class="itemBorder">
                 <a routerLink="/consent" routerLinkActive="active">
                     <div>
@@ -74,14 +91,26 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-4 dashboardItem" *ngIf="caseNotes">
+        <div class="col-md-4 dashboardItem" *ngIf="learningStyle && learningStyleForm">
             <div class="itemBorder">
-                <a routerLink="/case-notes" routerLinkActive="active">
+                <a routerLink="/learning-style" routerLinkActive="active">
                     <div>
-                        <i class="fa fa-commenting fa-lg-icon" aria-hidden="true"></i>
+                        <i class="fa fa-ban fa-lg-icon" aria-hidden="true"></i>
                     </div>
                     <div>
-                        <h1 class="dashboardItemText">Case Notes</h1>
+                        <h1 class="dashboardItemText">Learning Style</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 dashboardItem" *ngIf="maesdprf">
+            <div class="itemBorder">
+                <a routerLink="/prf" routerLinkActive="active">
+                    <div>
+                        <i class="fa fa-ban fa-lg-icon" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h1 class="dashboardItemText">PRF</h1>
                     </div>
                 </a>
             </div>

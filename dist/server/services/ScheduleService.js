@@ -1,0 +1,15 @@
+var schedule = require('node-schedule');
+var MailService = require("./MailService");
+var attendance = schedule.scheduleJob([{ hour: 1 }], function () {
+    console.log("Checking student attendance...");
+    var mailOptions = {
+        from: '"Test Ghost 👻" <ghost@test.com>',
+        to: 'nicholasrowlandson@gmail.com',
+        subject: 'SCHEDULER ✔',
+        text: 'Sending every 10 seconds...',
+        html: '<b>Hello world ?</b>' // html body
+    };
+    //new MailService().scheduledMessage(mailOptions);
+});
+
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NlcnZlci9zcmMvc2VydmljZXMvU2NoZWR1bGVTZXJ2aWNlLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLElBQU0sUUFBUSxHQUFHLE9BQU8sQ0FBQyxlQUFlLENBQUMsQ0FBQztBQUMxQyxJQUFNLFdBQVcsR0FBRyxPQUFPLENBQUMsZUFBZSxDQUFDLENBQUM7QUFFN0MsSUFBSSxVQUFVLEdBQUcsUUFBUSxDQUFDLFdBQVcsQ0FBQyxDQUFDLEVBQUMsSUFBSSxFQUFFLENBQUMsRUFBQyxDQUFDLEVBQUU7SUFDakQsT0FBTyxDQUFDLEdBQUcsQ0FBQyxnQ0FBZ0MsQ0FBQyxDQUFDO0lBQzlDLElBQUksV0FBVyxHQUFHO1FBQ2hCLElBQUksRUFBRSxrQ0FBa0M7UUFDeEMsRUFBRSxFQUFFLDhCQUE4QjtRQUNsQyxPQUFPLEVBQUUsYUFBYTtRQUN0QixJQUFJLEVBQUUsNkJBQTZCO1FBQ25DLElBQUksRUFBRSxzQkFBc0IsQ0FBQyxZQUFZO0tBQzFDLENBQUE7SUFDRCxrREFBa0Q7QUFDcEQsQ0FBQyxDQUFDLENBQUMiLCJmaWxlIjoic2VydmljZXMvU2NoZWR1bGVTZXJ2aWNlLmpzIiwic291cmNlc0NvbnRlbnQiOlsiY29uc3Qgc2NoZWR1bGUgPSByZXF1aXJlKCdub2RlLXNjaGVkdWxlJyk7XHJcbmNvbnN0IE1haWxTZXJ2aWNlID0gcmVxdWlyZShcIi4vTWFpbFNlcnZpY2VcIik7XHJcblxyXG52YXIgYXR0ZW5kYW5jZSA9IHNjaGVkdWxlLnNjaGVkdWxlSm9iKFt7aG91cjogMX1dLCBmdW5jdGlvbigpe1xyXG4gIGNvbnNvbGUubG9nKFwiQ2hlY2tpbmcgc3R1ZGVudCBhdHRlbmRhbmNlLi4uXCIpO1xyXG4gIGxldCBtYWlsT3B0aW9ucyA9IHtcclxuICAgIGZyb206ICdcIlRlc3QgR2hvc3Qg8J+Ru1wiIDxnaG9zdEB0ZXN0LmNvbT4nLCAvLyBzZW5kZXIgYWRkcmVzc1xyXG4gICAgdG86ICduaWNob2xhc3Jvd2xhbmRzb25AZ21haWwuY29tJywgLy8gbGlzdCBvZiByZWNlaXZlcnNcclxuICAgIHN1YmplY3Q6ICdTQ0hFRFVMRVIg4pyUJywgLy8gU3ViamVjdCBsaW5lXHJcbiAgICB0ZXh0OiAnU2VuZGluZyBldmVyeSAxMCBzZWNvbmRzLi4uJywgLy8gcGxhaW4gdGV4dCBib2R5XHJcbiAgICBodG1sOiAnPGI+SGVsbG8gd29ybGQgPzwvYj4nIC8vIGh0bWwgYm9keVxyXG4gIH1cclxuICAvL25ldyBNYWlsU2VydmljZSgpLnNjaGVkdWxlZE1lc3NhZ2UobWFpbE9wdGlvbnMpO1xyXG59KTtcclxuIl19

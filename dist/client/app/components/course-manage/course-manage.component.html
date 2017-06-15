@@ -1,6 +1,85 @@
-<div class="courseManage">
+<div class="course">
     <h2>Manage Courses</h2>
     <hr>
+
+    <div class="cs-loader">
+        <div class="cs-loader-inner">
+            <label>	L</label>
+            <label>	O</label>
+            <label>	A</label>
+            <label>	D</label>
+            <label>	I</label>
+            <label>	N</label>
+            <label>	G</label>
+            <label>	.</label>
+            <label>	.</label>
+            <label>	.</label>
+        </div>
+    </div>
+
+    <!-- front end  for courses-->
+    <div class="row">
+        <div class="col-md-3">
+            <label for="">Sample Dropdown</label>
+            <select>
+  <option value="volvo">Barrie</option>
+  <option value="saab">Saab</option>
+  <option value="mercedes">Mercedes</option>
+  <option value="audi">Audi</option>
+</select>
+
+        </div>
+
+        <div class="col-md-3">
+            <label for="">Search</label>
+            <input type="text">
+        </div>
+        <div class="col-md-6">
+            <div class="error" *ngIf="error">{{error}}</div>
+            <div class="pull-right">
+                <div class="padding">
+                    <button class="btn btn-success" (click)="addCourse()"><i class="fa fa-plus"></i> Add a Course</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Course Name</th>
+                        <th>Professor</th>
+                        <th>Course Start</th>
+                        <th>Course End</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let course of courses">
+                        <td>{{course.courseName}}</td>
+                        <td>{{course.ProfessorId}}</td>
+                        <td>{{course.scheduleStart}}</td>
+                        <td>{{course.scheduleEnd}}</td>
+                        <td class="actionColumn middle">
+                            <div class="inline">
+                                <button class="btn btn-primary" (click)="gotoEdit(user, $event)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                            </div>
+                            <div class="inline">
+                                <button class="btn btn-danger" (click)="deleteUser(user, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
     <div class="backButton">
         <div>
             <button (click)="goBack()" class="btn btn-default">Back</button>
