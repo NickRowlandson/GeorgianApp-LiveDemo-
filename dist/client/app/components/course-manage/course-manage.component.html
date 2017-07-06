@@ -2,7 +2,7 @@
     <h2>Manage Courses</h2>
     <hr>
 
-    <div class="cs-loader">
+    <div *ngIf ="!courses" class="cs-loader">
         <div class="cs-loader-inner">
             <label>	L</label>
             <label>	O</label>
@@ -18,22 +18,22 @@
     </div>
 
     <!-- front end  for courses-->
-    <div class="row">
-        <div class="col-md-3">
-            <label for="">Sample Dropdown</label>
-            <select>
-  <option value="volvo">Barrie</option>
-  <option value="saab">Saab</option>
-  <option value="mercedes">Mercedes</option>
-  <option value="audi">Audi</option>
+<div class="row">
+<div class="col-md-6">
+<label for="">Campus</label>
+ <select>
+  <option value="1">Barrie</option>
+  <option value="2">Midland</option>
+  <option value="3">Orillia</option>
+  <option value="4">Owen Sound</option>
 </select>
 
         </div>
 
-        <div class="col-md-3">
+        <!--<div class="col-md-3">
             <label for="">Search</label>
             <input type="text">
-        </div>
+        </div>-->
         <div class="col-md-6">
             <div class="error" *ngIf="error">{{error}}</div>
             <div class="pull-right">
@@ -43,41 +43,46 @@
             </div>
         </div>
         <div class="col-md-12">
-            <table class="table table-striped">
+            <table class="table table-striped" [mfData]="courses | courseFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="5">
                 <thead>
                     <tr>
-                        <th>Course Name</th>
-                        <th>Professor</th>
-                        <th>Course Start</th>
-                        <th>Course End</th>
+                        <th><mfDefaultSorter by="courseName">Course Name</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="professor">Professor</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="courseStart">Course Start</mfDefaultSorter></th>
+                        <th><mfDefaultSorter by="courseEnd">Course End</mfDefaultSorter></th>
+                    </tr>
+                    <tr>
+                        <th colspan="5">
+                            <input placeholder="Filter by course name" class="form-control" [(ngModel)]="filterQuery" />
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let course of courses">
-                        <td>{{course.courseName}}</td>
-                        <td>{{course.ProfessorId}}</td>
-                        <td>{{course.scheduleStart}}</td>
-                        <td>{{course.scheduleEnd}}</td>
+                    <tr *ngFor="let course of mf.data">
+                        <td>{{ course.courseName }}</td>
+                        <td>{{ course.professorId }}</td>
+                        <td>{{ course.courseStart  }}</td>
+                        <td>{{ course.courseEnd }}</td>
                         <td class="actionColumn middle">
                             <div class="inline">
-                                <button class="btn btn-primary" (click)="gotoEdit(user, $event)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                                <button class="btn btn-primary" (click)="gotoEdit(course, $event)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                             </div>
                             <div class="inline">
-                                <button class="btn btn-danger" (click)="deleteUser(user, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                <button class="btn btn-danger" (click)="deleteAlert(course, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                             </div>
                         </td>
                     </tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="5">
+                            <mfBootstrapPaginator [rowsOnPageSet]="[5,10,15]"></mfBootstrapPaginator>
+                        </td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
     </div>
-
-
-
-
-
-
-
 
 
     <div class="backButton">

@@ -7,7 +7,7 @@ var bodyParser = require("body-parser");
 var path = require("path");
 var ScheduleService = require("./services/ScheduleService");
 var port = process.env.PORT || 3000;
-var env = process.env.NODE_ENV || 'production';
+var env = process.env.NODE_ENV || 'developement';
 var app = express();
 exports.app = app;
 app.set('port', port);
