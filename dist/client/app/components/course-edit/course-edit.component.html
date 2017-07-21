@@ -1,19 +1,11 @@
-<div class="courseEdit form-horizontal">
+<div  class="courseEdit form-horizontal">
   <div *ngIf="!newCourse && course">
-    <h2>Edit {{course.courseName}}'s Details</h2>
+    <h2>Edit Details for {{course.courseName}}</h2>
   </div>
   <div *ngIf="newCourse">
     <h2>Add New Course</h2>
   </div>
   <hr>
-  <!--<div class="form-group">
-        <div *ngIf="!newCourse">
-            <label class="col-sm-2 control-label">id: </label>
-            <div class="col-sm-10">
-                {{course.courseId}}
-            </div>
-        </div>
-    </div>-->
   <div *ngIf="course">
     <div class="form-group">
       <label class="col-sm-2 control-label">Course Name: </label>
@@ -24,24 +16,41 @@
 
     <div class="form-group">
       <label class="col-sm-2 control-label">Start: </label>
-      <!--<div class="col-sm-10">
-            <input class="form-control" type="date" [(ngModel)]="course.courseStart" placeholder="Start" required />
-        </div>-->
-      <div>datetime picker</div>
+    <!-- <datetime   [(ngModel)]="course.courseStart" [datepicker]="datepickerToOpts"></datetime> -->
+    <datetime [(ngModel)]="course.courseStart"></datetime>
     </div>
 
     <div class="form-group">
       <label class="col-sm-2 control-label">End: </label>
-      <div class="col-sm-10">
-        <!--<input class="form-control" type="date" [(ngModel)]="course.courseEnd" placeholder="End" required />-->
-        <div>datetime picker</div>
-      </div>
+        <!-- <datetime   [datepicker]="datepickerToOpts"></datetime> -->
+    </div>
+
+
+
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Valid from: </label>
+         <!-- <p-calendar [(ngModel)]="course.validFrom" dateFormat="yy-mm-dd" ></p-calendar> -->
+         <!-- <datetime [ngModel]="course.dateFrom" (ngModelChange)="handleDateFromChange($event)" [timepicker]="false" [datepicker]="datepickerToOpts"></datetime> -->
+    </div>
+        <div class="form-group">
+      <label class="col-sm-2 control-label">Valid to: </label>
+       <!-- <p-calendar [(ngModel)]="course.validTo" dateFormat="yy-mm-dd" ></p-calendar> -->
+       <!-- <datetime [(ngModel)]="course.dateTo" [timepicker]="false" [datepicker]="datepickerToOpts"></datetime> -->
+    </div>
+
+
+    <div class="form-group">
+      <label class="col-sm-2 control-label">professor: </label>
+<p-dropdown [style]="{'width':'175px'}" [options]="professors" [(ngModel)]="course.professorId"></p-dropdown>
+
     </div>
 
     <div class="form-group">
-      <label class="col-sm-2 control-label">professor: </label> dropdown
-    </div>
+      <label class="col-sm-2 control-label">Campus: </label>
+  <p-dropdown [style]="{'width':'175px'}" [options]="campuses" [(ngModel)]="course.campusId"></p-dropdown>
 
+    </div>
     <div class="form-group">
       <label class="col-sm-2 control-label">classroom: </label>
       <div class="col-sm-10">

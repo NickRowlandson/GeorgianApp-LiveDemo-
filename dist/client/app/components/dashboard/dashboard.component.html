@@ -6,7 +6,8 @@
       <h2>Dashboard</h2>
     </div>
     <hr>
-    <div class="row">
+    <div class="container">
+    <div class=" row">
         <div class="col-md-4 dashboardItem" *ngIf="clientStatus">
             <div class="itemBorder">
                 <a routerLink="/clients" routerLinkActive="active">
@@ -83,7 +84,7 @@
             <div class="itemBorder">
                 <a routerLink="/consent" routerLinkActive="active">
                     <div>
-                        <i class="fa fa-ban fa-lg-icon" aria-hidden="true"></i>
+                        <i class="fa fa-check-circle-o fa-lg-icon" aria-hidden="true"></i>
                     </div>
                     <div>
                         <h1 class="dashboardItemText">Consent</h1>
@@ -95,7 +96,7 @@
             <div class="itemBorder">
                 <a routerLink="/learning-style" routerLinkActive="active">
                     <div>
-                        <i class="fa fa-ban fa-lg-icon" aria-hidden="true"></i>
+                        <i class="fa fa-cubes fa-lg-icon" aria-hidden="true"></i>
                     </div>
                     <div>
                         <h1 class="dashboardItemText">Learning Style</h1>
@@ -119,7 +120,7 @@
             <div class="itemBorder">
                 <a routerLink="/timetable" routerLinkActive="active">
                     <div>
-                        <i class="fa fa-ban fa-lg-icon" aria-hidden="true"></i>
+                        <i class="fa fa-calendar fa-lg-icon" aria-hidden="true"></i>
                     </div>
                     <div>
                         <h1 class="dashboardItemText">Timetable</h1>
@@ -127,5 +128,18 @@
                 </a>
             </div>
         </div>
+         <div class="col-md-4 dashboardItem" *ngIf="attendanceList">
+            <div class="itemBorder">
+                <a routerLink="/attendance-list" routerLinkActive="active">
+                    <div>
+                        <i class="fa fa-calendar fa-lg-icon" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h1 class="dashboardItemText">My Courses</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
     </div>
+  </div>
 </div>

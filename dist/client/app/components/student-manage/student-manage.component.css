@@ -12,19 +12,12 @@ button {
     min-width: 80px;
 }
 
-table {
-  table-layout: fixed;
-  width:100%;
-}
-
 .inline {
   display:inline;
 }
 
-
-
 .actionColumn {
-  width:20%;
+  width:40%;
 }
 
 .middle{
