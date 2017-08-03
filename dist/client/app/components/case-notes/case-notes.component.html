@@ -70,7 +70,7 @@
       <hr>
       <div>
           <ul class="notesList">
-            <li *ngFor="let noteItem of notes">{{noteItem.caseNote}}</li>
+            <li *ngFor="let noteItem of notes"><b>{{noteItem.dateTime | date}}:</b> {{noteItem.caseNote}}</li>
           </ul>
       </div>
     </div>

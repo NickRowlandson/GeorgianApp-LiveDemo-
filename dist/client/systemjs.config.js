@@ -13,8 +13,7 @@ var isPublic = typeof window != "undefined";
     'moment':                     (isPublic)? 'moment': 'bower_components/moment/moment',
     'ng2-charts':                 (isPublic)? 'ng2-charts': 'node_modules/ng2-charts',
     'angular2-datatable':         (isPublic)? 'angular2-datatable': 'node_modules/angular2-datatable',
-    'primeng':                    (isPublic)? 'primeng': 'node_modules/primeng',
-
+    'primeng':                    (isPublic)? 'primeng': 'node_modules/primeng'
   };
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
@@ -24,7 +23,6 @@ var isPublic = typeof window != "undefined";
     'moment':                     { main: 'moment.js', defaultExtension: 'js' },
     'ng2-charts':                 { main: 'index.js', defaultExtension: 'js' },
     'angular2-datatable':         { main: 'index.js', defaultExtension: 'js' },
-    'ng2-datetime':               { main: 'index.js', defaultExtension: 'js' },
     'primeng':                    { defaultExtension: 'js' }
   };
   var ngPackageNames = [
