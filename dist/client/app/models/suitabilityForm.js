@@ -1,10 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var SuitabilityForm = (function () {
-    function SuitabilityForm() {
-    }
-    return SuitabilityForm;
-}());
-exports.SuitabilityForm = SuitabilityForm;
+System.register([], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var SuitabilityForm;
+    return {
+        setters: [],
+        execute: function () {
+            SuitabilityForm = (function () {
+                function SuitabilityForm() {
+                }
+                return SuitabilityForm;
+            }());
+            exports_1("SuitabilityForm", SuitabilityForm);
+        }
+    };
+});
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL3N1aXRhYmlsaXR5Rm9ybS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBO0lBQUE7SUF1Q0EsQ0FBQztJQUFELHNCQUFDO0FBQUQsQ0F2Q0EsQUF1Q0MsSUFBQTtBQXZDWSwwQ0FBZSIsImZpbGUiOiJhcHAvbW9kZWxzL3N1aXRhYmlsaXR5Rm9ybS5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBTdWl0YWJpbGl0eUZvcm0ge1xyXG4gIHVzZXJJRDogYW55O1xyXG4gIHRyYW5zY3JpcHQ6IHN0cmluZztcclxuICBjb3Vyc2VzOiBzdHJpbmc7XHJcbiAgZ29hbDogc3RyaW5nO1xyXG4gIHRyYW5zaXRpb25EYXRlOiBzdHJpbmc7XHJcbiAgZ292ZXJubWVudElEOiBib29sZWFuO1xyXG4gIGFwcHJvcHJpYXRlR29hbDogYm9vbGVhbjtcclxuICBpc1ZhbGlkQWdlOiBib29sZWFuO1xyXG4gIHNjaG9vbFJlZ2lzdHJhdGlvbjogYm9vbGVhbjtcclxuICBhdmFpbGFibGVEdXJpbmdDbGFzczogYm9vbGVhbjtcclxuICBsYXN0R3JhZGU6IHN0cmluZztcclxuICBsZXZlbDogc3RyaW5nO1xyXG4gIG9mZmVyU3RhcnREYXRlOiBzdHJpbmc7XHJcbiAgbWVldHNHb2FsOiBzdHJpbmc7XHJcbiAgdGltZU91dE9mU2Nob29sOiBzdHJpbmc7XHJcbiAgaW5Qcm9ncmFtQmVmb3JlOiBzdHJpbmc7XHJcbiAgZW1wbG95bWVudDogc3RyaW5nO1xyXG4gIGluY29tZVNvdXJjZTogc3RyaW5nO1xyXG4gIGFnZVJhbmdlOiBzdHJpbmc7XHJcbiAgaG91cnNQZXJXZWVrOiBzdHJpbmc7XHJcbiAgd29ya0hpc3Rvcnk6IHN0cmluZztcclxuICBmYWN0b3JIZWFsdGg6IHN0cmluZztcclxuICBmYWN0b3JJbnN0cnVjdGlvbnM6IHN0cmluZztcclxuICBmYWN0b3JDb21tdW5pY2F0aW9uOiBzdHJpbmc7XHJcbiAgZmFjdG9yTGFuZ3VhZ2U6IHN0cmluZztcclxuICBmYWN0b3JDb21wdXRlcjogc3RyaW5nO1xyXG4gIGZhY3RvckhvdXNpbmc6IHN0cmluZztcclxuICBmYWN0b3JUcmFuc3BvcnRhdGlvbjogc3RyaW5nO1xyXG4gIGZhY3RvckRheWNhcmU6IHN0cmluZztcclxuICBmYWN0b3JJbnRlcm5ldDogc3RyaW5nO1xyXG4gIGZhY3RvclBlcnNvbmFsOiBzdHJpbmc7XHJcbiAgZmFjdG9yT3RoZXI6IHN0cmluZztcclxuICBzdW1tYXJ5VHJhbnNwb3J0YXRpb246IHN0cmluZztcclxuICBzdW1tYXJ5SG91c2luZzogc3RyaW5nO1xyXG4gIHN1bW1hcnlDaGlsZGNhcmU6IHN0cmluZztcclxuICBzdW1tYXJ5SGVhbHRoOiBzdHJpbmc7XHJcbiAgc3VtbWFyeU90aGVyOiBzdHJpbmc7XHJcbiAgZGJUb3RhbFBvaW50czogYW55O1xyXG59XHJcbiJdfQ==
+//# sourceMappingURL=suitabilityForm.js.map

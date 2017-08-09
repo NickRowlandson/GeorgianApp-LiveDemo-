@@ -1,6 +1,6 @@
-<div class="">
+<div class="attendanceReport">
     <div *ngIf="!data">
-        <h1>Attendance Report</h1>
+        <h1><strong>Attendance Report</strong></h1>
         <hr>
         <div class="cs-loader">
             <div class="cs-loader-inner">
@@ -18,47 +18,22 @@
         </div>
     </div>
     <div class="row" *ngIf="data && studentReport">
-        <h1>Attendance Report (Student)</h1>
-        <p-toggleButton onLabel="Course Report" offLabel="Student Report" [(ngModel)]="studentReport"></p-toggleButton>
+        <h1><strong>Attendance Report (Student View)</strong></h1>
         <hr>
-
         <div class="col-md-3">
-          <div class="wrapper2">
+          <div class="wrapper4">
             <h2>Students</h2>
+            <p-inputSwitch onLabel="Course Report" offLabel="Student Report" [(ngModel)]="studentReport"></p-inputSwitch>
             <hr>
-            <table class="table table-striped" [mfData]="students | userFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="15">
-              <thead>
-                <tr>
-                  <!-- <th>
-                    <mfDefaultSorter by="studentNumber">Student Number</mfDefaultSorter>
-                  </th> -->
-                  <th>
-                    <mfDefaultSorter by="firstName">Name</mfDefaultSorter>
-                  </th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <th colspan="5">
-                    <input placeholder="Filter by student name" class="form-control" [(ngModel)]="filterQuery" />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let student of mf.data">
-                  <td>{{student.firstName + " " + student.lastName}}</td>
-                  <td>
-                      <button class="btn btn-primary" (click)="viewStudentReport(student, $event)">View Report</button>
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="5">
-                    <mfBootstrapPaginator></mfBootstrapPaginator>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+            <input placeholder="Filter by student name" class="form-control" [(ngModel)]="filterQuery" />
+            <p-dataTable [value]="students | userFilter : filterQuery" [responsive]="true">
+                <p-column field="fullName" header="Name" [sortable]="true"></p-column>
+                <p-column header="Action" [style]="{'width': '130px'}">
+                  <template let-data="rowData" pTemplate="body">
+                    <button class="btn btn-success" (click)="viewStudentReport(data, $event)">View Report</button>
+                  </template>
+                </p-column>
+            </p-dataTable>
             <div class="push"></div>
         </div>
         <div class="footer">
@@ -76,8 +51,18 @@
           <h2>Report for {{ student.firstName }}</h2>
           <div (click)="overallStatus($event)" class="statusButton" title="View overall status"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
           <hr>
-          <h3>Present: {{ totalPresent }} Absent: {{ totalAbsent }} Made Contact: {{ totalMadeContact }}</h3>
-          <div *ngIf="noAttendance" style="color:green;"><h2>Student has attended all classes so far!</h2></div>
+          <div class="col-md-12" style="text-align:center">
+            <div class="well col-md-4" (click)="filterStaff('total')">
+                <h2><strong style="color:red">{{ totalAbsent }}</strong> Total Absences</h2>
+            </div>
+            <div class="well col-md-4" (click)="filterStaff('total')">
+                <h2><strong style="color:green">{{ totalPresent }}</strong> Total Presences</h2>
+            </div>
+            <div class="well col-md-4" (click)="filterStaff('total')">
+                <h2><strong style="color:#FFA500">{{ totalMadeContact }}</strong> Total Made Contact</h2>
+            </div>
+          </div>
+          <div *ngIf="noAttendance" style="color:red;"><h2>No attendance data yet...</h2></div>
           <div *ngFor="let info of records">
             <div class="well col-md-12">
               <label class="control-label">Date: </label> {{ info.date | date }}
@@ -92,47 +77,22 @@
         </div>
     </div>
     <div class="row" *ngIf="data && !studentReport">
-        <h1>Attendance Report (Course)</h1>
-        <p-toggleButton styleClass="viewToggle" onLabel="Course Report" offLabel="Student Report" [(ngModel)]="studentReport"></p-toggleButton>
+        <h1><strong>Attendance Report (Course View)</strong></h1>
         <hr>
-
         <div class="col-md-3">
           <div class="wrapper2">
             <h2>Courses</h2>
+            <p-inputSwitch onLabel="Course Report" offLabel="Student Report" [(ngModel)]="studentReport"></p-inputSwitch>
             <hr>
-            <table class="table table-striped" [mfData]="courses | courseFilter : filterQuery" #mf="mfDataTable" [mfRowsOnPage]="15">
-              <thead>
-                <tr>
-                  <!-- <th>
-                    <mfDefaultSorter by="studentNumber">Student Number</mfDefaultSorter>
-                  </th> -->
-                  <th>
-                    <mfDefaultSorter by="courseName">Name</mfDefaultSorter>
-                  </th>
-                  <th>Action</th>
-                </tr>
-                <tr>
-                  <th colspan="5">
-                    <input placeholder="Filter by course name" class="form-control" [(ngModel)]="filterQuery" />
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let course of mf.data">
-                  <td>{{course.courseName}}</td>
-                  <td>
-                      <button class="btn btn-primary" (click)="viewCourseReport(course, $event)">View Report</button>
-                  </td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td colspan="5">
-                    <mfBootstrapPaginator></mfBootstrapPaginator>
-                  </td>
-                </tr>
-              </tfoot>
-            </table>
+            <input placeholder="Filter by course name" class="form-control" [(ngModel)]="filterQuery" />
+            <p-dataTable [value]="courses | courseFilter : filterQuery" [responsive]="true">
+                <p-column field="courseName" header="Name" [sortable]="true"></p-column>
+                <p-column header="Action" [style]="{'width': '130px'}">
+                  <template let-data="rowData" pTemplate="body">
+                    <button class="btn btn-primary" (click)="viewCourseReport(data, $event)">View Report</button>
+                  </template>
+                </p-column>
+            </p-dataTable>
             <div class="push"></div>
         </div>
         <div class="footer">
@@ -150,6 +110,42 @@
           <h2>{{ course.courseName }} Report</h2>
           <div (click)="overallStatus($event)" class="statusButton" title="View overall status"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
           <hr>
+          <div class="col-md-12" style="text-align:center">
+            <div class="well col-md-4" (click)="filterStaff('total')">
+                <h2><strong style="color:red">{{ classAbsenceTotal }}</strong> Total Absences</h2>
+            </div>
+            <div class="well col-md-4" (click)="filterStaff('total')">
+                <h2><strong style="color:green">{{ classPresenceTotal }}</strong> Total Presences</h2>
+            </div>
+            <div class="well col-md-4" (click)="filterStaff('total')">
+                <h2><strong style="color:#FFA500">{{ classMadeContactTotal }}</strong> Total Made Contact</h2>
+            </div>
+          </div>
+          <table *ngIf="!noStudentsEnrolled" class="table table-striped">
+            <thead>
+                <th style="width:200px">Student</th>
+                <th style="width:200px">Expected Start/End</th>
+                <th *ngFor="let date of classTimeStr" style="border-left:1px solid #DDDDDD; text-align:center">{{ date[0] | date :  "dd/MM/yy" }}</th>
+            </thead>
+            <tbody>
+                <tr></tr>
+                <tr *ngFor="let student of courseStudents">
+                  <td>{{ student.student.firstName }} {{ student.student.lastName }} {{i}}</td>
+                  <td>{{ student.startDate | date :  "dd/MM/yy" }} - {{ student.endDate |  date :  "dd/MM/yy" }}</td>
+                  <td *ngFor="let check of classTimeStr" style="border:1px solid #DDDDDD; text-align:center">
+                    <div *ngFor="let item of student.attendanceInfo">
+                      <div *ngIf="item.date[0] === check[0]">
+                        <span *ngIf="item.attendanceValue === 'P'" style="color:green">{{ item.attendanceValue }}</span>
+                        <span *ngIf="item.attendanceValue === 'A'" style="color:red">{{ item.attendanceValue }}</span>
+                        <span *ngIf="item.attendanceValue === 'MC'" style="color:#FFA500">{{ item.attendanceValue }}</span>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+            </tbody>
+            <tfoot>
+            </tfoot>
+          </table>
         </div>
     </div>
 </div>

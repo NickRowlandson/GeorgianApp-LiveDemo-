@@ -1,10 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Student = (function () {
-    function Student() {
-    }
-    return Student;
-}());
-exports.Student = Student;
+System.register([], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var Student;
+    return {
+        setters: [],
+        execute: function () {
+            Student = (function () {
+                function Student() {
+                }
+                return Student;
+            }());
+            exports_1("Student", Student);
+        }
+    };
+});
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL3N0dWRlbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQTtJQUFBO0lBaUJBLENBQUM7SUFBRCxjQUFDO0FBQUQsQ0FqQkEsQUFpQkMsSUFBQTtBQWpCWSwwQkFBTyIsImZpbGUiOiJhcHAvbW9kZWxzL3N0dWRlbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgU3R1ZGVudCB7XHJcbiAgICBzdHVkZW50SUQ6IHN0cmluZztcclxuICAgIHVzZXJJRDogc3RyaW5nO1xyXG4gICAgYXV0aExldmVsOiBzdHJpbmc7XHJcbiAgICBpbnF1aXJ5RGF0ZTogc3RyaW5nO1xyXG4gICAgdXNlcm5hbWU6IHN0cmluZztcclxuICAgIHBhc3N3b3JkOiBzdHJpbmc7XHJcbiAgICBmaXJzdE5hbWU6IHN0cmluZztcclxuICAgIGxhc3ROYW1lOiBzdHJpbmc7XHJcbiAgICBiaXJ0aGRhdGU6IHN0cmluZztcclxuICAgIGVtYWlsOiBzdHJpbmc7XHJcbiAgICBwaG9uZTogc3RyaW5nO1xyXG4gICAgZW5yb2xsZWQ6IGJvb2xlYW47XHJcbiAgICBhYnNlbnQ6IGJvb2xlYW47XHJcbiAgICBzdHVkZW50U3RhcnREYXRlOiBEYXRlO1xyXG4gICAgc3R1ZGVudEVuZERhdGU6IERhdGU7XHJcbiAgICBhdHRlbmRhbmNlVmFsdWU6IGFueTtcclxufVxyXG4iXX0=
+//# sourceMappingURL=student.js.map

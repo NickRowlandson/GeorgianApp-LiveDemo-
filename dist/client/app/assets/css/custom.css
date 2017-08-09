@@ -3,6 +3,19 @@ html, body {
   margin: 0;
 }
 
+.btn {
+  height: 36px;
+}
+
+.dropToggle {
+  width: 44px;
+  height: 36px;
+}
+
+.dropdown-menu>li {
+  cursor:pointer;
+}
+
 /* CSS Loading Animation */
 .cs-loader {
     position: absolute;
@@ -116,10 +129,10 @@ html, body {
 }
 
 .saveButton {
+  background-color: #DDDDDD;
   position: absolute;
   top: -79px;
   cursor:pointer;
-  background-color: #fff;
   color: #64a70b;
   display: inline;
   padding: 0 10 0 10;
@@ -157,11 +170,15 @@ html, body {
 }
 
 .wrapper2 {
-  min-height: 60%;
+  min-height: 65%;
 }
 
 .wrapper3 {
   min-height: 70%;
+}
+
+.wrapper4 {
+  min-height: 60%;
 }
 
 .footer, .push {
