@@ -1,18 +1,10 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    var Client;
-    return {
-        setters: [],
-        execute: function () {
-            Client = (function () {
-                function Client() {
-                }
-                return Client;
-            }());
-            exports_1("Client", Client);
-        }
-    };
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Client = (function () {
+    function Client() {
+    }
+    return Client;
+}());
+exports.Client = Client;
 
-//# sourceMappingURL=client.js.map
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2NsaWVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBO0lBQUE7SUFxQkEsQ0FBQztJQUFELGFBQUM7QUFBRCxDQXJCQSxBQXFCQyxJQUFBO0FBckJZLHdCQUFNIiwiZmlsZSI6ImFwcC9tb2RlbHMvY2xpZW50LmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIENsaWVudCB7XHJcbiAgICBzdHVkZW50TnVtYmVyOiBudW1iZXI7XHJcbiAgICBjbGllbnRJRDogc3RyaW5nO1xyXG4gICAgdXNlcklEOiBzdHJpbmc7XHJcbiAgICBhdXRoTGV2ZWw6IHN0cmluZztcclxuICAgIGlucXVpcnlEYXRlOiBzdHJpbmc7XHJcbiAgICB1c2VybmFtZTogc3RyaW5nO1xyXG4gICAgcGFzc3dvcmQ6IHN0cmluZztcclxuICAgIGZ1bGxOYW1lOiBzdHJpbmc7XHJcbiAgICBmaXJzdE5hbWU6IHN0cmluZztcclxuICAgIGxhc3ROYW1lOiBzdHJpbmc7XHJcbiAgICBiaXJ0aGRheTogc3RyaW5nO1xyXG4gICAgZW1haWw6IHN0cmluZztcclxuICAgIHBob25lOiBzdHJpbmc7XHJcbiAgICBzdWl0YWJpbGl0eTogYm9vbGVhbjtcclxuICAgIGNvbnNlbnQ6IGJvb2xlYW47XHJcbiAgICBsZWFybmluZ1N0eWxlOiBib29sZWFuO1xyXG4gICAgZXJyb3I6IHN0cmluZztcclxuICAgIHN1Y2Nlc3M6IHN0cmluZztcclxuICAgIGJhbm5lcjogYm9vbGVhbjtcclxuICAgIGNhbTogYm9vbGVhbjtcclxufVxyXG4iXX0=
