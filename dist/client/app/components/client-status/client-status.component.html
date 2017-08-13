@@ -73,11 +73,13 @@
         <div *ngIf="statusReport" class="col-md-6">
             <h2>Status Report</h2>
             <hr>
-            <div>
-                <h3>Total clients: {{ clientTotal }}</h3></div>
-            <div style="display: block">
-                <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [colors]="doughnutChartColors" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
-                </canvas>
+            <div class="well">
+                <h3>Total clients: {{ clientTotal }}</h3>
+
+                <div style="display: block">
+                    <canvas baseChart [data]="doughnutChartData" [labels]="doughnutChartLabels" [colors]="doughnutChartColors" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
             </div>
         </div>
         <div *ngIf="clientView" class="col-md-6">
@@ -168,7 +170,7 @@
             </div>
             <div *ngIf="showLearningStyle" class="">
                 <br />
-                <p><strong>I learn best through: {{ learningStyleView.learnBy }}</strong></p>
+                <p><strong>I learn best by: </strong>{{ learningStyleView.learnBy }}</p>
                 <div class="form-group">
                     <div style="display: block">
                         <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [colors]="barChartColors" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
@@ -229,28 +231,28 @@
                 <div *ngIf="suitabilityForm.suitabilityID">
                   <div style="height: 25px;clear:both"></div>
                   <label class="col-md-5 control-label">Transcript: </label>
-                  <button *ngIf="suitabilityForm.transcript === 'true'" (click)="suitabilityForm.transcript = 'false'" class="btn btn-success">Yes</button>
-                  <button *ngIf="suitabilityForm.transcript === 'false' || suitabilityForm.transcript === 'undefined'" (click)="suitabilityForm.transcript = 'true'" class="btn btn-warning">No</button>
+                  <button *ngIf="suitabilityForm.transcript === 'true'" (click)="suitabilityForm.transcript = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                  <button *ngIf="suitabilityForm.transcript === 'false' || suitabilityForm.transcript === 'undefined'" (click)="suitabilityForm.transcript = 'true'" class="btn btn-warning booleanBtn">No</button>
                   <br />
                   <label class="col-md-5 control-label">Gov't ID: </label>
-                  <button *ngIf="suitabilityForm.governmentID === 'true'" (click)="suitabilityForm.governmentID = 'false'" class="btn btn-success">Yes</button>
-                  <button *ngIf="suitabilityForm.governmentID === 'false' || suitabilityForm.governmentID === 'undefined'" (click)="suitabilityForm.governmentID = 'true'" class="btn btn-warning">No</button>
+                  <button *ngIf="suitabilityForm.governmentID === 'true'" (click)="suitabilityForm.governmentID = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                  <button *ngIf="suitabilityForm.governmentID === 'false' || suitabilityForm.governmentID === 'undefined'" (click)="suitabilityForm.governmentID = 'true'" class="btn btn-warning booleanBtn">No</button>
                   <br />
                   <label class="col-md-5 control-label">Appropriate Occupational Goal</label>
-                  <button *ngIf="suitabilityForm.appropriateGoal === 'true'" (click)="suitabilityForm.appropriateGoal = 'false'" class="btn btn-success">Yes</button>
-                  <button *ngIf="suitabilityForm.appropriateGoal === 'false' || suitabilityForm.appropriateGoal === 'undefined'" (click)="suitabilityForm.appropriateGoal = 'true'" class="btn btn-warning">No</button>
+                  <button *ngIf="suitabilityForm.appropriateGoal === 'true'" (click)="suitabilityForm.appropriateGoal = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                  <button *ngIf="suitabilityForm.appropriateGoal === 'false' || suitabilityForm.appropriateGoal === 'undefined'" (click)="suitabilityForm.appropriateGoal = 'true'" class="btn btn-warning booleanBtn">No</button>
                   <br />
                   <label class="col-md-5 control-label">19+ Years Old</label>
-                  <button *ngIf="suitabilityForm.isValidAge === 'true'" (click)="suitabilityForm.isValidAge = 'false'" class="btn btn-success">Yes</button>
-                  <button *ngIf="suitabilityForm.isValidAge === 'false' || suitabilityForm.isValidAge === 'undefined'" (click)="suitabilityForm.isValidAge = 'true'" class="btn btn-warning">No</button>
+                  <button *ngIf="suitabilityForm.isValidAge === 'true'" (click)="suitabilityForm.isValidAge = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                  <button *ngIf="suitabilityForm.isValidAge === 'false' || suitabilityForm.isValidAge === 'undefined'" (click)="suitabilityForm.isValidAge = 'true'" class="btn btn-warning booleanBtn">No</button>
                   <br />
                   <label class="col-md-5 control-label">Registered In High School/Post-Sec</label>
-                  <button *ngIf="suitabilityForm.schoolRegistration === 'true'" (click)="suitabilityForm.schoolRegistration = 'false'" class="btn btn-success">Yes</button>
-                  <button *ngIf="suitabilityForm.schoolRegistration === 'false' || suitabilityForm.schoolRegistration === 'undefined'" (click)="suitabilityForm.schoolRegistration = 'true'" class="btn btn-warning">No</button>
+                  <button *ngIf="suitabilityForm.schoolRegistration === 'true'" (click)="suitabilityForm.schoolRegistration = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                  <button *ngIf="suitabilityForm.schoolRegistration === 'false' || suitabilityForm.schoolRegistration === 'undefined'" (click)="suitabilityForm.schoolRegistration = 'true'" class="btn btn-warning booleanBtn">No</button>
                   <br />
                   <label class="col-md-5 control-label">Available During Class Time</label>
-                  <button *ngIf="suitabilityForm.availableDuringClass === 'true'" (click)="suitabilityForm.availableDuringClass = 'false'" class="btn btn-success">Yes</button>
-                  <button *ngIf="suitabilityForm.availableDuringClass === 'false' || suitabilityForm.availableDuringClass === 'undefined'" (click)="suitabilityForm.availableDuringClass = 'true'" class="btn btn-warning">No</button>
+                  <button *ngIf="suitabilityForm.availableDuringClass === 'true'" (click)="suitabilityForm.availableDuringClass = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                  <button *ngIf="suitabilityForm.availableDuringClass === 'false' || suitabilityForm.availableDuringClass === 'undefined'" (click)="suitabilityForm.availableDuringClass = 'true'" class="btn btn-warning booleanBtn">No</button>
                 </div>
                 <div style="height: 25px;clear:both"></div>
                 <div class="form-group">
@@ -438,80 +440,80 @@
                 </div>
                 <div *ngIf="suitabilityForm.suitabilityID">
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorHealth === 'true'" (click)="suitabilityForm.factorHealth = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorHealth === 'false' || suitabilityForm.factorHealth === 'undefined' " (click)="suitabilityForm.factorHealth = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorHealth === 'true'" (click)="suitabilityForm.factorHealth = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorHealth === 'false' || suitabilityForm.factorHealth === 'undefined' " (click)="suitabilityForm.factorHealth = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client has health problems that may prevent client from working effectively
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorInstructions === 'true'" (click)="suitabilityForm.factorInstructions = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorInstructions === 'false' || suitabilityForm.factorInstructions === 'undefined'" (click)="suitabilityForm.factorInstructions = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorInstructions === 'true'" (click)="suitabilityForm.factorInstructions = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorInstructions === 'false' || suitabilityForm.factorInstructions === 'undefined'" (click)="suitabilityForm.factorInstructions = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client has difficulty understanding instructions
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorCommunication === 'true'" (click)="suitabilityForm.factorCommunication = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorCommunication === 'false' || suitabilityForm.factorCommunication === 'undefined'" (click)="suitabilityForm.factorCommunication = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorCommunication === 'true'" (click)="suitabilityForm.factorCommunication = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorCommunication === 'false' || suitabilityForm.factorCommunication === 'undefined'" (click)="suitabilityForm.factorCommunication = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client has difficulty communicating
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorLanguage === 'true'" (click)="suitabilityForm.factorLanguage = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorLanguage === 'false' || suitabilityForm.factorLanguage === 'undefined'" (click)="suitabilityForm.factorLanguage = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorLanguage === 'true'" (click)="suitabilityForm.factorLanguage = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorLanguage === 'false' || suitabilityForm.factorLanguage === 'undefined'" (click)="suitabilityForm.factorLanguage = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client has language barrier
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorComputer === 'true'" (click)="suitabilityForm.factorComputer = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorComputer === 'false' || suitabilityForm.factorComputer === 'undefined'" (click)="suitabilityForm.factorComputer = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorComputer === 'true'" (click)="suitabilityForm.factorComputer = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorComputer === 'false' || suitabilityForm.factorComputer === 'undefined'" (click)="suitabilityForm.factorComputer = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client has limited computer skills
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorHousing === 'true'" (click)="suitabilityForm.factorHousing = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorHousing === 'false' || suitabilityForm.factorHousing === 'undefined'" (click)="suitabilityForm.factorHousing = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorHousing === 'true'" (click)="suitabilityForm.factorHousing = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorHousing === 'false' || suitabilityForm.factorHousing === 'undefined'" (click)="suitabilityForm.factorHousing = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client has housing instability
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorTransportation === 'true'" (click)="suitabilityForm.factorTransportation = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorTransportation === 'false' || suitabilityForm.factorTransportation === 'undefined'" (click)="suitabilityForm.factorTransportation = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorTransportation === 'true'" (click)="suitabilityForm.factorTransportation = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorTransportation === 'false' || suitabilityForm.factorTransportation === 'undefined'" (click)="suitabilityForm.factorTransportation = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Transportation is limited restricted (no license/ no $ for bus/gas)
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorDaycare === 'true'" (click)="suitabilityForm.factorDaycare = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorDaycare === 'false' || suitabilityForm.factorDaycare === 'undefined'" (click)="suitabilityForm.factorDaycare = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorDaycare === 'true'" (click)="suitabilityForm.factorDaycare = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorDaycare === 'false' || suitabilityForm.factorDaycare === 'undefined'" (click)="suitabilityForm.factorDaycare = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client does not have reliable daycare
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorInternet === 'true'" (click)="suitabilityForm.factorInternet = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorInternet === 'false' || suitabilityForm.factorInternet === 'undefined'" (click)="suitabilityForm.factorInternet = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorInternet === 'true'" (click)="suitabilityForm.factorInternet = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorInternet === 'false' || suitabilityForm.factorInternet === 'undefined'" (click)="suitabilityForm.factorInternet = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client does not have phone/internet access
                       </label>
                     </div>
 
                     <div class="col-md-12">
-                      <button *ngIf="suitabilityForm.factorPersonal === 'true'" (click)="suitabilityForm.factorPersonal = 'false'" class="btn btn-success">Yes</button>
-                      <button *ngIf="suitabilityForm.factorPersonal === 'false' || suitabilityForm.factorPersonal === 'undefined'" (click)="suitabilityForm.factorPersonal = 'true'" class="btn btn-warning">No</button>
+                      <button *ngIf="suitabilityForm.factorPersonal === 'true'" (click)="suitabilityForm.factorPersonal = 'false'" class="btn btn-success booleanBtn">Yes</button>
+                      <button *ngIf="suitabilityForm.factorPersonal === 'false' || suitabilityForm.factorPersonal === 'undefined'" (click)="suitabilityForm.factorPersonal = 'true'" class="btn btn-warning booleanBtn">No</button>
                       <label class="control-label">
                         Client is going through difficulties in his/her personal life (legal, family, substance abuse, financial)
                       </label>
@@ -551,6 +553,7 @@
                 <div style="height: 25px;clear:both"></div>
                 <h3>Review</h3>
                 <hr>
+                <div style="height:250px">
                 <div *ngIf="!calculated" class="col-md-12" style="margin-bottom:50px;">
                   <button class="btn btn-primary" (click)="calculate()"><i class="fa fa-refresh" aria-hidden="true"></i> Calculate</button>
                 </div>
@@ -583,6 +586,7 @@
                       <button (click)="saveSuitability()" class="saveButton" title="Save suitability"><h4><i class="fa fa-floppy-o" aria-hidden="true"></i> Save</h4></button>
                   </div>
               </div>
+            </div>
             </div>
             </div>
         </div>
