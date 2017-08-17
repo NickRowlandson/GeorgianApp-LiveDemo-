@@ -23,7 +23,7 @@
         <div class="col-md-6">
             <div class="wrapper2">
                 <h2>Clients</h2>
-                <button class="addClient btn btn-primary" (click)="addClient()" title="Add new client"><i class="fa fa-plus"> New Client</i></button>
+                <button class="addClient btn btn-primary" (click)="addClient()" title="Add new client"><i class="fa fa-plus"></i> New Client</button>
                 <hr>
                 <div class="error" *ngIf="error">{{error}}</div>
                 <input placeholder="Filter by client name" class="form-control" [(ngModel)]="filterQuery" />
@@ -263,9 +263,9 @@
                           <option value="Grade 10-11">Grade 10-11</option>
                           <option value="Grade 12">Grade 12</option>
                         </select>
-                        <div *ngIf="lastGrade.errors && lastGrade.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="lastGrade.errors && lastGrade.touched" class="alert alert-danger">
                             <div [hidden]="!lastGrade.errors.required">Please Select Last Grade</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -276,9 +276,9 @@
                           <option value="Applied/General">Applied/General</option>
                           <option value="Workplace/Basic">Workplace/Basic</option>
                         </select>
-                        <div *ngIf="level.errors && level.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="level.errors && level.touched" class="alert alert-danger">
                             <div [hidden]="!level.errors.required">Please Select A Level</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- PART A: START -->
@@ -290,9 +290,9 @@
                           <option value="In one year">In one year</option>
                           <option value="More than a Year">More than a Year</option>
                         </select>
-                        <div *ngIf="offerStartDate.errors && offerStartDate.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="offerStartDate.errors && offerStartDate.touched" class="alert alert-danger">
                             <div [hidden]="!offerStartDate.errors.required">Please Select Offer Start Date</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -303,9 +303,9 @@
                           <option value="Yes but lacks skills/high enough marks">Yes but lacks skills/high enough marks</option>
                           <option value="Yes">Yes</option>
                         </select>
-                        <div *ngIf="meetsGoals.errors && meetsGoals.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="meetsGoals.errors && meetsGoals.touched" class="alert alert-danger">
                             <div [hidden]="!meetsGoals.errors.required">Please Select Goal Requirements</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -316,9 +316,9 @@
                           <option value="1-6 years">1-6 years</option>
                           <option value="Less than 1 year">Less than 1 year</option>
                         </select>
-                        <div *ngIf="school.errors && school.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="school.errors && school.touched" class="alert alert-danger">
                             <div [hidden]="!school.errors.required">Please Select Time Out Of School</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -329,9 +329,9 @@
                           <option value="Yes - Appropriate progress">Yes - Appropriate progress</option>
                           <option value="Yes – No progress">Yes – No progress</option>
                         </select>
-                        <div *ngIf="program.errors && program.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="program.errors && program.touched" class="alert alert-danger">
                             <div [hidden]="!program.errors.required">Please Select An Option</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -342,9 +342,9 @@
                           <option value="Working part time">Working part time</option>
                           <option value="Working full time">Working full time</option>
                         </select>
-                        <div *ngIf="employment.errors && employment.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="employment.errors && employment.touched" class="alert alert-danger">
                             <div [hidden]="!employment.errors.required">Please Select Employment Option</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -355,9 +355,9 @@
                           <option value="No income">No income</option>
                           <option value="Employed">Employed</option>
                         </select>
-                        <div *ngIf="income.errors && income.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="income.errors && income.touched" class="alert alert-danger">
                             <div [hidden]="!income.errors.required">Please Select Income Option</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="form-group">
@@ -368,9 +368,9 @@
                           <option value="30-44 years old">30-44 years old</option>
                           <option value="45-65 years old">45-65 years old</option>
                         </select>
-                        <div *ngIf="age.errors && age.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="age.errors && age.touched" class="alert alert-danger">
                             <div [hidden]="!age.errors.required">Please Select Age Range</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- PART A: ENDS -->
@@ -383,9 +383,9 @@
                           <option value="5-10">5-10</option>
                           <option value="10-20">10-20</option>
                         </select>
-                        <div *ngIf="hours.errors && hours.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="hours.errors && hours.touched" class="alert alert-danger">
                             <div [hidden]="!hours.errors.required">Please Select Hours Range</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- Apply judgement? -->
@@ -393,13 +393,13 @@
                     <label class="col-md-5 text-nowrap control-label">Work History: </label>
                     <div class="col-md-7">
                         <select class="form-control" [(ngModel)]="suitabilityForm.workHistory" required #history="ngModel">
-                      <option value="Less than 1 year experience in the field">Less than 1 year experience in the field</option>
-                      <option value="1-4 years experience in the field">1-4 years experience in the field</option>
-                      <option value="4+ years experience in the field">4+ years experience in the field</option>
+                      <option value="Less than 1 year experience">Less than 1 year experience</option>
+                      <option value="1-4 years experience">1-4 years experience</option>
+                      <option value="4+ years experience">4+ years experience</option>
                     </select>
-                        <div *ngIf="history.errors && history.touched" class="alert alert-danger">
+                        <!-- <div *ngIf="history.errors && history.touched" class="alert alert-danger">
                             <div [hidden]="!history.errors.required">Please Select Work History</div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div style="height: 25px;clear:both"></div>
