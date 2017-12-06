@@ -2,7 +2,7 @@
 var express = require("express");
 var ClientController = require("../controllers/ClientController");
 var router = express.Router();
-var ClientRoutes = (function () {
+var ClientRoutes = /** @class */ (function () {
     function ClientRoutes() {
         this._clientController = new ClientController();
     }

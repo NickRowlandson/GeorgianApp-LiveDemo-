@@ -2,7 +2,7 @@
 var express = require("express");
 var StaffController = require("../controllers/StaffController");
 var router = express.Router();
-var StaffRoutes = (function () {
+var StaffRoutes = /** @class */ (function () {
     function StaffRoutes() {
         this._staffController = new StaffController();
     }

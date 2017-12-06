@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
 var authentication_service_1 = require("./authentication.service");
-var StudentService = (function () {
+var StudentService = /** @class */ (function () {
     function StudentService(http, authService) {
         this.http = http;
         this.authService = authService;

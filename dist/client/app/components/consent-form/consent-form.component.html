@@ -13,22 +13,7 @@
                     </div>
                     <div class="col-md-12">
                         <label for="date">Date: </label> {{date | date: format}}
-                        <input type="hidden" value="{{date | date: format}}" [(ngModel)]="consentForm.date" placeholder="DD/MM/YYYY" required />
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-md-12">
-                        <label>Phone Number: </label> {{ phoneNumber }}
-                    </div>
-                    <div class="col-md-12">
-                        <label style="bottom: 6px;position: relative;">Can a detailed message be left at the above number?</label>
-                        <p-inputSwitch onLabel="Yes" offLabel="No" binary="true" [(ngModel)]="consentForm.allowDetailedMessage"></p-inputSwitch>
-                    </div>
-                    <div *ngIf="!consentForm.allowDetailedMessage">
-                        <div class="col-md-3">
-                            <input type="tel" class="form-control" placeholder="Alternate Phone #" [(ngModel)]="consentForm.alternateNumber"/>
-                        </div>
+                        <input type="hidden" value="{{date | date: format}}" [(ngModel)]="consentForm.date" placeholder="DD/MM/YYYY" />
                     </div>
                 </div>
             </div>
@@ -69,20 +54,10 @@
                 <b><em>  <p> If, during the first twelve months after I leave the program, I cannot be reached at the telephone number(s) and/or email address in my file,
                    Georgian College staff may call the following person to get my current number and/or address:</p></em></b>
                    <div class="col-md-6">
-                      <input class="form-control" [(ngModel)]="consentForm.contactName" placeholder="Contact Name" required #contactName="ngModel" />
-                      <div *ngIf="contactName.errors && (contactName.dirty || contactName.touched)" class="alert alert-danger">
-                          <div [hidden]="!contactName.errors.required">
-                              First name is required
-                          </div>
-                      </div>
+                      <input class="form-control" [(ngModel)]="consentForm.contactName" placeholder="Contact Name" #contactName="ngModel" />
                     </div>
                     <div class="col-md-6">
-                      <input class="form-control" [(ngModel)]="consentForm.contactNum" placeholder="Phone Number" required #contactNum="ngModel" />
-                      <div *ngIf="contactNum.errors && (contactNum.dirty || contactNum.touched)" class="alert alert-danger">
-                          <div [hidden]="!contactNum.errors.required">
-                              Example Phone number format 1-777-777-7777
-                          </div>
-                      </div>
+                      <input class="form-control" [(ngModel)]="consentForm.contactNum" placeholder="Phone Number" #contactNum="ngModel" />
                     </div>
             </div>
 
@@ -91,17 +66,17 @@
                 <b><em>  <p>I agree that my assessment and personal information may be forwarded to another literacy agency if I am to be referred
                  to that agency for more appropriate literacy training.</p></em></b>
                  <div class="col-md-6">
-                   <input class="form-control" [(ngModel)]="consentForm.literacyAgencies" placeholder="Signature" required />
+                   <input class="form-control" [(ngModel)]="consentForm.literacyAgencies" placeholder="Signature"/>
                  </div>
                 <div class="col-md-6">
-                  <input class="form-control" [(ngModel)]="consentForm.literacyWitness" placeholder="Witness" required />
+                  <input class="form-control" [(ngModel)]="consentForm.literacyWitness" placeholder="Witness" />
                 </div>
             </div>
             <div class="col-md-12" style="margin-top:50px;margin-left:-15px;">
                 <div style="float: left;">
                     <button (click)="goBack()" class="btn btn-default">Back</button>
                 </div>
-                <div style="float: right;">
+                <div style="float: right;" *ngIf="currentUser.userType === 'Client'">
                     <button (click)="saveConsent()" class="submitForm" title="Save client"><h4><i class="fa fa-floppy-o" aria-hidden="true"></i> Submit</h4></button>
                 </div>
             </div>

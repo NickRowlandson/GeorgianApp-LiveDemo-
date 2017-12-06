@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var router_2 = require("@angular/router");
 var authentication_service_1 = require("../../services/authentication.service");
-var PrfFormComponent = (function () {
+var PrfFormComponent = /** @class */ (function () {
     function PrfFormComponent(router, route, authService) {
         this.router = router;
         this.route = route;

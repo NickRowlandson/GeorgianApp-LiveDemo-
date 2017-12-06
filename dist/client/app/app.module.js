@@ -60,7 +60,7 @@ var student_service_1 = require("./services/student.service");
 var client_service_1 = require("./services/client.service");
 var staff_service_1 = require("./services/staff.service");
 var course_service_1 = require("./services/course.service");
-var AppModule = (function () {
+var AppModule = /** @class */ (function () {
     function AppModule() {
     }
     AppModule = __decorate([

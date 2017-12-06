@@ -2,7 +2,7 @@
 var express = require("express");
 var ClientFormsController = require("../controllers/ClientFormsController");
 var router = express.Router();
-var ClientFormsRoutes = (function () {
+var ClientFormsRoutes = /** @class */ (function () {
     function ClientFormsRoutes() {
         this._clientFormsController = new ClientFormsController();
     }

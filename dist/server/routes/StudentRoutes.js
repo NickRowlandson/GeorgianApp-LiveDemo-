@@ -2,7 +2,7 @@
 var express = require("express");
 var StudentController = require("../controllers/StudentController");
 var router = express.Router();
-var StudentRoutes = (function () {
+var StudentRoutes = /** @class */ (function () {
     function StudentRoutes() {
         this._studentController = new StudentController();
     }

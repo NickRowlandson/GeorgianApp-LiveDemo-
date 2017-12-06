@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var User_1 = require("../../models/User");
 var router_1 = require("@angular/router");
 var staff_service_1 = require("../../services/staff.service");
-var StaffEditComponent = (function () {
+var StaffEditComponent = /** @class */ (function () {
     function StaffEditComponent(staffService, route) {
         this.staffService = staffService;
         this.route = route;

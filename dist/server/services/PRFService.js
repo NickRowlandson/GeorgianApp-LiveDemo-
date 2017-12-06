@@ -1,6 +1,6 @@
 "use strict";
 //const pdffiller = require('pdffiller');
-var PRFService = (function () {
+var PRFService = /** @class */ (function () {
     function PRFService() {
     }
     PRFService.prototype.populatePRF = function (info) {

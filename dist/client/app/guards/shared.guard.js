@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var authentication_service_1 = require("../services/authentication.service");
-var SharedGuard = (function () {
+var SharedGuard = /** @class */ (function () {
     function SharedGuard(router, authService) {
         this.router = router;
         this.authService = authService;

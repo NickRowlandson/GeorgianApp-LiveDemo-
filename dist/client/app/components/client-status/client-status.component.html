@@ -108,6 +108,9 @@
                     <label class="control-label">Birth Date: </label> {{clientView.birthdate}} <br />
                     <label class="control-label">Email: </label> {{clientView.email}} <br />
                     <label class="control-label">Phone: </label> {{clientView.phone}} <br />
+                    <label class="control-label">Detailed Message?: </label> {{clientView.allowDetailedMessage}} <br />
+                    <label class="control-label">Okay to Text?: </label> {{clientView.okayToText}} <br />
+                    <label class="control-label">Alternate Phone: </label> {{clientView.alternateNumber}} <br />
                 </div>
             </div>
             <div *ngIf="showSuitability" class="">
@@ -156,7 +159,6 @@
                 <br />
                 <div class="form-group">
                     <label class="control-label">Date: </label> {{consentView.date}} <br />
-                    <label class="control-label">Detailed Message: </label> {{consentView.allowDetailedMessage}} <br />
                     <label class="control-label">Ontario Works: </label> {{consentView.ontarioWorks}} <br />
                     <label class="control-label">Ontario Disability: </label> {{consentView.ontarioDisabilityProgram}} <br />
                     <label class="control-label">Employment Insurance: </label> {{consentView.employmentInsurance}} <br />

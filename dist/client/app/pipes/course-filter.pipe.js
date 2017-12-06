@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var _ = require("lodash");
 var core_1 = require("@angular/core");
-var CourseFilterPipe = (function () {
+var CourseFilterPipe = /** @class */ (function () {
     function CourseFilterPipe() {
     }
     CourseFilterPipe.prototype.transform = function (array, query) {

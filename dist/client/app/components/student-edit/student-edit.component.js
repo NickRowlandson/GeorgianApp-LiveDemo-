@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var Student_1 = require("../../models/Student");
 var router_1 = require("@angular/router");
 var student_service_1 = require("../../services/student.service");
-var StudentEditComponent = (function () {
+var StudentEditComponent = /** @class */ (function () {
     function StudentEditComponent(studentService, route) {
         this.studentService = studentService;
         this.route = route;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var LearningStyleForm = (function () {
+var LearningStyleForm = /** @class */ (function () {
     function LearningStyleForm() {
     }
     return LearningStyleForm;

@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var SuitabilityForm = (function () {
+var SuitabilityForm = /** @class */ (function () {
     function SuitabilityForm() {
     }
     return SuitabilityForm;

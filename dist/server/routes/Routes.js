@@ -7,7 +7,7 @@ var ClientRoutes = require("../routes/ClientRoutes");
 var ClientFormsRoutes = require("../routes/ClientFormsRoutes");
 var CourseRoutes = require("../routes/CourseRoutes");
 var app = express();
-var Routes = (function () {
+var Routes = /** @class */ (function () {
     function Routes() {
     }
     Object.defineProperty(Routes.prototype, "routes", {

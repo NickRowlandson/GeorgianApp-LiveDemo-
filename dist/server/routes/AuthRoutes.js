@@ -2,7 +2,7 @@
 var express = require("express");
 var AuthController = require("../controllers/AuthController");
 var router = express.Router();
-var AuthRoutes = (function () {
+var AuthRoutes = /** @class */ (function () {
     function AuthRoutes() {
         this._authController = new AuthController();
     }

@@ -13,7 +13,7 @@ var core_1 = require("@angular/core");
 var http_1 = require("@angular/http");
 var ReplaySubject_1 = require("rxjs/ReplaySubject");
 require("rxjs/add/operator/map");
-var AuthService = (function () {
+var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
         this.loggedUser = new ReplaySubject_1.ReplaySubject(1);
