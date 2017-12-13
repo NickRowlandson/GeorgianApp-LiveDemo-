@@ -36,14 +36,14 @@
                     </p-column>
                     <p-column field="fullName" header="Name" [sortable]="true" [style]="{'width': '170px'}"></p-column>
                     <p-column field="email" header="Email" [sortable]="true"></p-column>
-                    <p-column header="Banner" [sortable]="true" [style]="{'width': '110px'}">
+                    <p-column field="banner" header="Banner" [sortable]="true" [style]="{'width': '110px'}">
                       <template let-data="rowData" pTemplate="body">
                         <div *ngIf="!data.suitability && !data.consent && !data.learningStyle">
                             <p-checkbox [(ngModel)]="data.banner" binary="true" (onChange)="checkboxChange(data)"></p-checkbox>
                         </div>
                       </template>
                     </p-column>
-                    <p-column header="CAM" [sortable]="true" [style]="{'width': '110px'}">
+                    <p-column field="cam" header="CAM" [sortable]="true" [style]="{'width': '110px'}">
                       <template let-data="rowData" pTemplate="body">
                         <div *ngIf="!data.suitability && !data.consent && !data.learningStyle">
                             <p-checkbox [(ngModel)]="data.cam" binary="true" (onChange)="checkboxChange(data)"></p-checkbox>
