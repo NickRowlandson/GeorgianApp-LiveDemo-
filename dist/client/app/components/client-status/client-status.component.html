@@ -90,7 +90,7 @@
         </div>
         <div *ngIf="clientView" class="col-md-6">
             <h2>Information for {{clientView.firstName + " " + clientView.lastName}}</h2>
-            <div (click)="showStatusReport($event)" class="statusButton" title="View status report"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
+            <div (click)="showStatusReport()" class="statusButton" title="View status report"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
             <hr>
             <div class="well">
             <ul class="sectionBtnGroup col-sm-12">
@@ -114,9 +114,11 @@
                     <label class="control-label">Birth Date: </label> {{clientView.birthdate}} <br />
                     <label class="control-label">Email: </label> {{clientView.email}} <br />
                     <label class="control-label">Phone: </label> {{clientView.phone}} <br />
-                    <label class="control-label">Detailed Message?: </label> {{clientView.allowDetailedMessage}} <br />
-                    <label class="control-label">Okay to Text?: </label> {{clientView.okayToText}} <br />
+                    <label class="control-label" style="margin-left:15px">- Okay to Text?: </label> {{clientView.okayToText}} <br />
+                    <label class="control-label" style="margin-left:15px">- Detailed Message?: </label> {{clientView.allowDetailedMessage}} <br />
                     <label class="control-label">Alternate Phone: </label> {{clientView.alternateNumber}} <br />
+                    <label class="control-label" style="margin-left:15px">- Okay to Text?: </label> {{clientView.okayToTextAlternate}} <br />
+                    <label class="control-label" style="margin-left:15px">- Detailed Message?: </label> {{clientView.allowDetailedMessageAlternate}} <br />
                 </div>
             </div>
             <div *ngIf="showSuitability" class="">
@@ -192,12 +194,12 @@
             <div class="col-md-6">
               <div *ngIf="addSuitability" class="addSuitability">
                 <h2>Add Suitability for {{ clientSuitability.firstName }}</h2>
-                <div (click)="showStatusReport($event)" class="statusButton" title="View status report"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
+                <div (click)="showStatusReport()" class="statusButton" title="View status report"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
                 <hr>
               </div>
               <div *ngIf="showSuitabilityEdit" class="addSuitability">
                 <h2>Edit Suitability for {{ clientSuitability.firstName }}</h2>
-                <div (click)="showStatusReport($event)" class="statusButton" title="View status report"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
+                <div (click)="showStatusReport()" class="statusButton" title="View status report"><i class="fa fa-pie-chart fa-2x" aria-hidden="true"></i></div>
                 <hr>
               </div>
               <div class="well">
