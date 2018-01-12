@@ -61,3 +61,7 @@
   border: 0px solid;
   transition: .2s;
 }
+
+.checkboxPadding {
+  padding-left:15px;
+}
