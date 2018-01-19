@@ -21,7 +21,7 @@
         <div class="col-md-8">
           <input placeholder="Filter by staff name" class="form-control" [(ngModel)]="filterQuery" />
           <p-dataTable [value]="users | userFilter : filterQuery" [responsive]="true">
-              <p-column field="userType" header="Role" [sortable]="true" [style]="{'width': '100px'}"></p-column>
+              <p-column field="userType" header="Role" [sortable]="true"></p-column>
               <p-column field="fullName" header="Name" [sortable]="true"></p-column>
               <p-column field="email" header="Email" [sortable]="true"></p-column>
               <p-column header="Action" [style]="{'width': '190px'}">

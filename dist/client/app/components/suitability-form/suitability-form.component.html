@@ -72,13 +72,13 @@
             <p-checkbox [(ngModel)]="phone2" binary="true" class="checkboxPadding"></p-checkbox> Cell
             <p-checkbox [(ngModel)]="client.okayToTextAlternate" binary="true" class="checkboxPadding"></p-checkbox> Text
             <p-checkbox [(ngModel)]="client.allowDetailedMessageAlternate" binary="true" class="checkboxPadding"></p-checkbox> Detailed message
-            <p-checkbox [(ngModel)]="client.longDistance" binary="true" class="checkboxPadding"></p-checkbox> +1
+            <p-checkbox [(ngModel)]="client.longDistanceAlternate" binary="true" class="checkboxPadding"></p-checkbox> +1
           </div>
         </div>
         <div class="form-group">
           <label class="col-md-2 control-label">Comments: </label>
           <div class="col-md-4">
-            <textarea class="form-control" rows="2" name="generalInfoComments" [(ngModel)]="client.comments"></textarea>
+            <textarea class="form-control" rows="2" name="clientComments" [(ngModel)]="client.comments"></textarea>
           </div>
         </div>
       </div>
@@ -248,9 +248,13 @@
           <label class="col-md-2 text-nowrap control-label">Income Source: </label>
           <div class="col-md-4">
             <select class="form-control" [(ngModel)]="suitabilityForm.incomeSource" required #income="ngModel">
-                        <option value="OW  ODSP  EI  SC">OW  ODSP  EI  SC</option>
+                        <option value="EI">EI</option>
+                        <option value="OW">OW</option>
+                        <option value="ODSP">ODSP</option>
+                        <option value="Crown Ward">Crown Ward</option>
+                        <option value="Self-employed">Self-employed</option>
                         <option value="No income">No income</option>
-                        <option value="Employed">Employed</option>
+                        <option value="Dependent of OW/ODSP">Dependent of OW/ODSP</option>
                       </select>
             <!-- <div *ngIf="income.errors && income.touched" class="alert alert-danger">
                             <div [hidden]="!income.errors.required">Please Select Income Option</div>
@@ -261,6 +265,7 @@
           <label class="col-md-2 text-nowrap control-label">Age: </label>
           <div class="col-md-4">
             <select class="form-control" [(ngModel)]="suitabilityForm.ageRange" required #age="ngModel">
+                        <option value="16-18 years old">16-18 years old</option>
                         <option value="19-29 years old">19-29 years old</option>
                         <option value="30-44 years old">30-44 years old</option>
                         <option value="45-65 years old">45-65 years old</option>

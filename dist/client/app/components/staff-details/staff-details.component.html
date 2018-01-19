@@ -1,6 +1,6 @@
 <div *ngIf="user" class="staffEdit row form-horizontal">
     <div *ngIf="!newUser">
-        <h2>Edit {{user.firstName}}'s Details</h2>
+        <h2>Edit Details for {{user.firstName}}</h2>
     </div>
     <div *ngIf="newUser">
         <h2>Add New User</h2>
@@ -8,21 +8,9 @@
     <hr>
     <div class="col-md-6">
     <div class="form-group">
-        <div *ngIf="!newUser">
-            <label class="col-md-4 control-label">id: </label>
-            <div class="col-md-4">
-                {{user.staffID}}
-            </div>
-        </div>
-    </div>
-    <div class="form-group" *ngIf="newUser">
         <label class="col-md-4 control-label">Authorization Level: </label>
         <div class="col-md-8">
-          <select class="form-control" [(ngModel)]="user.authLevel">
-            <option value="Instructor" selected="selected">Instructor</option>
-            <option value="Staff">Staff</option>
-            <option value="Admin">Admin</option>
-          </select>
+          <p-multiSelect [options]="authLevels" [(ngModel)]="fselected" optionLabel="name" ></p-multiSelect>
         </div>
     </div>
     <div class="form-group">
