@@ -32,9 +32,16 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="col-md-2 control-label">Attended Georgian?: </label>
+          <div class="col-md-4 studentNumberToggle">
+            <p-inputSwitch onLabel="Yes" offLabel="No" [(ngModel)]="studentNumberToggle"></p-inputSwitch>
+            <input class="form-control studentNumberInput" *ngIf="studentNumberToggle" [(ngModel)]="client.studentNumber" placeholder="Student Number" required #firstName="ngModel" />
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-md-2 control-label">First Name: </label>
           <div class="col-md-4">
-            <input class="form-control" id="firstName" [(ngModel)]="client.firstName" placeholder="First Name" required #firstName="ngModel" />
+            <input class="form-control" [(ngModel)]="client.firstName" placeholder="First Name" required #firstName="ngModel" />
           </div>
         </div>
         <div class="form-group">

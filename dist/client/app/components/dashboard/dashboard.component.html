@@ -104,26 +104,32 @@
                 </a>
             </div>
         </div>
-        <div class="col-md-4 dashboardItem" *ngIf="consent && consentForm">
+        <div class="col-md-4 dashboardItem" *ngIf="consent">
             <div class="itemBorder">
                 <a routerLink="/consent" routerLinkActive="active">
                     <div>
                         <i class="fa fa-check-circle-o fa-lg-icon" aria-hidden="true"></i>
                     </div>
                     <div>
-                        <h1 class="dashboardItemText">Consent</h1>
+                        <h1 class="dashboardItemText">Consent
+                          <i *ngIf="!consentForm" class="fa fa-check" style="color:green" title="Form completed." aria-hidden="true"></i>
+                          <i *ngIf="consentForm" class="fa fa-exclamation" style="color:#FFA500" title="Please complete form." aria-hidden="true"></i>
+                        </h1>
                     </div>
                 </a>
             </div>
         </div>
-        <div class="col-md-4 dashboardItem" *ngIf="learningStyle && learningStyleForm">
+        <div class="col-md-4 dashboardItem" *ngIf="learningStyle">
             <div class="itemBorder">
                 <a routerLink="/learning-style" routerLinkActive="active">
                     <div>
                         <i class="fa fa-cubes fa-lg-icon" aria-hidden="true"></i>
                     </div>
                     <div>
-                        <h1 class="dashboardItemText">Learning Style</h1>
+                        <h1 class="dashboardItemText">Learning Style
+                          <i *ngIf="!learningStyleForm" class="fa fa-check" style="color:green" title="Form completed." aria-hidden="true"></i>
+                          <i *ngIf="learningStyleForm" class="fa fa-exclamation" style="color:#FFA500" title="Please complete form." aria-hidden="true"></i>
+                        </h1>
                     </div>
                 </a>
             </div>

@@ -77,14 +77,18 @@
                 <div class="form-group">
                     <label class="control-label">id: </label> {{studentView.userID}} <br />
                     <label class="control-label">Inquiry Date: </label> {{studentView.inquiryDate}} <br />
+                    <label class="control-label">Student Number: </label> {{studentView.studentNumber}} <br />
                     <label class="control-label">First Name: </label> {{studentView.firstName}} <br />
                     <label class="control-label">Last Name: </label> {{studentView.lastName}} <br />
                     <label class="control-label">Birth Date: </label> {{studentView.birthdate}} <br />
                     <label class="control-label">Email: </label> {{studentView.email}} <br />
                     <label class="control-label">Phone: </label> {{studentView.phone}} <br />
-                    <label class="control-label">Detailed Message?: </label> {{studentView.allowDetailedMessage}} <br />
-                    <label class="control-label">Okay to Text?: </label> {{studentView.okayToText}} <br />
+                    <label class="control-label" style="margin-left:15px">- Detailed Message?: </label> {{studentView.allowDetailedMessage}} <br />
+                    <label class="control-label" style="margin-left:15px">- Okay to Text?: </label> {{studentView.okayToText}} <br />
                     <label class="control-label">Alternate Phone: </label> {{studentView.alternateNumber}} <br />
+                    <label class="control-label" style="margin-left:15px">- Okay to Text?: </label> {{studentView.okayToTextAlternate}} <br />
+                    <label class="control-label" style="margin-left:15px">- Detailed Message?: </label> {{studentView.allowDetailedMessageAlternate}} <br />
+                    <label class="control-label">Comments: </label> {{studentView.comments}} <br />
                 </div>
             </div>
             <div *ngIf="showSuitability" class="infoPanel">
@@ -109,7 +113,7 @@
                     <label class="control-label">Income Source: </label> {{suitabilityView.incomeSource}} <br />
                     <label class="control-label">Age: </label> {{suitabilityView.age}} <br />
                     <label class="control-label"># of Hours/Week: </label> {{suitabilityView.hoursPerWeek}} <br />
-                    <label class="control-label">Work History: </label> {{suitabilityView.workHistory}} <br />
+                    <label class="control-label">Comments: </label> {{suitabilityView.comments}} <br />
                 </div>
             </div>
             <div *ngIf="showConsent" class="infoPanel">
@@ -120,6 +124,7 @@
                     <label class="control-label">Ontario Disability: </label> {{consentView.ontarioDisabilityProgram}} <br />
                     <label class="control-label">Employment Insurance: </label> {{consentView.employmentInsurance}} <br />
                     <label class="control-label">Employment Services: </label> {{consentView.employmentServices}} <br />
+                    <label class="control-label">WSIB: </label> {{consentView.wsib}} <br />
                     <label class="control-label">Other: </label> {{consentView.other}} <br />
                     <label class="control-label">Contact Name: </label> {{consentView.contactName}} <br />
                     <label class="control-label">Contact Number: </label> {{consentView.contactNum}} <br />

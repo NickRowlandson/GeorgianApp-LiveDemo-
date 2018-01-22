@@ -41,11 +41,15 @@
                 <h2 class="col-md-12" style="text-align:center">Release of information to outside agencies </h2>
                 <b><em><p class="col-md-10 col-md-offset-1">I also authorize Academic and Career Preparation, Georgian College, to provide information concerning my academic status and progress to:</p></em></b>
                 <div style="text-align:center" class=" col-md-10 col-md-offset-1">
-                    <label style="padding-right:10px"><input type="checkbox" class="form-check " [(ngModel)]="consentForm.ontarioWorks"> Ontario Works</label>
-                    <label style="padding-right:10px"><input type="checkbox" class=" col-md-offset-1 form-check" [(ngModel)]="consentForm.ontarioDisabilityProgram">  Ontario Disability Program</label>
-                    <label style="padding-right:10px"><input type="checkbox" class=" col-md-offset-1 form-check" [(ngModel)]="consentForm.employmentInsurance"> Employment Insurance</label>
-                    <label style="padding-right:10px"><input type="checkbox" class="col-md-offset-1 form-check " [(ngModel)]="consentForm.employmentServices">  Employment Services</label>
-                    <label style="padding-right:10px"><input type="checkbox" class="col-md-offset-1 form-check " [(ngModel)]="consentForm.other">  Other</label>
+                    <label style="padding-right:10px"><p-checkbox [(ngModel)]="consentForm.ontarioWorks" class=" col-md-offset-1 form-check" binary="true"></p-checkbox> Ontario Works</label>
+                    <label style="padding-right:10px"><p-checkbox [(ngModel)]="consentForm.ontarioDisabilityProgram" class=" col-md-offset-1 form-check" binary="true"></p-checkbox> Ontario Disability Program</label>
+                    <label style="padding-right:10px"><p-checkbox [(ngModel)]="consentForm.employmentInsurance" class=" col-md-offset-1 form-check" binary="true"></p-checkbox> Employment Insurance</label>
+                    <label style="padding-right:10px"><p-checkbox [(ngModel)]="consentForm.employmentServices" class=" col-md-offset-1 form-check" binary="true"></p-checkbox> Employment Services</label>
+                    <label style="padding-right:10px"><p-checkbox [(ngModel)]="consentForm.wsib" class=" col-md-offset-1 form-check" binary="true"></p-checkbox> WSIB</label>
+                    <label style="padding-right:10px"><p-checkbox [(ngModel)]="otherChecked" class=" col-md-offset-1 form-check" binary="true"></p-checkbox> Other</label>
+                </div>
+                <div *ngIf="otherChecked" class="col-md-offset-4 col-md-4">
+                  <input class="form-control" rows="2" name="childcare" [(ngModel)]="consentForm.other" placeholder="Other"/>
                 </div>
             </div>
 
