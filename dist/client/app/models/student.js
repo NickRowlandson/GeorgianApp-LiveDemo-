@@ -1,18 +1,10 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var __moduleName = context_1 && context_1.id;
-    var Student;
-    return {
-        setters: [],
-        execute: function () {
-            Student = /** @class */ (function () {
-                function Student() {
-                }
-                return Student;
-            }());
-            exports_1("Student", Student);
-        }
-    };
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var Student = /** @class */ (function () {
+    function Student() {
+    }
+    return Student;
+}());
+exports.Student = Student;
 
-//# sourceMappingURL=student.js.map
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL3N0dWRlbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQTtJQUFBO0lBa0JBLENBQUM7SUFBRCxjQUFDO0FBQUQsQ0FsQkEsQUFrQkMsSUFBQTtBQWxCWSwwQkFBTyIsImZpbGUiOiJhcHAvbW9kZWxzL3N0dWRlbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgU3R1ZGVudCB7XHJcbiAgICBzdHVkZW50SUQ6IHN0cmluZztcclxuICAgIHVzZXJJRDogc3RyaW5nO1xyXG4gICAgYXV0aExldmVsOiBzdHJpbmc7XHJcbiAgICBpbnF1aXJ5RGF0ZTogc3RyaW5nO1xyXG4gICAgdXNlcm5hbWU6IHN0cmluZztcclxuICAgIHBhc3N3b3JkOiBzdHJpbmc7XHJcbiAgICBmdWxsTmFtZTogc3RyaW5nO1xyXG4gICAgZmlyc3ROYW1lOiBzdHJpbmc7XHJcbiAgICBsYXN0TmFtZTogc3RyaW5nO1xyXG4gICAgYmlydGhkYXRlOiBzdHJpbmc7XHJcbiAgICBlbWFpbDogc3RyaW5nO1xyXG4gICAgcGhvbmU6IHN0cmluZztcclxuICAgIGVucm9sbGVkOiBib29sZWFuO1xyXG4gICAgYWJzZW50OiBib29sZWFuO1xyXG4gICAgc3R1ZGVudFN0YXJ0RGF0ZTogRGF0ZTtcclxuICAgIHN0dWRlbnRFbmREYXRlOiBEYXRlO1xyXG4gICAgYXR0ZW5kYW5jZVZhbHVlOiBhbnk7XHJcbn1cclxuIl19
