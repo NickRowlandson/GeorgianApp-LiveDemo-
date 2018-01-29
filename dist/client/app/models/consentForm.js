@@ -1,10 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var ConsentForm = /** @class */ (function () {
-    function ConsentForm() {
-    }
-    return ConsentForm;
-}());
-exports.ConsentForm = ConsentForm;
+System.register([], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var ConsentForm;
+    return {
+        setters: [],
+        execute: function () {
+            ConsentForm = /** @class */ (function () {
+                function ConsentForm() {
+                }
+                return ConsentForm;
+            }());
+            exports_1("ConsentForm", ConsentForm);
+        }
+    };
+});
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2NvbnNlbnRGb3JtLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUE7SUFBQTtJQTBCQSxDQUFDO0lBQUQsa0JBQUM7QUFBRCxDQTFCQSxBQTBCQyxJQUFBO0FBMUJZLGtDQUFXIiwiZmlsZSI6ImFwcC9tb2RlbHMvY29uc2VudEZvcm0uanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgQ29uc2VudEZvcm0ge1xyXG4gIHVzZXJJRDogc3RyaW5nO1xyXG4gIGRhdGU6IERhdGU7XHJcbiAgb250YXJpb1dvcmtzOiBib29sZWFuO1xyXG4gIG93Q2FzZVdvcmtlck5hbWU6IHN0cmluZztcclxuICBvd0Nhc2VXb3JrZXJQaG9uZTogc3RyaW5nO1xyXG4gIG93Q2FzZVdvcmtlckVtYWlsOiBzdHJpbmc7XHJcbiAgb250YXJpb0Rpc2FiaWxpdHlQcm9ncmFtOiBib29sZWFuO1xyXG4gIG9kc3BBZ2VuY3lOYW1lOiBzdHJpbmc7XHJcbiAgb2RzcENvbnRhY3ROYW1lOiBzdHJpbmc7XHJcbiAgb2RzcFBob25lOiBzdHJpbmc7XHJcbiAgb2RzcEVtYWlsOiBzdHJpbmc7XHJcbiAgZW1wbG95bWVudEluc3VyYW5jZTogYm9vbGVhbjtcclxuICBlbXBsb3ltZW50U2VydmljZXM6IGJvb2xlYW47XHJcbiAgZXNBZ2VuY3lOYW1lOiBzdHJpbmc7XHJcbiAgZXNDb250YWN0TmFtZTogc3RyaW5nO1xyXG4gIGVzUGhvbmU6IHN0cmluZztcclxuICBlc0VtYWlsOiBzdHJpbmc7XHJcbiAgbGl0ZXJhY3lXaXRuZXNzOiBzdHJpbmc7XHJcbiAgd3NpYjogYm9vbGVhbjtcclxuICB3c2liV3RzTmFtZTogc3RyaW5nO1xyXG4gIHdzaWJXdHNQaG9uZTogc3RyaW5nO1xyXG4gIG90aGVyOiBzdHJpbmc7XHJcbiAgY29udGFjdE5hbWU6IHN0cmluZztcclxuICBjb250YWN0TnVtOiBzdHJpbmc7XHJcbiAgbGl0ZXJhY3lBZ2VuY2llczogc3RyaW5nO1xyXG59XHJcbiJdfQ==
+//# sourceMappingURL=consentForm.js.map
