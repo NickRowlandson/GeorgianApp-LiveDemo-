@@ -104,6 +104,42 @@
                 </a>
             </div>
         </div>
+        <div class="col-md-4 dashboardItem" *ngIf="maesdprf">
+            <div class="itemBorder">
+                <a routerLink="/prf" routerLinkActive="active">
+                    <div>
+                        <i class="fa fa-ban fa-lg-icon" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h1 class="dashboardItemText">PRF</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 dashboardItem" *ngIf="timetable">
+            <div class="itemBorder">
+                <a routerLink="/timetable" routerLinkActive="active">
+                    <div>
+                        <i class="fa fa-calendar fa-lg-icon" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h1 class="dashboardItemText">Timetable</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-md-4 dashboardItem" *ngIf="files">
+            <div class="itemBorder">
+                <a routerLink="/files" routerLinkActive="active">
+                    <div>
+                        <i class="fa fa-file-text fa-lg-icon" aria-hidden="true"></i>
+                    </div>
+                    <div>
+                        <h1 class="dashboardItemText">Files</h1>
+                    </div>
+                </a>
+            </div>
+        </div>
         <div class="col-md-4 dashboardItem" *ngIf="consent">
             <div class="itemBorder">
                 <a routerLink="/consent" routerLinkActive="active">
@@ -130,30 +166,6 @@
                           <i *ngIf="!learningStyleForm" class="fa fa-check" style="color:green" title="Form completed." aria-hidden="true"></i>
                           <i *ngIf="learningStyleForm" class="fa fa-exclamation" style="color:#FFA500" title="Please complete form." aria-hidden="true"></i>
                         </h1>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-4 dashboardItem" *ngIf="maesdprf">
-            <div class="itemBorder">
-                <a routerLink="/prf" routerLinkActive="active">
-                    <div>
-                        <i class="fa fa-ban fa-lg-icon" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <h1 class="dashboardItemText">PRF</h1>
-                    </div>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-4 dashboardItem" *ngIf="timetable">
-            <div class="itemBorder">
-                <a routerLink="/timetable" routerLinkActive="active">
-                    <div>
-                        <i class="fa fa-calendar fa-lg-icon" aria-hidden="true"></i>
-                    </div>
-                    <div>
-                        <h1 class="dashboardItemText">Timetable</h1>
                     </div>
                 </a>
             </div>
