@@ -1,6 +1,6 @@
 <div class="clients">
   <div *ngIf="!data">
-    <h1><strong>Manage Clients</strong></h1>
+    <h1><span style="cursor:pointer" (click)="goBack()"><i class="fa fa-arrow-circle-o-left"></i></span><strong> Manage Clients</strong></h1>
     <hr>
     <div class="cs-loader">
       <div class="cs-loader-inner">
@@ -19,14 +19,13 @@
   </div>
   <div class="row" *ngIf="data">
     <div class="col-md-11">
-      <h1><strong>Manage Clients</strong></h1>
+      <h1><span style="cursor:pointer" (click)="goBack()"><i class="fa fa-arrow-circle-o-left"></i></span><strong> Manage Clients</strong></h1>
       <hr>
     </div>
     <div class="col-md-1">
       <button class="addClient btn btn-success" (click)="addClient()" title="Add new client"><i class="fa fa-plus"></i> New Client</button>
     </div>
     <div class="col-md-6">
-      <div class="wrapper2">
         <h2>Clients</h2>
         <hr>
         <div class="error" *ngIf="error">{{error}}</div>
@@ -72,13 +71,6 @@
             </p-column>
           </p-dataTable>
         </div>
-        <div class="push"></div>
-      </div>
-      <div class="footer">
-        <div>
-          <button (click)="goBack()" class="btn btn-default">Back</button>
-        </div>
-      </div>
     </div>
     <div *ngIf="statusReport" class="col-md-6">
       <h2>Status Report</h2>

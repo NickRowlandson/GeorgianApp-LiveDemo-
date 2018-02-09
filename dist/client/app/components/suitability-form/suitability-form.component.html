@@ -1,7 +1,7 @@
 <div class="suitability">
-  <h1><strong>Client Suitability</strong></h1>
+  <h1><span style="cursor:pointer" (click)="goBack()"><i class="fa fa-arrow-circle-o-left"></i></span><strong> Client Suitability</strong></h1>
   <hr>
-  <div *ngIf="client" class="form-horizontal wrapper2">
+  <div *ngIf="client" class="form-horizontal">
     <div class="row">
       <ul class="sectionBtnGroup col-md-12">
         <li *ngIf="showSectionBtn1" class="sectionButtons" [ngClass]="{active: showSection1}" title="General Info" (click)="clicked('section1')">
@@ -32,10 +32,9 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-2 control-label">Attended Georgian?: </label>
-          <div class="col-md-4 studentNumberToggle">
-            <p-inputSwitch onLabel="Yes" offLabel="No" [(ngModel)]="studentNumberToggle"></p-inputSwitch>
-            <input class="form-control studentNumberInput" *ngIf="studentNumberToggle" [(ngModel)]="client.studentNumber" placeholder="Student Number" required #firstName="ngModel" />
+          <label class="col-md-2 control-label">Campus: </label>
+          <div class="col-md-6">
+            <p-dropdown [options]="campusList" [(ngModel)]="client.campus"></p-dropdown>
           </div>
         </div>
         <div class="form-group">
@@ -54,6 +53,13 @@
           <label class="col-md-2 control-label">Email: </label>
           <div class="col-md-4">
             <input class="form-control" type="email" [(ngModel)]="client.email" placeholder="Email" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-md-2 control-label">Attended Georgian?: </label>
+          <div class="col-md-4 studentNumberToggle">
+            <p-inputSwitch onLabel="Yes" offLabel="No" [(ngModel)]="studentNumberToggle"></p-inputSwitch>
+            <input class="form-control studentNumberInput" *ngIf="studentNumberToggle" [(ngModel)]="client.studentNumber" placeholder="Student Number" required #firstName="ngModel" />
           </div>
         </div>
         <div class="form-group">
@@ -439,11 +445,5 @@
         <!-- end of section 6 -->
       </div>
       <!-- close row -->
-    </div>
-    <div class="push"></div>
-  </div>
-  <div class="footer">
-    <div>
-      <button (click)="goBack()" class="btn btn-default">Back</button>
     </div>
   </div>

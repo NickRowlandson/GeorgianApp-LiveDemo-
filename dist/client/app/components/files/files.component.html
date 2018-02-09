@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-md-11">
-    <h1><strong>Files</strong></h1>
+    <h1><span style="cursor:pointer" (click)="goBack()"><i class="fa fa-arrow-circle-o-left"></i></span><strong> Files</strong></h1>
     <hr>
   </div>
   <div class="col-md-1">
@@ -26,7 +26,3 @@
               </template>
     </p-column>
   </p-dataTable>
-</div>
-<div>
-  <button (click)="goBack()" class="btn btn-default">Back</button>
-</div>

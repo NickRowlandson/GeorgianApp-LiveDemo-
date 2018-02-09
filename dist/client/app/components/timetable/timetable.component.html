@@ -1,8 +1,8 @@
 <div *ngIf="!faculty">
-  <h2><strong>My Timetable</strong></h2>
+  <h2><span style="cursor:pointer" (click)="goBack()"><i class="fa fa-arrow-circle-o-left"></i></span><strong> My Timetable</strong></h2>
 </div>
 <div *ngIf="faculty && validInfo">
-  <h2 style="display:inline-block;"><strong>Timetable for {{selectedStudent[0].firstName}} {{selectedStudent[0].lastName}}</strong></h2>
+  <h2 style="display:inline-block;"><span style="cursor:pointer" (click)="goBack()"><i class="fa fa-arrow-circle-o-left"></i></span><strong> Timetable for {{selectedStudent[0].firstName}} {{selectedStudent[0].lastName}}</strong></h2>
   <button class="searchTimetables btn btn-secondary" style="display:inline-block;float:right;" (click)="alert()" title="Search timetables"><i class="fa fa-search" aria-hidden="true"></i> Search</button>
 </div>
 <hr>
