@@ -32,7 +32,7 @@
         <input placeholder="Filter by client name" class="form-control" [(ngModel)]="filterQuery" />
         <div style="overflow:visible; position:relative;">
           <p-dataTable [value]="data | userFilter : filterQuery" [responsive]="true">
-            <p-column field="status" header="Status" [style]="{'width': '60px'}">
+            <p-column field="status" header="Status" [sortable]="true" [style]="{'width': '60px'}">
               <template let-data="rowData" pTemplate="body">
                   <div [class.statusStage1]="data.suitability" [class.statusStage2]="!data.suitability" [class.statusStage3]="!data.suitability && !data.consent && !data.learningStyle" [class.statusStage4]="!data.suitability && !data.consent && !data.learningStyle && data.banner && data.cam"></div>
               </template>
