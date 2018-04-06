@@ -1,316 +1,333 @@
-"use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-var core_1 = require("@angular/core");
-var Course_1 = require("../../models/Course");
-var router_1 = require("@angular/router");
-var course_service_1 = require("../../services/course.service");
-var CourseEditComponent = /** @class */ (function () {
-    function CourseEditComponent(courseService, route) {
-        this.courseService = courseService;
-        this.route = route;
-        this.weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
-        this.newCourse = false;
-        this.idGen = 100;
-        // calendar
-        this.events = [];
-        this.selectedDays = [];
-        // pop up
-        this.dialogVisible = false;
-        // drop down
-        this.professors = [{ label: '-- select --', value: '' }];
-        this.campuses = [{ label: '-- select --', value: '' }];
-    }
-    CourseEditComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.subscribeCourse();
-        // get professors
-        this.courseService.getProfessors().then(function (result) {
-            result.forEach(function (i) {
-                _this.professors.push({
-                    label: i.professorName,
-                    value: i.userID
-                });
-            });
-        });
-        // get campuses
-        this.courseService.getCampuses().then(function (result) {
-            result.forEach(function (i) {
-                _this.campuses.push({
-                    label: i.campusName,
-                    value: i.campusId
-                });
-            });
-        });
-        this.header = {
-            left: 'prev',
-            center: 'title',
-            right: 'next'
-        };
-        this.options = {
-            prev: 'circle-triangle-w',
-            defaultView: "month",
-            height: "auto",
-            selectable: true
-        };
-    }; // end of init
-    // check boxes onchange event
-    CourseEditComponent.prototype.cb_onchange = function (e, weekday) {
-        if (e) {
-            if (this.course.courseStart === undefined || this.course.courseEnd === undefined || this.course.courseStart === null || this.course.courseEnd == null) {
-                swal('Whoops!', 'Please pick a course start/end date first.', 'warning');
-                this.unCheck(weekday); // unselect element
-            }
-            else {
-                this.weekDay = weekday;
-                this.event = new MyEvent();
-                this.event.type = "batchGen";
-                this.dialogVisible = true;
-            }
-        }
-        else {
-            this.events = this.events.filter(function (result) { return result.weekday !== weekday; });
-        }
+System.register(["@angular/core", "../../models/Course", "@angular/router", "../../services/course.service"], function (exports_1, context_1) {
+    "use strict";
+    var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+        var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+        if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+        else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+        return c > 3 && r && Object.defineProperty(target, key, r), r;
     };
-    // this function will uncheck checkbox based on week day that given
-    CourseEditComponent.prototype.unCheck = function (weekday) {
-        this.selectedDays = this.selectedDays.filter(function (result) { return result !== weekday; });
+    var __metadata = (this && this.__metadata) || function (k, v) {
+        if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
     };
-    // this function will generate days that maches specification
-    CourseEditComponent.prototype.generateDays = function (weekday, start_date, end_date) {
-        // figure out what's next week day
-        var momentIndex, nextDay;
-        for (var i = 0; i < this.weekDays.length; i++) {
-            if (this.weekDays[i] === weekday) {
-                momentIndex = i + 1;
+    var __moduleName = context_1 && context_1.id;
+    var core_1, Course_1, router_1, course_service_1, CourseEditComponent, MyEvent;
+    return {
+        setters: [
+            function (core_1_1) {
+                core_1 = core_1_1;
+            },
+            function (Course_1_1) {
+                Course_1 = Course_1_1;
+            },
+            function (router_1_1) {
+                router_1 = router_1_1;
+            },
+            function (course_service_1_1) {
+                course_service_1 = course_service_1_1;
             }
-        }
-        if (moment(start_date).isoWeekday() > momentIndex) {
-            nextDay = moment(start_date).isoWeekday(momentIndex + 7);
-        }
-        else {
-            nextDay = moment(start_date).isoWeekday(momentIndex);
-        }
-        var root = 0, tempStart, tempEnd;
-        tempStart = this.event.dayStart;
-        tempEnd = this.event.dayEnd;
-        while (!(moment(nextDay).add(7 * root, 'day')).isAfter(moment(end_date))) {
-            this.event = new MyEvent();
-            this.event.id = this.idGen++;
-            this.event.dayStart = tempStart;
-            this.event.dayEnd = tempEnd;
-            this.event.weekday = weekday;
-            this.event.title = moment(nextDay).add(7 * root, 'day').format('YYYY-MM-DD');
-            this.event.dayStart_correct = moment(tempStart).isValid() ? moment(tempStart).format('HH:mm') : '';
-            this.event.dayEnd_correct = moment(tempEnd).isValid() ? moment(tempEnd).format('HH:mm') : '';
-            this.event.start = moment(nextDay).add(7 * root, 'day').format('YYYY-MM-DD') + ' ' + this.event.dayStart_correct;
-            this.event.end = moment(nextDay).add(7 * root, 'day').format('YYYY-MM-DD') + ' ' + this.event.dayEnd_correct;
-            this.events.push(this.event);
-            root++;
-        }
-    };
-    CourseEditComponent.prototype.saveEvent = function () {
-        if (this.event.type === 'add') {
-            var momentIndex = -1;
-            for (var i = 0; i < this.weekDays.length; i++) {
-                if (i === moment(this.event.title).isoWeekday()) {
-                    momentIndex = i - 1;
+        ],
+        execute: function () {
+            CourseEditComponent = /** @class */ (function () {
+                function CourseEditComponent(courseService, route) {
+                    this.courseService = courseService;
+                    this.route = route;
+                    this.weekDays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'];
+                    this.newCourse = false;
+                    this.idGen = 100;
+                    // calendar
+                    this.events = [];
+                    this.selectedDays = [];
+                    // pop up
+                    this.dialogVisible = false;
+                    // drop down
+                    this.professors = [{ label: '-- select --', value: '' }];
+                    this.campuses = [{ label: '-- select --', value: '' }];
                 }
-            }
-            this.event.weekday = this.weekDays[momentIndex];
-            this.event.id = this.idGen++; // title, id , weekday,dayStart,dayEn
-            this.event.dayStart_correct = moment(this.event.dayStart).isValid() ? moment(this.event.dayStart).format('HH:mm') : '';
-            this.event.dayEnd_correct = moment(this.event.dayEnd).isValid() ? moment(this.event.dayEnd).format('HH:mm') : '';
-            this.event.start = this.event.title + ' ' + this.event.dayStart_correct;
-            this.event.end = this.event.title + ' ' + this.event.dayEnd_correct;
-            if (this.checkExist(this.event.title)) {
-                this.events.push(this.event);
-                console.log('adding event');
-                console.log(this.event);
-            }
-            else {
-                alert('event exist');
-            }
-        }
-        else if (this.event.type === 'edit') {
-            if (this.event.id) {
-                this.event.dayStart_correct = moment(this.event.dayStart).isValid() ? moment(this.event.dayStart).format('HH:mm') : '';
-                this.event.dayEnd_correct = moment(this.event.dayEnd).isValid() ? moment(this.event.dayEnd).format('HH:mm') : '';
-                this.event.start = this.event.title + ' ' + this.event.dayStart_correct;
-                this.event.end = this.event.title + ' ' + this.event.dayEnd_correct;
-                var index = this.findEventIndexById(this.event.id);
-                if (index >= 0) {
-                    this.events[index] = this.event;
-                }
-            }
-            console.log('editing event');
-            console.log(this.event);
-        }
-        else if (this.event.type === 'batchGen') {
-            this.generateDays(this.weekDay, this.course.courseStart, this.course.courseEnd);
-            console.log('generating event done, printing the list');
-            console.log(this.events);
-        }
-        this.dialogVisible = false;
-        this.event = null;
-    };
-    CourseEditComponent.prototype.deleteEvent = function () {
-        var index = this.findEventIndexById(this.event.id);
-        if (index >= 0) {
-            this.events.splice(index, 1);
-        }
-        this.dialogVisible = false;
-    };
-    CourseEditComponent.prototype.findEventIndexById = function (id) {
-        var index = -1;
-        for (var i = 0; i < this.events.length; i++) {
-            if (id === this.events[i].id) {
-                index = i;
-                break;
-            }
-        }
-        return index;
-    };
-    // event handler for event click
-    CourseEditComponent.prototype.handleEventClick = function (e) {
-        console.log(e.calEvent);
-        this.event = new MyEvent();
-        this.event.type = 'edit';
-        this.event.title = e.calEvent.title;
-        this.event.dayStart = e.calEvent.dayStart;
-        this.event.dayEnd = e.calEvent.dayEnd;
-        this.event.start = e.calEvent.start;
-        this.event.end = e.calEvent.end;
-        this.event.id = e.calEvent.id;
-        this.event.weekday = e.calEvent.weekday;
-        this.dialogVisible = true;
-        console.log(this.event);
-        // this.events = this.events.filter(result => result !== event );
-    };
-    // event handler for day click
-    CourseEditComponent.prototype.handleDayClick = function (e) {
-        var date = e.date.format();
-        this.event = new MyEvent();
-        this.event.title = date;
-        this.event.type = "add";
-        this.dialogVisible = true;
-    };
-    CourseEditComponent.prototype.checkExist = function (date) {
-        var ndate = this.events.filter(function (result) { return result.start === date; });
-        if (ndate.length === 1) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    };
-    CourseEditComponent.prototype.subscribeCourse = function () {
-        var _this = this;
-        this.sub = this.route.params.subscribe(function (params) {
-            _this.id = params['id'];
-            if (_this.id === 'new') {
-                _this.newCourse = true;
-                _this.course = new Course_1.Course();
-            }
-            else {
-                _this.newCourse = false;
-                _this.courseService.getCourse(_this.id).then(function (result) {
-                    result.forEach(function (item) {
-                        item.courseStart = moment(item.courseStart).isValid() ? moment(item.courseStart).add(1, 'day').format('YYYY-MM-DD ') : '';
-                        item.courseEnd = moment(item.courseEnd).isValid() ? moment(item.courseEnd).add(1, 'day').format('YYYY-MM-DD') : '';
+                CourseEditComponent.prototype.ngOnInit = function () {
+                    var _this = this;
+                    this.subscribeCourse();
+                    // get professors
+                    this.courseService.getProfessors().then(function (result) {
+                        result.forEach(function (i) {
+                            _this.professors.push({
+                                label: i.professorName,
+                                value: i.userID
+                            });
+                        });
                     });
-                    _this.course = result[0];
-                    if (_this.course.classTimeStr !== null) {
-                        _this.events = _this.detachCourseStr(_this.course.classTimeStr);
+                    // get campuses
+                    this.courseService.getCampuses().then(function (result) {
+                        result.forEach(function (i) {
+                            _this.campuses.push({
+                                label: i.campusName,
+                                value: i.campusId
+                            });
+                        });
+                    });
+                    this.header = {
+                        left: 'prev',
+                        center: 'title',
+                        right: 'next'
+                    };
+                    this.options = {
+                        prev: 'circle-triangle-w',
+                        defaultView: "month",
+                        height: "auto",
+                        selectable: true
+                    };
+                }; // end of init
+                // check boxes onchange event
+                CourseEditComponent.prototype.cb_onchange = function (e, weekday) {
+                    if (e) {
+                        if (this.course.courseStart === undefined || this.course.courseEnd === undefined || this.course.courseStart === null || this.course.courseEnd == null) {
+                            swal('Whoops!', 'Please pick a course start/end date first.', 'warning');
+                            this.unCheck(weekday); // unselect element
+                        }
+                        else {
+                            this.weekDay = weekday;
+                            this.event = new MyEvent();
+                            this.event.type = "batchGen";
+                            this.dialogVisible = true;
+                        }
                     }
-                });
-            }
-        });
-    };
-    CourseEditComponent.prototype.detachCourseStr = function (str) {
-        var _this = this;
-        var myEvents = [];
-        var strArry = str.split(',');
-        strArry.forEach(function (element) {
-            var myEvent = new MyEvent();
-            myEvent.title = element.split(' ')[0];
-            myEvent.id = _this.idGen++;
-            myEvent.weekday = _this.weekDays[moment(myEvent.title).isoWeekday() - 1];
-            myEvent.dayStart_correct = element.split(' ')[1].split('-')[0];
-            myEvent.dayEnd_correct = element.split(' ')[1].split('-')[1];
-            myEvent.start = element.split(' ')[0] + ' ' + myEvent.dayStart_correct;
-            myEvent.end = element.split(' ')[0] + ' ' + myEvent.dayEnd_correct;
-            myEvent.dayStart = moment(myEvent.start).isValid() ? moment(myEvent.start).format() : '';
-            myEvent.dayEnd = moment(myEvent.end).isValid() ? moment(myEvent.end).format() : '';
-            myEvent.allDay = false;
-            myEvents.push(myEvent);
-            console.log(myEvent);
-        });
-        return myEvents;
-    };
-    CourseEditComponent.prototype.generateClassTimeStr = function () {
-        var str = '', tempStart, tempEnd, tempDate;
-        for (var i = 0; i < this.events.length; i++) {
-            tempDate = this.events[i].title;
-            tempStart = this.events[i].dayStart_correct;
-            tempEnd = this.events[i].dayEnd_correct;
-            if (i === 0) {
-                str += tempDate + " " + tempStart + "-" + tempEnd;
-            }
-            else {
-                str += "," + tempDate + " " + tempStart + "-" + tempEnd;
-            }
+                    else {
+                        this.events = this.events.filter(function (result) { return result.weekday !== weekday; });
+                    }
+                };
+                // this function will uncheck checkbox based on week day that given
+                CourseEditComponent.prototype.unCheck = function (weekday) {
+                    this.selectedDays = this.selectedDays.filter(function (result) { return result !== weekday; });
+                };
+                // this function will generate days that maches specification
+                CourseEditComponent.prototype.generateDays = function (weekday, start_date, end_date) {
+                    // figure out what's next week day
+                    var momentIndex, nextDay;
+                    for (var i = 0; i < this.weekDays.length; i++) {
+                        if (this.weekDays[i] === weekday) {
+                            momentIndex = i + 1;
+                        }
+                    }
+                    if (moment(start_date).isoWeekday() > momentIndex) {
+                        nextDay = moment(start_date).isoWeekday(momentIndex + 7);
+                    }
+                    else {
+                        nextDay = moment(start_date).isoWeekday(momentIndex);
+                    }
+                    var root = 0, tempStart, tempEnd;
+                    tempStart = this.event.dayStart;
+                    tempEnd = this.event.dayEnd;
+                    while (!(moment(nextDay).add(7 * root, 'day')).isAfter(moment(end_date))) {
+                        this.event = new MyEvent();
+                        this.event.id = this.idGen++;
+                        this.event.dayStart = tempStart;
+                        this.event.dayEnd = tempEnd;
+                        this.event.weekday = weekday;
+                        this.event.title = moment(nextDay).add(7 * root, 'day').format('YYYY-MM-DD');
+                        this.event.dayStart_correct = moment(tempStart).isValid() ? moment(tempStart).format('HH:mm') : '';
+                        this.event.dayEnd_correct = moment(tempEnd).isValid() ? moment(tempEnd).format('HH:mm') : '';
+                        this.event.start = moment(nextDay).add(7 * root, 'day').format('YYYY-MM-DD') + ' ' + this.event.dayStart_correct;
+                        this.event.end = moment(nextDay).add(7 * root, 'day').format('YYYY-MM-DD') + ' ' + this.event.dayEnd_correct;
+                        this.events.push(this.event);
+                        root++;
+                    }
+                };
+                CourseEditComponent.prototype.saveEvent = function () {
+                    if (this.event.type === 'add') {
+                        var momentIndex = -1;
+                        for (var i = 0; i < this.weekDays.length; i++) {
+                            if (i === moment(this.event.title).isoWeekday()) {
+                                momentIndex = i - 1;
+                            }
+                        }
+                        this.event.weekday = this.weekDays[momentIndex];
+                        this.event.id = this.idGen++; // title, id , weekday,dayStart,dayEn
+                        this.event.dayStart_correct = moment(this.event.dayStart).isValid() ? moment(this.event.dayStart).format('HH:mm') : '';
+                        this.event.dayEnd_correct = moment(this.event.dayEnd).isValid() ? moment(this.event.dayEnd).format('HH:mm') : '';
+                        this.event.start = this.event.title + ' ' + this.event.dayStart_correct;
+                        this.event.end = this.event.title + ' ' + this.event.dayEnd_correct;
+                        if (this.checkExist(this.event.title)) {
+                            this.events.push(this.event);
+                            console.log('adding event');
+                            console.log(this.event);
+                        }
+                        else {
+                            alert('event exist');
+                        }
+                    }
+                    else if (this.event.type === 'edit') {
+                        if (this.event.id) {
+                            this.event.dayStart_correct = moment(this.event.dayStart).isValid() ? moment(this.event.dayStart).format('HH:mm') : '';
+                            this.event.dayEnd_correct = moment(this.event.dayEnd).isValid() ? moment(this.event.dayEnd).format('HH:mm') : '';
+                            this.event.start = this.event.title + ' ' + this.event.dayStart_correct;
+                            this.event.end = this.event.title + ' ' + this.event.dayEnd_correct;
+                            var index = this.findEventIndexById(this.event.id);
+                            if (index >= 0) {
+                                this.events[index] = this.event;
+                            }
+                        }
+                        console.log('editing event');
+                        console.log(this.event);
+                    }
+                    else if (this.event.type === 'batchGen') {
+                        this.generateDays(this.weekDay, this.course.courseStart, this.course.courseEnd);
+                        console.log('generating event done, printing the list');
+                        console.log(this.events);
+                    }
+                    this.dialogVisible = false;
+                    this.event = null;
+                };
+                CourseEditComponent.prototype.deleteEvent = function () {
+                    var index = this.findEventIndexById(this.event.id);
+                    if (index >= 0) {
+                        this.events.splice(index, 1);
+                    }
+                    this.dialogVisible = false;
+                };
+                CourseEditComponent.prototype.findEventIndexById = function (id) {
+                    var index = -1;
+                    for (var i = 0; i < this.events.length; i++) {
+                        if (id === this.events[i].id) {
+                            index = i;
+                            break;
+                        }
+                    }
+                    return index;
+                };
+                // event handler for event click
+                CourseEditComponent.prototype.handleEventClick = function (e) {
+                    console.log(e.calEvent);
+                    this.event = new MyEvent();
+                    this.event.type = 'edit';
+                    this.event.title = e.calEvent.title;
+                    this.event.dayStart = e.calEvent.dayStart;
+                    this.event.dayEnd = e.calEvent.dayEnd;
+                    this.event.start = e.calEvent.start;
+                    this.event.end = e.calEvent.end;
+                    this.event.id = e.calEvent.id;
+                    this.event.weekday = e.calEvent.weekday;
+                    this.dialogVisible = true;
+                    console.log(this.event);
+                    // this.events = this.events.filter(result => result !== event );
+                };
+                // event handler for day click
+                CourseEditComponent.prototype.handleDayClick = function (e) {
+                    var date = e.date.format();
+                    this.event = new MyEvent();
+                    this.event.title = date;
+                    this.event.type = "add";
+                    this.dialogVisible = true;
+                };
+                CourseEditComponent.prototype.checkExist = function (date) {
+                    var ndate = this.events.filter(function (result) { return result.start === date; });
+                    if (ndate.length === 1) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                };
+                CourseEditComponent.prototype.subscribeCourse = function () {
+                    var _this = this;
+                    this.sub = this.route.params.subscribe(function (params) {
+                        _this.id = params['id'];
+                        if (_this.id === 'new') {
+                            _this.newCourse = true;
+                            _this.course = new Course_1.Course();
+                        }
+                        else {
+                            _this.newCourse = false;
+                            _this.courseService.getCourse(_this.id).then(function (result) {
+                                result.forEach(function (item) {
+                                    item.courseStart = moment(item.courseStart).isValid() ? moment(item.courseStart).add(1, 'day').format('YYYY-MM-DD ') : '';
+                                    item.courseEnd = moment(item.courseEnd).isValid() ? moment(item.courseEnd).add(1, 'day').format('YYYY-MM-DD') : '';
+                                });
+                                _this.course = result[0];
+                                if (_this.course.classTimeStr !== null) {
+                                    _this.events = _this.detachCourseStr(_this.course.classTimeStr);
+                                }
+                            });
+                        }
+                    });
+                };
+                CourseEditComponent.prototype.detachCourseStr = function (str) {
+                    var _this = this;
+                    var myEvents = [];
+                    var strArry = str.split(',');
+                    strArry.forEach(function (element) {
+                        var myEvent = new MyEvent();
+                        myEvent.title = element.split(' ')[0];
+                        myEvent.id = _this.idGen++;
+                        myEvent.weekday = _this.weekDays[moment(myEvent.title).isoWeekday() - 1];
+                        myEvent.dayStart_correct = element.split(' ')[1].split('-')[0];
+                        myEvent.dayEnd_correct = element.split(' ')[1].split('-')[1];
+                        myEvent.start = element.split(' ')[0] + ' ' + myEvent.dayStart_correct;
+                        myEvent.end = element.split(' ')[0] + ' ' + myEvent.dayEnd_correct;
+                        myEvent.dayStart = moment(myEvent.start).isValid() ? moment(myEvent.start).format() : '';
+                        myEvent.dayEnd = moment(myEvent.end).isValid() ? moment(myEvent.end).format() : '';
+                        myEvent.allDay = false;
+                        myEvents.push(myEvent);
+                        console.log(myEvent);
+                    });
+                    return myEvents;
+                };
+                CourseEditComponent.prototype.generateClassTimeStr = function () {
+                    var str = '', tempStart, tempEnd, tempDate;
+                    for (var i = 0; i < this.events.length; i++) {
+                        tempDate = this.events[i].title;
+                        tempStart = this.events[i].dayStart_correct;
+                        tempEnd = this.events[i].dayEnd_correct;
+                        if (i === 0) {
+                            str += tempDate + " " + tempStart + "-" + tempEnd;
+                        }
+                        else {
+                            str += "," + tempDate + " " + tempStart + "-" + tempEnd;
+                        }
+                    }
+                    return str;
+                };
+                CourseEditComponent.prototype.save = function () {
+                    var _this = this;
+                    if (!this.course.courseName || !this.course.courseStart || !this.course.courseEnd || !this.course.professorId || !this.course.campusId || !this.course.classroom) {
+                        swal('Form Incomplete', 'Please fill out all fields in the form.', 'warning');
+                    }
+                    else {
+                        this.course.classTimeStr = this.generateClassTimeStr();
+                        //**** need validation
+                        this.courseService
+                            .save(this.course)
+                            .then(function (course) {
+                            _this.course = course; // saved user, w/ id if new
+                            _this.goBack();
+                        })
+                            .catch(function (error) { return _this.error = error; }); // TODO: Display error message
+                    }
+                };
+                CourseEditComponent.prototype.goBack = function () {
+                    window.history.back();
+                };
+                __decorate([
+                    core_1.Input(),
+                    __metadata("design:type", Course_1.Course)
+                ], CourseEditComponent.prototype, "course", void 0);
+                CourseEditComponent = __decorate([
+                    core_1.Component({
+                        selector: 'course-edit',
+                        templateUrl: './app/components/course-edit/course-edit.component.html',
+                        styleUrls: ['./app/components/course-edit/course-edit.component.css']
+                    }),
+                    __metadata("design:paramtypes", [course_service_1.CourseService, router_1.ActivatedRoute])
+                ], CourseEditComponent);
+                return CourseEditComponent;
+            }());
+            exports_1("CourseEditComponent", CourseEditComponent);
+            MyEvent = /** @class */ (function () {
+                function MyEvent() {
+                }
+                return MyEvent;
+            }());
+            exports_1("MyEvent", MyEvent);
         }
-        return str;
     };
-    CourseEditComponent.prototype.save = function () {
-        var _this = this;
-        if (!this.course.courseName || !this.course.courseStart || !this.course.courseEnd || !this.course.professorId || !this.course.campusId || !this.course.classroom) {
-            swal('Form Incomplete', 'Please fill out all fields in the form.', 'warning');
-        }
-        else {
-            this.course.classTimeStr = this.generateClassTimeStr();
-            //**** need validation
-            this.courseService
-                .save(this.course)
-                .then(function (course) {
-                _this.course = course; // saved user, w/ id if new
-                _this.goBack();
-            })
-                .catch(function (error) { return _this.error = error; }); // TODO: Display error message
-        }
-    };
-    CourseEditComponent.prototype.goBack = function () {
-        window.history.back();
-    };
-    __decorate([
-        core_1.Input(),
-        __metadata("design:type", Course_1.Course)
-    ], CourseEditComponent.prototype, "course", void 0);
-    CourseEditComponent = __decorate([
-        core_1.Component({
-            selector: 'course-edit',
-            templateUrl: './app/components/course-edit/course-edit.component.html',
-            styleUrls: ['./app/components/course-edit/course-edit.component.css']
-        }),
-        __metadata("design:paramtypes", [course_service_1.CourseService, router_1.ActivatedRoute])
-    ], CourseEditComponent);
-    return CourseEditComponent;
-}());
-exports.CourseEditComponent = CourseEditComponent;
-var MyEvent = /** @class */ (function () {
-    function MyEvent() {
-    }
-    return MyEvent;
-}());
-exports.MyEvent = MyEvent;
+});
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvY29tcG9uZW50cy9jb3Vyc2UtZWRpdC9jb3Vyc2UtZWRpdC5jb21wb25lbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7QUFBQSxzQ0FBeUQ7QUFDekQsOENBQTZDO0FBQzdDLDBDQUF5RDtBQUN6RCxnRUFBOEQ7QUFZOUQ7SUFzQkksNkJBQW9CLGFBQTRCLEVBQVUsS0FBcUI7UUFBM0Qsa0JBQWEsR0FBYixhQUFhLENBQWU7UUFBVSxVQUFLLEdBQUwsS0FBSyxDQUFnQjtRQW5CL0UsYUFBUSxHQUFhLENBQUMsS0FBSyxFQUFFLEtBQUssRUFBRSxLQUFLLEVBQUUsS0FBSyxFQUFFLEtBQUssQ0FBQyxDQUFDO1FBQ3pELGNBQVMsR0FBRyxLQUFLLENBQUM7UUFLbEIsVUFBSyxHQUFXLEdBQUcsQ0FBQztRQUNwQixXQUFXO1FBQ1gsV0FBTSxHQUFVLEVBQUUsQ0FBQztRQUluQixpQkFBWSxHQUFhLEVBQUUsQ0FBQztRQUM1QixTQUFTO1FBQ1Qsa0JBQWEsR0FBWSxLQUFLLENBQUM7UUFDL0IsWUFBWTtRQUNaLGVBQVUsR0FBaUIsQ0FBQyxFQUFFLEtBQUssRUFBRSxjQUFjLEVBQUUsS0FBSyxFQUFFLEVBQUUsRUFBQyxDQUFDLENBQUM7UUFDakUsYUFBUSxHQUFpQixDQUFDLEVBQUUsS0FBSyxFQUFFLGNBQWMsRUFBRSxLQUFLLEVBQUUsRUFBRSxFQUFDLENBQUMsQ0FBQztJQUcvRCxDQUFDO0lBRUQsc0NBQVEsR0FBUjtRQUFBLGlCQWtDQztRQWpDRyxJQUFJLENBQUMsZUFBZSxFQUFFLENBQUM7UUFFdkIsaUJBQWlCO1FBQ2pCLElBQUksQ0FBQyxhQUFhLENBQUMsYUFBYSxFQUFFLENBQUMsSUFBSSxDQUFDLFVBQUMsTUFBTTtZQUMzQyxNQUFNLENBQUMsT0FBTyxDQUFDLFVBQUMsQ0FBQztnQkFDYixLQUFJLENBQUMsVUFBVSxDQUFDLElBQUksQ0FBQztvQkFDakIsS0FBSyxFQUFFLENBQUMs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QkFBQztDQXhURCxBQXdUQyxJQUFBO0FBeFRZLGtEQUFtQjtBQXlUaEM7SUFBQTtJQVlBLENBQUM7SUFBRCxjQUFDO0FBQUQsQ0FaQSxBQVlDLElBQUE7QUFaWSwwQkFBTyIsImZpbGUiOiJhcHAvY29tcG9uZW50cy9jb3Vyc2UtZWRpdC9jb3Vyc2UtZWRpdC5jb21wb25lbnQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyBDb21wb25lbnQsIElucHV0LCBPbkluaXQgfSBmcm9tICdAYW5ndWxhci9jb3JlJztcclxuaW1wb3J0IHsgQ291cnNlIH0gZnJvbSBcIi4uLy4uL21vZGVscy9Db3Vyc2VcIjtcclxuaW1wb3J0IHsgQWN0aXZhdGVkUm91dGUsIFBhcmFtcyB9IGZyb20gJ0Bhbmd1bGFyL3JvdXRlcic7XHJcbmltcG9ydCB7IENvdXJzZVNlcnZpY2UgfSBmcm9tIFwiLi4vLi4vc2VydmljZXMvY291cnNlLnNlcnZpY2VcIjtcclxuaW1wb3J0IHsgU2VsZWN0SXRlbSB9IGZyb20gJ3ByaW1lbmcvcHJpbWVuZyc7XHJcbmRlY2xhcmUgdmFyIHN3YWw6IGFueTtcclxuZGVjbGFyZSB2YXIgbW9tZW50O1xyXG5cclxuQENvbXBvbmVudCh7XHJcbiAgICBzZWxlY3RvcjogJ2NvdXJzZS1lZGl0JyxcclxuICAgIHRlbXBsYXRlVXJsOiAnLi9hcHAvY29tcG9uZW50cy9jb3Vyc2UtZWRpdC9jb3Vyc2UtZWRpdC5jb21wb25lbnQuaHRtbCcsXHJcbiAgICBzdHlsZVVybHM6IFsnLi9hcHAvY29tcG9uZW50cy9jb3Vyc2UtZWRpdC9jb3Vyc2UtZWRpdC5jb21wb25lbnQuY3NzJ11cclxufSlcclxuXHJcblxyXG5leHBvcnQgY2xhc3MgQ291cnNlRWRpdENvbXBvbmVudCBpbXBsZW1lbnRzIE9uSW5pdCB7XHJcbiAgICAvL2dsb2JhbCB2YXJpYWJsZXNcclxuICAgIEBJbnB1dCgpIGNvdXJzZTogQ291cnNlO1xyXG4gICAgd2Vla0RheXM6IHN0cmluZ1tdID0gWydNb24nLCAnVHVlJywgJ1dlZCcsICdUaHUnLCAnRnJpJ107XHJcbiAgICBuZXdDb3Vyc2UgPSBmYWxzZTtcclxuICAgIGVycm9yOiBhbnk7XHJcbiAgICBwcml2YXRlIHN1YjogYW55O1xyXG4gICAgaWQ6IGFueTtcclxuICAgIHdlZWtEYXk6IHN0cmluZztcclxuICAgIGlkR2VuOiBudW1iZXIgPSAxMDA7XHJcbiAgICAvLyBjYWxlbmRhclxyXG4gICAgZXZlbnRzOiBhbnlbXSA9IFtdO1xyXG4gICAgZXZlbnQ6IE15RXZlbnQ7XHJcbiAgICBoZWFkZXI6IGFueTtcclxuICAgIG9wdGlvbnM6IGFueTtcclxuICAgIHNlbGVjdGVkRGF5czogc3RyaW5nW10gPSBbXTtcclxuICAgIC8vIHBvcCB1cFxyXG4gICAgZGlhbG9nVmlzaWJsZTogYm9vbGVhbiA9IGZhbHNlO1xyXG4gICAgLy8gZHJvcCBkb3duXHJcbiAgICBwcm9mZXNzb3JzOiBTZWxlY3RJdGVtW10gPSBbeyBsYWJlbDogJy0tIHNlbGVjdCAtLScsIHZhbHVlOiAnJ31dO1xyXG4gICAgY2FtcHVzZXM6IFNlbGVjdEl0ZW1bXSA9IFt7IGxhYmVsOiAnLS0gc2VsZWN0IC0tJywgdmFsdWU6ICcnfV07XHJcblxyXG4gICAgY29uc3RydWN0b3IocHJpdmF0ZSBjb3Vyc2VTZXJ2aWNlOiBDb3Vyc2VTZXJ2aWNlLCBwcml2YXRlIHJvdXRlOiBBY3RpdmF0ZWRSb3V0ZSkge1xyXG4gICAgfVxyXG5cclxuICAgIG5nT25Jbml0KCkge1xyXG4gICAgICAgIHRoaXMuc3Vic2NyaWJlQ291cnNlKCk7XHJcblxyXG4gICAgICAgIC8vIGdldCBwcm9mZXNzb3JzXHJcbiAgICAgICAgdGhpcy5jb3Vyc2VTZXJ2aWNlLmdldFByb2Zlc3NvcnMoKS50aGVuKChyZXN1bHQpID0+IHtcclxuICAgICAgICAgICAgcmVzdWx0LmZvckVhY2goKGkpID0+IHtcclxuICAgICAgICAgICAgICAgIHRoaXMucHJvZmVzc29ycy5wdXNoKHtcclxuICAgICAgICAgICAgICAgICAgICBsYWJlbDogaS5wcm9mZXNzb3JOYW1lLFxyXG4gICAgICAgICAgICAgICAgICAgIHZhbHVlOiBpLnVzZXJJRFxyXG4gICAgICAgICAgICAgICAgfSk7XHJcbiAgICAgICAgICAgIH0pO1xyXG4gICAgICAgIH0pO1xyXG4gICAgICAgIC8vIGdldCBjYW1wdXNlc1xyXG4gICAgICAgIHRoaXMuY291cnNlU2VydmljZS5nZXRDYW1wdXNlcygpLnRoZW4oKHJlc3VsdCkgPT4ge1xyXG4gICAgICAgICAgICByZXN1bHQuZm9yRWFjaCgoaSkgPT4ge1xyXG4gICAgICAgICAgICAgICAgdGhpcy5jYW1wdXNlcy5wdXNoKHtcclxuICAgICAgICAgICAgICAgICAgICBsYWJlbDogaS5jYW1wdXNOYW1lLFxyXG4gICAgICAgICAgICAgICAgICAgIHZhbHVlOiBpLmNhbXB1c0lkXHJcbiAgICAgICAgICAgICAgICB9KTtcclxuICAgICAgICAgICAgfSk7XHJcbiAgICAgICAgfSk7XHJcblxyXG4gICAgICAgIHRoaXMuaGVhZGVyID0ge1xyXG4gICAgICAgICAgICBsZWZ0OiAncHJldicsXHJcbiAgICAgICAgICAgIGNlbnRlcjogJ3RpdGxlJyxcclxuICAgICAgICAgICAgcmlnaHQ6ICduZXh0J1xyXG4gICAgICAgIH07XHJcblxyXG4gICAgICAgIHRoaXMub3B0aW9ucyA9IHtcclxuICAgICAgICAgICAgcHJldjogJ2NpcmNsZS10cmlhbmdsZS13JyxcclxuICAgICAgICAgICAgZGVmYXVsdFZpZXc6IFwibW9udGhcIixcclxuICAgICAgICAgICAgaGVpZ2h0OiBcImF1dG9cIixcclxuICAgICAgICAgICAgc2VsZWN0YWJsZTogdHJ1ZVxyXG4gICAgICAgIH07XHJcbiAgICB9IC8vIGVuZCBvZiBpbml0XHJcblxyXG4gICAgLy8gY2hlY2sgYm94ZXMgb25jaGFuZ2UgZXZlbnRcclxuICAgIGNiX29uY2hhbmdlKGUsIHdlZWtkYXkpIHtcclxuICAgICAgICBpZiAoZSkge1xyXG4gICAgICAgICAgICBpZiAodGhpcy5jb3Vyc2UuY291cnNlU3RhcnQgPT09IHVuZGVmaW5lZCB8fCB0aGlzLmNvdXJzZS5jb3Vyc2VFbmQgPT09IHVuZGVmaW5lZCB8fCB0aGlzLmNvdXJzZS5jb3Vyc2VTdGFydCA9PT0gbnVsbCB8fCB0aGlzLmNvdXJzZS5jb3Vyc2VFbmQgPT0gbnVsbCkge1xyXG4gICAgICAgICAgICAgICAgc3dhbChcclxuICAgICAgICAgICAgICAgICAgICAnV2hvb3BzIScsXHJcbiAgICAgICAgICAgICAgICAgICAgJ1BsZWFzZSBwaWNrIGEgY291cnNlIHN0YXJ0L2VuZCBkYXRlIGZpcnN0LicsXHJcbiAgICAgICAgICAgICAgICAgICAgJ3dhcm5pbmcnXHJcbiAgICAgICAgICAgICAgICApO1xyXG4gICAgICAgICAgICAgICAgdGhpcy51bkNoZWNrKHdlZWtkYXkpOyAvLyB1bnNlbGVjdCBlbGVtZW50XHJcbiAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICB0aGlzLndlZWtEYXkgPSB3ZWVrZGF5O1xyXG4gICAgICAgICAgICAgICAgdGhpcy5ldmVudCA9IG5ldyBNeUV2ZW50KCk7XHJcbiAgICAgICAgICAgICAgICB0aGlzLmV2ZW50LnR5cGUgPSBcImJhdGNoR2VuXCI7XHJcbiAgICAgICAgICAgICAgICB0aGlzLmRpYWxvZ1Zpc2libGUgPSB0cnVlO1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfSBlbHNlIHtcclxuICAgICAgICAgICAgdGhpcy5ldmVudHMgPSB0aGlzLmV2ZW50cy5maWx0ZXIocmVzdWx0ID0+IHJlc3VsdC53ZWVrZGF5ICE9PSB3ZWVrZGF5KTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgLy8gdGhpcyBmdW5jdGlvbiB3aWxsIHVuY2hlY2sgY2hlY2tib3ggYmFzZWQgb24gd2VlayBkYXkgdGhhdCBnaXZlblxyXG4gICAgdW5DaGVjayh3ZWVrZGF5KSB7XHJcbiAgICAgICAgdGhpcy5zZWxlY3RlZERheXMgPSB0aGlzLnNlbGVjdGVkRGF5cy5maWx0ZXIocmVzdWx0ID0+IHJlc3VsdCAhPT0gd2Vla2RheSk7XHJcbiAgICB9XHJcblxyXG4gICAgLy8gdGhpcyBmdW5jdGlvbiB3aWxsIGdlbmVyYXRlIGRheXMgdGhhdCBtYWNoZXMgc3BlY2lmaWNhdGlvblxyXG4gICAgcHJpdmF0ZSBnZW5lcmF0ZURheXMod2Vla2RheSwgc3RhcnRfZGF0ZSwgZW5kX2RhdGUpIHtcclxuXHJcbiAgICAgICAgLy8gZmlndXJlIG91dCB3aGF0J3MgbmV4dCB3ZWVrIGRheVxyXG4gICAgICAgIGxldCBtb21lbnRJbmRleCwgbmV4dERheTtcclxuICAgICAgICBmb3IgKGxldCBpID0gMDsgaSA8IHRoaXMud2Vla0RheXMubGVuZ3RoOyBpKyspIHtcclxuICAgICAgICAgICAgaWYgKHRoaXMud2Vla0RheXNbaV0gPT09IHdlZWtkYXkpIHtcclxuICAgICAgICAgICAgICAgIG1vbWVudEluZGV4ID0gaSArIDE7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcbiAgICAgICAgaWYgKG1vbWVudChzdGFydF9kYXRlKS5pc29XZWVrZGF5KCkgPiBtb21lbnRJbmRleCkge1xyXG4gICAgICAgICAgICBuZXh0RGF5ID0gbW9tZW50KHN0YXJ0X2RhdGUpLmlzb1dlZWtkYXkobW9tZW50SW5kZXggKyA3KTtcclxuICAgICAgICB9IGVsc2Uge1xyXG4gICAgICAgICAgICBuZXh0RGF5ID0gbW9tZW50KHN0YXJ0X2RhdGUpLmlzb1dlZWtkYXkobW9tZW50SW5kZXgpO1xyXG4gICAgICAgIH1cclxuICAgICAgICBsZXQgcm9vdCA9IDAsIHRlbXBTdGFydCwgdGVtcEVuZDtcclxuICAgICAgICB0ZW1wU3RhcnQgPSB0aGlzLmV2ZW50LmRheVN0YXJ0O1xyXG4gICAgICAgIHRlbXBFbmQgPSB0aGlzLmV2ZW50LmRheUVuZDtcclxuICAgICAgICB3aGlsZSAoIShtb21lbnQobmV4dERheSkuYWRkKDcgKiByb290LCAnZGF5JykpLmlzQWZ0ZXIobW9tZW50KGVuZF9kYXRlKSkpIHtcclxuICAgICAgICAgICAgdGhpcy5ldmVudCA9IG5ldyBNeUV2ZW50KCk7XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuaWQgPSB0aGlzLmlkR2VuKys7XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuZGF5U3RhcnQgPSB0ZW1wU3RhcnQ7XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuZGF5RW5kID0gdGVtcEVuZDtcclxuICAgICAgICAgICAgdGhpcy5ldmVudC53ZWVrZGF5ID0gd2Vla2RheTtcclxuICAgICAgICAgICAgdGhpcy5ldmVudC50aXRsZSA9IG1vbWVudChuZXh0RGF5KS5hZGQoNyAqIHJvb3QsICdkYXknKS5mb3JtYXQoJ1lZWVktTU0tREQnKTtcclxuICAgICAgICAgICAgdGhpcy5ldmVudC5kYXlTdGFydF9jb3JyZWN0ID0gbW9tZW50KHRlbXBTdGFydCkuaXNWYWxpZCgpID8gbW9tZW50KHRlbXBTdGFydCkuZm9ybWF0KCdISDptbScpIDogJyc7XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuZGF5RW5kX2NvcnJlY3QgPSBtb21lbnQodGVtcEVuZCkuaXNWYWxpZCgpID8gbW9tZW50KHRlbXBFbmQpLmZvcm1hdCgnSEg6bW0nKSA6ICcnO1xyXG4gICAgICAgICAgICB0aGlzLmV2ZW50LnN0YXJ0ID0gbW9tZW50KG5leHREYXkpLmFkZCg3ICogcm9vdCwgJ2RheScpLmZvcm1hdCgnWVlZWS1NTS1ERCcpICsgJyAnICsgdGhpcy5ldmVudC5kYXlTdGFydF9jb3JyZWN0O1xyXG4gICAgICAgICAgICB0aGlzLmV2ZW50LmVuZCA9IG1vbWVudChuZXh0RGF5KS5hZGQoNyAqIHJvb3QsICdkYXknKS5mb3JtYXQoJ1lZWVktTU0tREQnKSArICcgJyArIHRoaXMuZXZlbnQuZGF5RW5kX2NvcnJlY3Q7XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnRzLnB1c2godGhpcy5ldmVudCk7XHJcbiAgICAgICAgICAgIHJvb3QrKztcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgc2F2ZUV2ZW50KCkge1xyXG4gICAgICAgIGlmICh0aGlzLmV2ZW50LnR5cGUgPT09ICdhZGQnKSB7XHJcblxyXG4gICAgICAgICAgICBsZXQgbW9tZW50SW5kZXggPSAtMTtcclxuICAgICAgICAgICAgZm9yIChsZXQgaSA9IDA7IGkgPCB0aGlzLndlZWtEYXlzLmxlbmd0aDsgaSsrKSB7XHJcbiAgICAgICAgICAgICAgICBpZiAoaSA9PT0gbW9tZW50KHRoaXMuZXZlbnQudGl0bGUpLmlzb1dlZWtkYXkoKSkge1xyXG4gICAgICAgICAgICAgICAgICAgIG1vbWVudEluZGV4ID0gaSAtIDE7XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgdGhpcy5ldmVudC53ZWVrZGF5ID0gdGhpcy53ZWVrRGF5c1ttb21lbnRJbmRleF07XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuaWQgPSB0aGlzLmlkR2VuKys7ICAvLyB0aXRsZSwgaWQgLCB3ZWVrZGF5LGRheVN0YXJ0LGRheUVuXHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuZGF5U3RhcnRfY29ycmVjdCA9IG1vbWVudCh0aGlzLmV2ZW50LmRheVN0YXJ0KS5pc1ZhbGlkKCkgPyBtb21lbnQodGhpcy5ldmVudC5kYXlTdGFydCkuZm9ybWF0KCdISDptbScpIDogJyc7XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuZGF5RW5kX2NvcnJlY3QgPSBtb21lbnQodGhpcy5ldmVudC5kYXlFbmQpLmlzVmFsaWQoKSA/IG1vbWVudCh0aGlzLmV2ZW50LmRheUVuZCkuZm9ybWF0KCdISDptbScpIDogJyc7XHJcbiAgICAgICAgICAgIHRoaXMuZXZlbnQuc3RhcnQgPSB0aGlzLmV2ZW50LnRpdGxlICsgJyAnICsgdGhpcy5ldmVudC5kYXlTdGFydF9jb3JyZWN0O1xyXG4gICAgICAgICAgICB0aGlzLmV2ZW50LmVuZCA9IHRoaXMuZXZlbnQudGl0bGUgKyAnICcgKyB0aGlzLmV2ZW50LmRheUVuZF9jb3JyZWN0O1xyXG4gICAgICAgICAgICBpZiAodGhpcy5jaGVja0V4aXN0KHRoaXMuZXZlbnQudGl0bGUpKSB7XHJcbiAgICAgICAgICAgICAgICB0aGlzLmV2ZW50cy5wdXNoKHRoaXMuZXZlbnQpO1xyXG4gICAgICAgICAgICAgICAgY29uc29sZS5sb2coJ2FkZGluZyBldmVudCcpO1xyXG4gICAgICAgICAgICAgICAgY29uc29sZS5sb2codGhpcy5ldmVudCk7XHJcbiAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICBhbGVydCgnZXZlbnQgZXhpc3QnKTtcclxuICAgICAgICAgICAgfVxyXG5cclxuICAgICAgICB9IGVsc2UgaWYgKHRoaXMuZXZlbnQudHlwZSA9PT0gJ2VkaXQnKSB7XHJcblxyXG4gICAgICAgICAgICBpZiAodGhpcy5ldmVudC5pZCkge1xyXG4gICAgICAgICAgICAgICAgdGhpcy5ldmVudC5kYXlTdGFydF9jb3JyZWN0ID0gbW9tZW50KHRoaXMuZXZlbnQuZGF5U3RhcnQpLmlzVmFsaWQoKSA/IG1vbWVudCh0aGlzLmV2ZW50LmRheVN0YXJ0KS5mb3JtYXQoJ0hIOm1tJykgOiAnJztcclxuICAgICAgICAgICAgICAgIHRoaXMuZXZlbnQuZGF5RW5kX2NvcnJlY3QgPSBtb21lbnQodGhpcy5ldmVudC5kYXlFbmQpLmlzVmFsaWQoKSA/IG1vbWVudCh0aGlzLmV2ZW50LmRheUVuZCkuZm9ybWF0KCdISDptbScpIDogJyc7XHJcbiAgICAgICAgICAgICAgICB0aGlzLmV2ZW50LnN0YXJ0ID0gdGhpcy5ldmVudC50aXRsZSArICcgJyArIHRoaXMuZXZlbnQuZGF5U3RhcnRfY29ycmVjdDtcclxuICAgICAgICAgICAgICAgIHRoaXMuZXZlbnQuZW5kID0gdGhpcy5ldmVudC50aXRsZSArICcgJyArIHRoaXMuZXZlbnQuZGF5RW5kX2NvcnJlY3Q7XHJcblxyXG4gICAgICAgICAgICAgICAgbGV0IGluZGV4OiBudW1iZXIgPSB0aGlzLmZpbmRFdmVudEluZGV4QnlJZCh0aGlzLmV2ZW50LmlkKTtcclxuXHJcbiAgICAgICAgICAgICAgICBpZiAoaW5kZXggPj0gMCkge1xyXG4gICAgICAgICAgICAgICAgICAgIHRoaXMuZXZlbnRzW2luZGV4XSA9IHRoaXMuZXZlbnQ7XHJcbiAgICAgICAgICAgICAgICB9XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICAgICAgY29uc29sZS5sb2coJ2VkaXRpbmcgZXZlbnQnKTtcclxuICAgICAgICAgICAgY29uc29sZS5sb2codGhpcy5ldmVudCk7XHJcbiAgICAgICAgfSBlbHNlIGlmICh0aGlzLmV2ZW50LnR5cGUgPT09ICdiYXRjaEdlbicpIHtcclxuXHJcbiAgICAgICAgICAgIHRoaXMuZ2VuZXJhdGVEYXlzKHRoaXMud2Vla0RheSwgdGhpcy5jb3Vyc2UuY291cnNlU3RhcnQsIHRoaXMuY291cnNlLmNvdXJzZUVuZCk7XHJcbiAgICAgICAgICAgIGNvbnNvbGUubG9nKCdnZW5lcmF0aW5nIGV2ZW50IGRvbmUsIHByaW50aW5nIHRoZSBsaXN0Jyk7XHJcbiAgICAgICAgICAgIGNvbnNvbGUubG9nKHRoaXMuZXZlbnRzKTtcclxuICAgICAgICB9XHJcblxyXG4gICAgICAgIHRoaXMuZGlhbG9nVmlzaWJsZSA9IGZhbHNlO1xyXG4gICAgICAgIHRoaXMuZXZlbnQgPSBudWxsO1xyXG4gICAgfVxyXG5cclxuICAgIGRlbGV0ZUV2ZW50KCkge1xyXG4gICAgICAgIGxldCBpbmRleDogbnVtYmVyID0gdGhpcy5maW5kRXZlbnRJbmRleEJ5SWQodGhpcy5ldmVudC5pZCk7XHJcbiAgICAgICAgaWYgKGluZGV4ID49IDApIHtcclxuICAgICAgICAgICAgdGhpcy5ldmVudHMuc3BsaWNlKGluZGV4LCAxKTtcclxuICAgICAgICB9XHJcbiAgICAgICAgdGhpcy5kaWFsb2dWaXNpYmxlID0gZmFsc2U7XHJcbiAgICB9XHJcblxyXG4gICAgZmluZEV2ZW50SW5kZXhCeUlkKGlkOiBudW1iZXIpIHtcclxuICAgICAgICBsZXQgaW5kZXggPSAtMTtcclxuICAgICAgICBmb3IgKGxldCBpID0gMDsgaSA8IHRoaXMuZXZlbnRzLmxlbmd0aDsgaSsrKSB7XHJcbiAgICAgICAgICAgIGlmIChpZCA9PT0gdGhpcy5ldmVudHNbaV0uaWQpIHtcclxuICAgICAgICAgICAgICAgIGluZGV4ID0gaTtcclxuICAgICAgICAgICAgICAgIGJyZWFrO1xyXG4gICAgICAgICAgICB9XHJcbiAgICAgICAgfVxyXG4gICAgICAgIHJldHVybiBpbmRleDtcclxuICAgIH1cclxuXHJcblxyXG4gICAgLy8gZXZlbnQgaGFuZGxlciBmb3IgZXZlbnQgY2xpY2tcclxuICAgIGhhbmRsZUV2ZW50Q2xpY2soZSkge1xyXG4gICAgICAgIGNvbnNvbGUubG9nKGUuY2FsRXZlbnQpO1xyXG5cclxuICAgICAgICB0aGlzLmV2ZW50ID0gbmV3IE15RXZlbnQoKTtcclxuICAgICAgICB0aGlzLmV2ZW50LnR5cGUgPSAnZWRpdCc7XHJcbiAgICAgICAgdGhpcy5ldmVudC50aXRsZSA9IGUuY2FsRXZlbnQudGl0bGU7XHJcbiAgICAgICAgdGhpcy5ldmVudC5kYXlTdGFydCA9IGUuY2FsRXZlbnQuZGF5U3RhcnQ7XHJcbiAgICAgICAgdGhpcy5ldmVudC5kYXlFbmQgPSBlLmNhbEV2ZW50LmRheUVuZDtcclxuICAgICAgICB0aGlzLmV2ZW50LnN0YXJ0ID0gZS5jYWxFdmVudC5zdGFydDtcclxuICAgICAgICB0aGlzLmV2ZW50LmVuZCA9IGUuY2FsRXZlbnQuZW5kO1xyXG4gICAgICAgIHRoaXMuZXZlbnQuaWQgPSBlLmNhbEV2ZW50LmlkO1xyXG4gICAgICAgIHRoaXMuZXZlbnQud2Vla2RheSA9IGUuY2FsRXZlbnQud2Vla2RheTtcclxuICAgICAgICB0aGlzLmRpYWxvZ1Zpc2libGUgPSB0cnVlO1xyXG4gICAgICAgIGNvbnNvbGUubG9nKHRoaXMuZXZlbnQpO1xyXG4gICAgICAgIC8vIHRoaXMuZXZlbnRzID0gdGhpcy5ldmVudHMuZmlsdGVyKHJlc3VsdCA9PiByZXN1bHQgIT09IGV2ZW50ICk7XHJcbiAgICB9XHJcblxyXG4gICAgLy8gZXZlbnQgaGFuZGxlciBmb3IgZGF5IGNsaWNrXHJcbiAgICBoYW5kbGVEYXlDbGljayhlKSB7XHJcbiAgICAgICAgbGV0IGRhdGUgPSBlLmRhdGUuZm9ybWF0KCk7XHJcbiAgICAgICAgdGhpcy5ldmVudCA9IG5ldyBNeUV2ZW50KCk7XHJcbiAgICAgICAgdGhpcy5ldmVudC50aXRsZSA9IGRhdGU7XHJcbiAgICAgICAgdGhpcy5ldmVudC50eXBlID0gXCJhZGRcIjtcclxuICAgICAgICB0aGlzLmRpYWxvZ1Zpc2libGUgPSB0cnVlO1xyXG4gICAgfVxyXG5cclxuXHJcbiAgICBjaGVja0V4aXN0KGRhdGUpIHtcclxuICAgICAgICBsZXQgbmRhdGUgPSB0aGlzLmV2ZW50cy5maWx0ZXIocmVzdWx0ID0+IHJlc3VsdC5zdGFydCA9PT0gZGF0ZSk7XHJcbiAgICAgICAgaWYgKG5kYXRlLmxlbmd0aCA9PT0gMSkgeyAvLyBpZiBmb3VuZCBldmVudCBleGlzdCB0aGVuIHJldHVybiBmYWxzZSB0byBwcmV2ZW50IG5ldyBhcnJ5LnB1c2hcclxuICAgICAgICAgICAgcmV0dXJuIGZhbHNlO1xyXG4gICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgIHJldHVybiB0cnVlO1xyXG4gICAgICAgIH1cclxuICAgIH1cclxuXHJcblxyXG4gICAgc3Vic2NyaWJlQ291cnNlKCkge1xyXG4gICAgICAgIHRoaXMuc3ViID0gdGhpcy5yb3V0ZS5wYXJhbXMuc3Vic2NyaWJlKHBhcmFtcyA9PiB7XHJcbiAgICAgICAgICAgIHRoaXMuaWQgPSBwYXJhbXNbJ2lkJ107XHJcbiAgICAgICAgICAgIGlmICh0aGlzLmlkID09PSAnbmV3Jykge1xyXG4gICAgICAgICAgICAgICAgdGhpcy5uZXdDb3Vyc2UgPSB0cnVlO1xyXG4gICAgICAgICAgICAgICAgdGhpcy5jb3Vyc2UgPSBuZXcgQ291cnNlKCk7XHJcbiAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICB0aGlzLm5ld0NvdXJzZSA9IGZhbHNlO1xyXG4gICAgICAgICAgICAgICAgdGhpcy5jb3Vyc2VTZXJ2aWNlLmdldENvdXJzZSh0aGlzLmlkKS50aGVuKChyZXN1bHQpID0+IHtcclxuICAgICAgICAgICAgICAgICAgICByZXN1bHQuZm9yRWFjaCgoaXRlbSkgPT4ge1xyXG4gICAgICAgICAgICAgICAgICAgICAgICBpdGVtLmNvdXJzZVN0YXJ0ID0gbW9tZW50KGl0ZW0uY291cnNlU3RhcnQpLmlzVmFsaWQoKSA/IG1vbWVudChpdGVtLmNvdXJzZVN0YXJ0KS5hZGQoMSAsICdkYXknKS5mb3JtYXQoJ1lZWVktTU0tREQgJykgOiAnJztcclxuICAgICAgICAgICAgICAgICAgICAgICAgaXRlbS5jb3Vyc2VFbmQgPSBtb21lbnQoaXRlbS5jb3Vyc2VFbmQpLmlzVmFsaWQoKSA/IG1vbWVudChpdGVtLmNvdXJzZUVuZCkuYWRkKDEgLCAnZGF5JykuZm9ybWF0KCdZWVlZLU1NLUREJykgOiAnJztcclxuICAgICAgICAgICAgICAgICAgICB9KTtcclxuICAgICAgICAgICAgICAgICAgICB0aGlzLmNvdXJzZSA9IHJlc3VsdFswXTtcclxuICAgICAgICAgICAgICAgICAgaWYgKHRoaXMuY291cnNlLmNsYXNzVGltZVN0ciAhPT0gbnVsbCkge1xyXG4gICAgICAgICAgICAgICAgICAgIHRoaXMuZXZlbnRzID0gdGhpcy5kZXRhY2hDb3Vyc2VTdHIodGhpcy5jb3Vyc2UuY2xhc3NUaW1lU3RyKTtcclxuICAgICAgICAgICAgICAgICAgfVxyXG4gICAgICAgICAgICAgICAgfSk7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9KTtcclxuICAgIH1cclxuXHJcbiAgICBkZXRhY2hDb3Vyc2VTdHIoc3RyKSB7IC8vIHRlbXAgc29sdXRpb25cclxuICAgICAgICBsZXQgbXlFdmVudHMgPSBbXTtcclxuICAgICAgICBsZXQgc3RyQXJyeSA9IHN0ci5zcGxpdCgnLCcpO1xyXG4gICAgICAgIHN0ckFycnkuZm9yRWFjaChlbGVtZW50ID0+IHtcclxuICAgICAgICAgICAgbGV0IG15RXZlbnQgPSBuZXcgTXlFdmVudCgpO1xyXG4gICAgICAgICAgICBteUV2ZW50LnRpdGxlID0gZWxlbWVudC5zcGxpdCgnICcpWzBdO1xyXG4gICAgICAgICAgICBteUV2ZW50LmlkID0gdGhpcy5pZEdlbisrO1xyXG4gICAgICAgICAgICBteUV2ZW50LndlZWtkYXkgPSB0aGlzLndlZWtEYXlzW21vbWVudChteUV2ZW50LnRpdGxlKS5pc29XZWVrZGF5KCkgLSAxXTtcclxuICAgICAgICAgICAgbXlFdmVudC5kYXlTdGFydF9jb3JyZWN0ID0gZWxlbWVudC5zcGxpdCgnICcpWzFdLnNwbGl0KCctJylbMF07XHJcbiAgICAgICAgICAgIG15RXZlbnQuZGF5RW5kX2NvcnJlY3QgPSBlbGVtZW50LnNwbGl0KCcgJylbMV0uc3BsaXQoJy0nKVsxXTtcclxuICAgICAgICAgICAgbXlFdmVudC5zdGFydCA9IGVsZW1lbnQuc3BsaXQoJyAnKVswXSArICcgJyArIG15RXZlbnQuZGF5U3RhcnRfY29ycmVjdDtcclxuICAgICAgICAgICAgbXlFdmVudC5lbmQgPSBlbGVtZW50LnNwbGl0KCcgJylbMF0gKyAnICcgKyBteUV2ZW50LmRheUVuZF9jb3JyZWN0O1xyXG4gICAgICAgICAgICBteUV2ZW50LmRheVN0YXJ0ID0gbW9tZW50KG15RXZlbnQuc3RhcnQpLmlzVmFsaWQoKSA/IG1vbWVudChteUV2ZW50LnN0YXJ0KS5mb3JtYXQoKSA6ICcnO1xyXG4gICAgICAgICAgICBteUV2ZW50LmRheUVuZCA9IG1vbWVudChteUV2ZW50LmVuZCkuaXNWYWxpZCgpID8gbW9tZW50KG15RXZlbnQuZW5kKS5mb3JtYXQoKSA6ICcnO1xyXG4gICAgICAgICAgICBteUV2ZW50LmFsbERheSA9IGZhbHNlO1xyXG4gICAgICAgICAgICBteUV2ZW50cy5wdXNoKG15RXZlbnQpO1xyXG4gICAgICAgICAgICBjb25zb2xlLmxvZyhteUV2ZW50KTtcclxuICAgICAgICB9KTtcclxuICAgICAgICByZXR1cm4gbXlFdmVudHM7XHJcbiAgICB9XHJcblxyXG4gICAgZ2VuZXJhdGVDbGFzc1RpbWVTdHIoKSB7XHJcbiAgICAgICAgbGV0IHN0ciA9ICcnLCB0ZW1wU3RhcnQsIHRlbXBFbmQsIHRlbXBEYXRlO1xyXG4gICAgICAgIGZvciAobGV0IGkgPSAwOyBpIDwgdGhpcy5ldmVudHMubGVuZ3RoOyBpKyspIHtcclxuICAgICAgICAgICAgdGVtcERhdGUgPSB0aGlzLmV2ZW50c1tpXS50aXRsZTtcclxuICAgICAgICAgICAgdGVtcFN0YXJ0ID0gdGhpcy5ldmVudHNbaV0uZGF5U3RhcnRfY29ycmVjdDtcclxuICAgICAgICAgICAgdGVtcEVuZCA9IHRoaXMuZXZlbnRzW2ldLmRheUVuZF9jb3JyZWN0O1xyXG4gICAgICAgICAgICBpZiAoaSA9PT0gMCkge1xyXG4gICAgICAgICAgICAgICAgc3RyICs9IGAke3RlbXBEYXRlfSAke3RlbXBTdGFydH0tJHt0ZW1wRW5kfWA7XHJcbiAgICAgICAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgICAgICAgICBzdHIgKz0gYCwke3RlbXBEYXRlfSAke3RlbXBTdGFydH0tJHt0ZW1wRW5kfWA7XHJcbiAgICAgICAgICAgIH1cclxuICAgICAgICB9XHJcbiAgICAgICAgcmV0dXJuIHN0cjtcclxuICAgIH1cclxuXHJcbiAgICBzYXZlKCkge1xyXG4gICAgICBpZiAoIXRoaXMuY291cnNlLmNvdXJzZU5hbWUgfHwgIXRoaXMuY291cnNlLmNvdXJzZVN0YXJ0IHx8ICF0aGlzLmNvdXJzZS5jb3Vyc2VFbmQgfHwgIXRoaXMuY291cnNlLnByb2Zlc3NvcklkIHx8ICF0aGlzLmNvdXJzZS5jYW1wdXNJZCB8fCAhdGhpcy5jb3Vyc2UuY2xhc3Nyb29tKSB7XHJcbiAgICAgICAgc3dhbChcclxuICAgICAgICAgICAgJ0Zvcm0gSW5jb21wbGV0ZScsXHJcbiAgICAgICAgICAgICdQbGVhc2UgZmlsbCBvdXQgYWxsIGZpZWxkcyBpbiB0aGUgZm9ybS4nLFxyXG4gICAgICAgICAgICAnd2FybmluZydcclxuICAgICAgICApO1xyXG4gICAgICB9ICBlbHNlIHtcclxuICAgICAgICB0aGlzLmNvdXJzZS5jbGFzc1RpbWVTdHIgPSB0aGlzLmdlbmVyYXRlQ2xhc3NUaW1lU3RyKCk7XHJcbiAgICAgICAgLy8qKioqIG5lZWQgdmFsaWRhdGlvblxyXG4gICAgICAgIHRoaXMuY291cnNlU2VydmljZVxyXG4gICAgICAgICAgICAuc2F2ZSh0aGlzLmNvdXJzZSlcclxuICAgICAgICAgICAgLnRoZW4oY291cnNlID0+IHtcclxuICAgICAgICAgICAgICAgIHRoaXMuY291cnNlID0gY291cnNlOyAvLyBzYXZlZCB1c2VyLCB3LyBpZCBpZiBuZXdcclxuICAgICAgICAgICAgICAgIHRoaXMuZ29CYWNrKCk7XHJcbiAgICAgICAgICAgIH0pXHJcbiAgICAgICAgICAgIC5jYXRjaChlcnJvciA9PiB0aGlzLmVycm9yID0gZXJyb3IpOyAvLyBUT0RPOiBEaXNwbGF5IGVycm9yIG1lc3NhZ2VcclxuICAgICAgfVxyXG4gICAgfVxyXG5cclxuICAgIGdvQmFjaygpIHtcclxuICAgICAgICB3aW5kb3cuaGlzdG9yeS5iYWNrKCk7XHJcbiAgICB9XHJcblxyXG5cclxufVxyXG5leHBvcnQgY2xhc3MgTXlFdmVudCB7XHJcbiAgICBpZDogbnVtYmVyO1xyXG4gICAgdHlwZTogc3RyaW5nO1xyXG4gICAgdGl0bGU6IHN0cmluZztcclxuICAgIGRheVN0YXJ0OiBzdHJpbmc7XHJcbiAgICBkYXlFbmQ6IHN0cmluZztcclxuICAgIGRheVN0YXJ0X2NvcnJlY3Q6IHN0cmluZztcclxuICAgIGRheUVuZF9jb3JyZWN0OiBzdHJpbmc7XHJcbiAgICBzdGFydDogc3RyaW5nO1xyXG4gICAgZW5kOiBzdHJpbmc7XHJcbiAgICB3ZWVrZGF5OiBzdHJpbmc7XHJcbiAgICBhbGxEYXk6IGJvb2xlYW47XHJcbn1cclxuIl19
+//# sourceMappingURL=course-edit.component.js.map
