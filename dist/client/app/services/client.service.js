@@ -230,13 +230,24 @@ System.register(["@angular/core", "@angular/http", "./authentication.service", "
                         .then(function (response) { return response.json(); })
                         .catch(function (err) { return _this.handleError(err, "Remove client"); });
                 };
-                ClientService.prototype.submitAssessmentResults = function (assessmentResults) {
+                ClientService.prototype.addAssessmentResults = function (assessmentResults) {
                     var _this = this;
                     // add authorization header with jwt token
                     var headers = new http_1.Headers({ authorization: this.authService.token });
                     var options = new http_1.RequestOptions({ headers: headers });
                     return this.http
-                        .post('api/submit-assessment-results', assessmentResults, options)
+                        .post('api/add-assessment-results', assessmentResults, options)
+                        .toPromise()
+                        .then(function (response) { return response.json(); })
+                        .catch(function (err) { return _this.handleError(err, "Submit Assessment Results"); });
+                };
+                ClientService.prototype.editAssessmentResults = function (assessmentResults) {
+                    var _this = this;
+                    // add authorization header with jwt token
+                    var headers = new http_1.Headers({ authorization: this.authService.token });
+                    var options = new http_1.RequestOptions({ headers: headers });
+                    return this.http
+                        .put('api/edit-assessment-results', assessmentResults, options)
                         .toPromise()
                         .then(function (response) { return response.json(); })
                         .catch(function (err) { return _this.handleError(err, "Submit Assessment Results"); });

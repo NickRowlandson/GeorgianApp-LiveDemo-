@@ -112,7 +112,7 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                     this.suitabilityForms = objects.suitabilityForms;
                     this.consentForms = objects.consentForms;
                     this.learningStyleForms = objects.learningStyleForms;
-                    this.assessmentResults = objects.assessmentResults;
+                    this.allAssessmentResults = objects.assessmentResults;
                     this.stage1 = this.data.filter(function (x) { return x.suitability; });
                     this.stage2 = this.data.filter(function (x) { return !x.suitability && x.consent; });
                     this.stage3 = this.data.filter(function (x) { return !x.suitability && !x.consent && (!x.banner || !x.cam); });
@@ -868,8 +868,17 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                     var consentForm = this.getConsentFormByConsentID(this.selectedConsentForm);
                     this.consentView = consentForm[0];
                 };
-                ClientStatusComponent.prototype.addAssessmentResults = function (client) {
-                    this.assessmentResults = new assessmentResults_1.AssessmentResults();
+                ClientStatusComponent.prototype.viewAssessmentResults = function (client) {
+                    var assessmentResults = this.allAssessmentResults.filter(function (x) { return x.userID === client.userID; });
+                    var isEmpty = (assessmentResults || []).length === 0;
+                    if (isEmpty) {
+                        this.editAssessment = false;
+                        this.assessmentResults = new assessmentResults_1.AssessmentResults;
+                    }
+                    else {
+                        this.editAssessment = true;
+                        this.assessmentResults = assessmentResults[0];
+                    }
                     this.showClientView(client);
                     this.resetView();
                     this.showAssessmentResults = true;
@@ -887,11 +896,11 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                     this.showSuitabilityEdit = false;
                     this.addSuitability = false;
                 };
-                ClientStatusComponent.prototype.submitAssessmentResults = function (userID) {
+                ClientStatusComponent.prototype.addAssessmentResults = function (userID) {
                     var _this = this;
                     this.assessmentResults.userID = userID;
                     this.clientService
-                        .submitAssessmentResults(this.assessmentResults)
+                        .addAssessmentResults(this.assessmentResults)
                         .then(function (result) {
                         if (result.result === 'error') {
                             _this.displayErrorAlert(result);
@@ -900,6 +909,24 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                             swal(result.title, result.msg, result.result);
                             _this.getClients();
                             _this.showStatusReport();
+                        }
+                        else {
+                            swal('Error', 'Something went wrong, please try again.', 'error');
+                        }
+                    })
+                        .catch(function (error) { return _this.error = error; });
+                };
+                ClientStatusComponent.prototype.editAssessmentResults = function (userID) {
+                    var _this = this;
+                    this.clientService
+                        .editAssessmentResults(this.assessmentResults)
+                        .then(function (result) {
+                        if (result.result === 'error') {
+                            _this.displayErrorAlert(result);
+                        }
+                        else if (result.result === 'success') {
+                            swal(result.title, result.msg, result.result);
+                            _this.resetView();
                         }
                         else {
                             swal('Error', 'Something went wrong, please try again.', 'error');

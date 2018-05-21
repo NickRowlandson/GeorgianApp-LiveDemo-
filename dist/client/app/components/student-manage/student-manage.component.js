@@ -99,19 +99,16 @@ System.register(["@angular/core", "../../models/assessmentResults", "@angular/ro
                             file.userID = +file.userID;
                         }
                         swal.close();
-                        console.log(_this.files);
                     })
                         .catch(function (error) { return error; });
                 };
                 StudentManageComponent.prototype.download = function (file) {
-                    console.log(file);
                     var filename = file.milliseconds + "_" + file.userID + "_" + file.filename;
                     this.filesService
                         .download(filename)
                         .then(function (response) {
                         var blob = new Blob([response], { type: "application/pdf" });
                         //change download.pdf to the name of whatever you want your file to be
-                        console.log(blob);
                         saveAs(blob, file.filename);
                     })
                         .catch(function (error) { return error; });
@@ -233,7 +230,13 @@ System.register(["@angular/core", "../../models/assessmentResults", "@angular/ro
                             _this.consentForms = forms.consentForm;
                             _this.learningStyleView = forms.learningStyleForm[0];
                             _this.suitabilityView = forms.suitabilityForm[0];
-                            if (forms.assessmentResults[0] != null) {
+                            var isEmpty = (forms.assessmentResults || []).length === 0;
+                            if (isEmpty) {
+                                _this.editAssessment = false;
+                                _this.assessmentResults = new assessmentResults_1.AssessmentResults();
+                            }
+                            else {
+                                _this.editAssessment = true;
                                 _this.assessmentResults = forms.assessmentResults[0];
                             }
                             _this.barChartData = [{ data: [_this.learningStyleView.hearing, _this.learningStyleView.seeing, _this.learningStyleView.doing] }];
@@ -461,19 +464,36 @@ System.register(["@angular/core", "../../models/assessmentResults", "@angular/ro
                     this.showLearningStyle = false;
                     this.showFiles = false;
                 };
-                StudentManageComponent.prototype.addAssessmentResults = function (student) {
+                StudentManageComponent.prototype.viewAssessmentResults = function (student) {
                     this.viewInfo(student);
-                    this.assessmentResults = new assessmentResults_1.AssessmentResults();
                     this.resetView();
                     this.studentInfoView = true;
                     this.studentView = student;
                     this.showAssessmentResults = true;
                 };
-                StudentManageComponent.prototype.submitAssessmentResults = function (userID) {
+                StudentManageComponent.prototype.addAssessmentResults = function (userID) {
                     var _this = this;
                     this.assessmentResults.userID = userID;
                     this.clientService
-                        .submitAssessmentResults(this.assessmentResults)
+                        .addAssessmentResults(this.assessmentResults)
+                        .then(function (result) {
+                        if (result.result === 'error') {
+                            _this.displayErrorAlert(result);
+                        }
+                        else if (result.result === 'success') {
+                            swal(result.title, result.msg, result.result);
+                            _this.resetView();
+                        }
+                        else {
+                            swal('Error', 'Something went wrong, please try again.', 'error');
+                        }
+                    })
+                        .catch(function (error) { return _this.error = error; });
+                };
+                StudentManageComponent.prototype.editAssessmentResults = function (userID) {
+                    var _this = this;
+                    this.clientService
+                        .editAssessmentResults(this.assessmentResults)
                         .then(function (result) {
                         if (result.result === 'error') {
                             _this.displayErrorAlert(result);
