@@ -1,10 +1,18 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-var Course = /** @class */ (function () {
-    function Course() {
-    }
-    return Course;
-}());
-exports.Course = Course;
+System.register([], function (exports_1, context_1) {
+    "use strict";
+    var __moduleName = context_1 && context_1.id;
+    var Course;
+    return {
+        setters: [],
+        execute: function () {
+            Course = /** @class */ (function () {
+                function Course() {
+                }
+                return Course;
+            }());
+            exports_1("Course", Course);
+        }
+    };
+});
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2NvdXJzZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBO0lBQUE7SUFhQSxDQUFDO0lBQUQsYUFBQztBQUFELENBYkEsQUFhQyxJQUFBO0FBYlksd0JBQU0iLCJmaWxlIjoiYXBwL21vZGVscy9jb3Vyc2UuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgQ291cnNlIHtcclxuICAgIGNvdXJzZUlEOiBzdHJpbmc7XHJcbiAgICBjb3Vyc2VUeXBlOiBzdHJpbmc7XHJcbiAgICBwcm9mZXNzb3JJZDogc3RyaW5nO1xyXG4gICAgYXV0aExldmVsOiBzdHJpbmc7XHJcbiAgICBjb3Vyc2VOYW1lOiBzdHJpbmc7XHJcbiAgICBjbGFzc3Jvb206c3RyaW5nO1xyXG4gICAgY2FtcHVzSWQ6c3RyaW5nO1xyXG4gICAgY2xhc3NEYXk6c3RyaW5nOyAvLyB3aWxsIHNhdmUgd2VlayBkYXlzIGFzICdNb24sRnJpJyBhcyBleGFtcGxlLlxyXG4gICAgY291cnNlU3RhcnQ6IERhdGU7IC8vIGluaXRhbCBzdGFydCBkYXkgb2YgdGhhdCBjb3Vyc2VcclxuICAgIGNvdXJzZUVuZDogRGF0ZTsgLy8gb2ZmY2lhbCBlbmQgZGF5XHJcbiAgICBjbGFzc1RpbWVTdHI6c3RyaW5nOyAvLyBmb3JtYXQgJ1lZWVktTU0tREQgSEg6bW0tSEg6bW0sWVlZWS1NTS1ERCBISDptbS1ISDptbSwuLi4uLidcclxuICAgIGF0dGVuZGFuY2VEYXRlOiBEYXRlO1xyXG59XHJcbiJdfQ==
+//# sourceMappingURL=course.js.map
