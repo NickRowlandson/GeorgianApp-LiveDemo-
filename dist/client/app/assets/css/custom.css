@@ -21,6 +21,11 @@ html, body {
 
 .well {
   background-color: #FFF;
+  border-radius: 0px;
+}
+
+.form-control {
+  border-radius: 0px;
 }
 
 li>a>i {
@@ -216,9 +221,26 @@ li>a>i {
   transform: scale(1.1);
 }
 
-.dropToggleButton {
+.enrollButton {
   text-align: center;
   background-color: #333f48;
+  padding:10px;
+  min-width:0px !important;
+  cursor: pointer;
+  color: #fff;
+  display: inline;
+  border: 0px solid;
+  transition: 0.2s ease;
+}
+
+.enrollButton:hover {
+  transform: scale(1.1);
+}
+
+
+.dropToggleButton {
+  text-align: center;
+  background-color: #004B87;
   padding:10px 19px;
   min-width:0px !important;
   cursor: pointer;
@@ -317,13 +339,13 @@ li>a>i {
   padding: 5px 15px;
   margin: 0 2 0 2;
   float: left;
+  transition: 0.2s ease;
 }
 
 .statusButton:hover {
   transform: scale(1.2);
   /* background-color: #004B87;
   color: #fff;*/
-  transition: .4s;
 }
 
 .statBox {

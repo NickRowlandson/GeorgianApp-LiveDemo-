@@ -199,12 +199,8 @@ System.register(["@angular/core", "@angular/router", "../../services/course.serv
                 WaitListComponent.prototype.closeMenu = function () {
                     this.showForm = false;
                 };
-                WaitListComponent.prototype.gotoStudentEnrollment = function (course, data, event) {
-                    if (course == null) {
-                        course = this.courses.filter(function (x) { return x.courseName === data.courseName; });
-                        course = course[0];
-                    }
-                    this.router.navigate(['/student-enrollment', course.courseID, course.professorId, course.courseName]);
+                WaitListComponent.prototype.gotoStudentEnrollment = function (data, event) {
+                    this.router.navigate(['/student-enrollment', data.courseType]);
                 };
                 WaitListComponent.prototype.viewCourseWaitList = function (data) {
                     this.viewingCourse = data;

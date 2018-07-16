@@ -180,6 +180,11 @@ System.register(["@angular/router", "./guards/auth.guard", "./guards/admin.guard
                     canActivate: [auth_guard_1.AuthGuard, staff_guard_1.StaffGuard]
                 },
                 {
+                    path: 'student-enrollment/:courseType',
+                    component: student_enrollment_component_1.StudentEnrollmentComponent,
+                    canActivate: [auth_guard_1.AuthGuard, staff_guard_1.StaffGuard]
+                },
+                {
                     path: 'attendance-list',
                     component: attendance_list_component_1.AttendanceListComponent,
                     canActivate: [auth_guard_1.AuthGuard, instructor_guard_1.InstructorGuard]

@@ -69,7 +69,7 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                     this.totalPoints = 0;
                     this.statusReport = true;
                     this.showGeneral = true;
-                    this.doughnutChartColors = [{ backgroundColor: ["#EA7200", "#F7CE3C", "#76C4D5", "#62A744"] }];
+                    this.doughnutChartColors = [{ backgroundColor: ["#E32F26", "#F7CE3C", "#76C4D5", "#62A744"] }];
                     //bar chart (learning style)
                     this.barChartOptions = {
                         scaleShowVerticalLines: false,
@@ -78,7 +78,7 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                     this.barChartLabels = ['Hearing', 'Seeing', 'Doing'];
                     this.barChartType = 'bar';
                     this.barChartLegend = false;
-                    this.barChartColors = [{ backgroundColor: ["#EA7200", "#F7CE3C", "#62A744"] }];
+                    this.barChartColors = [{ backgroundColor: ["#E32F26", "#F7CE3C", "#62A744"] }];
                     this.courseTypes = [];
                     this.selectedCourseTypes = [];
                 }
@@ -235,7 +235,7 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                         type: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        cancelButtonColor: '#E32F26',
                         confirmButtonText: 'Yes, delete it!'
                     }).then(function (isConfirm) {
                         if (isConfirm.dismiss === "cancel" || isConfirm.dismiss === "overlay") {
@@ -380,7 +380,7 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                             showCancelButton: true,
                             animation: "slide-from-top",
                             confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
+                            cancelButtonColor: '#E32F26',
                             confirmButtonText: 'Save'
                         }).then(function (isConfirm) {
                             if (isConfirm.dismiss === "cancel" || isConfirm.dismiss === "overlay") {
@@ -406,7 +406,7 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                         showCancelButton: true,
                         animation: "slide-from-top",
                         confirmButtonColor: '#3085d6',
-                        cancelButtonColor: '#d33',
+                        cancelButtonColor: '#E32F26',
                         confirmButtonText: 'Save'
                     }).then(function (isConfirm) {
                         if (isConfirm.dismiss === "cancel" || isConfirm.dismiss === "overlay") {
@@ -432,7 +432,7 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                             type: 'question',
                             showCancelButton: true,
                             confirmButtonColor: '#3085d6',
-                            cancelButtonColor: '#d33',
+                            cancelButtonColor: '#E32F26',
                             confirmButtonText: 'Yes, transfer!'
                         }).then(function (isConfirm) {
                             if (isConfirm.dismiss === "cancel" || isConfirm.dismiss === "overlay") {

@@ -43,9 +43,16 @@ System.register(["@angular/core", "@angular/router", "../../services/course.serv
                     });
                     swal.showLoading();
                     this.route.params.forEach(function (params) {
-                        _this.courseID = params['courseID'];
-                        _this.instructorID = params['instructorID'];
-                        _this.courseName = params['courseName'];
+                        if (params['courseID'] && params['instructorID'] && params['courseName']) {
+                            _this.enrollMultiple = true;
+                            _this.courseID = params['courseID'];
+                            _this.instructorID = params['instructorID'];
+                            _this.courseName = params['courseName'];
+                        }
+                        else if (params['courseType']) {
+                            _this.enrollMultiple = false;
+                            _this.courseType = params['courseName'];
+                        }
                     });
                     this.getStudents();
                 };

@@ -20,23 +20,23 @@
         <p-column header="Instructor" [sortable]="true" [style]="{'text-align': 'center'}">
           <template let-data="rowData" pTemplate="body">
                 <p >{{ data.professorName }}</p>
-                <i  *ngIf="data.professorName == ' '" class="fa fa-exclamation-triangle fa-2x" title="This course does not have an instructor!" style="color:red;" aria-hidden="true"></i>
+                <i  *ngIf="data.professorName == ' '" class="fa fa-exclamation-triangle fa-2x" title="This course does not have an instructor!" style="color:#E32F26;" aria-hidden="true"></i> This course needs an instructor!
               </template>
         </p-column>
         <p-column field="classroom" header="Classroom" [sortable]="true"></p-column>
         <p-column field="campusName" header="Campus" [sortable]="true"></p-column>
         <p-column field="courseStart" header="Start Date" [sortable]="true"></p-column>
         <p-column field="courseEnd" header="End Date" [sortable]="true"></p-column>
-        <p-column header="Action" [style]="{'width': '281px'}">
+        <p-column header="Action" [style]="{'width': '254px'}">
           <template let-data="rowData" pTemplate="body">
                 <div class="inline">
-                    <button class="btn btn-warning" (click)="gotoStudentEnrollment(data, $event)"><i class="fa fa-institution" aria-hidden="true"></i> Enroll</button>
+                    <button class="enrollButton" (click)="gotoStudentEnrollment(data, $event)"><i class="fa fa-institution" aria-hidden="true"></i> Enroll</button>
                 </div>
                 <div class="inline">
-                    <button class="btn btn-primary" (click)="gotoEdit(data, $event)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
+                    <button class="editButton" (click)="gotoEdit(data, $event)"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</button>
                 </div>
                 <div class="inline">
-                    <button class="btn btn-danger" (click)="deleteAlert(data, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                    <button class="deleteButton" (click)="deleteAlert(data, $event)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
                 </div>
               </template>
         </p-column>
