@@ -202,7 +202,7 @@ li>a>i {
 }
 
 .editButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .deleteButton {
@@ -218,7 +218,7 @@ li>a>i {
 }
 
 .deleteButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .enrollButton {
@@ -234,9 +234,8 @@ li>a>i {
 }
 
 .enrollButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
-
 
 .dropToggleButton {
   text-align: center;
@@ -252,6 +251,23 @@ li>a>i {
 
 .dropToggleButton:hover {
   transform: scale(1.1);
+}
+
+
+.editIcon {
+  color:#EA7200;
+  cursor:pointer;
+  transition: 0.1s;
+}
+
+.addIcon {
+  color:#64A70B;
+  cursor:pointer;
+  transition: 0.1s;
+}
+
+.editIcon:hover, .addIcon:hover {
+  transform: scale(1.2);
 }
 
 /* Sticky Footer */
@@ -394,6 +410,31 @@ li>a>i {
 
 .active_tab>h4 {
   color: #fff !important;
+}
+
+.addMenu {
+  width:372px;
+  padding:10px;
+  position: absolute;
+  top: 226px;
+  box-shadow: 5px 5px 20px #3333;
+  z-index: 1;
+  right:50px;
+  transition: all 0.2s ease-in;
+}
+
+.closeMenu {
+  cursor: pointer;
+  float:right;
+  transition: 0.2s ease-in;
+}
+
+.closeMenu:hover {
+  transform: scale(2);
+}
+
+.swal2-popup {
+  border-radius: 0px !important;
 }
 
 @media (max-width: 768px){
