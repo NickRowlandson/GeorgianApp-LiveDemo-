@@ -1,8 +1,9 @@
+<div class="spacer"></div>
+<div class="inner_header">
+  <div (click)="goBack()" title="Back" class="backButton"><i class="far fa-arrow-alt-circle-left"></i></div>
+  <h1><strong>Client Suitability</strong></h1>
+</div>
 <div class="suitability">
-  <div class="spacer"></div>
-  <div class="inner_header">
-    <h1><span style="cursor:pointer" (click)="goBack()"><i class="far fa-arrow-alt-circle-left"></i></span><strong> Client Suitability</strong></h1>
-  </div>
   <div *ngIf="client" class="form-horizontal">
     <div class="row">
       <ul class="sectionBtnGroup col-md-12">
@@ -68,7 +69,7 @@
         <div class="form-group">
           <label class="col-md-2 control-label">Date of Birth: </label>
           <div class="col-md-8">
-            <p-calendar [(ngModel)]="client.birthday" [showIcon]="true" dateFormat="dd/mm/yy"></p-calendar> <span style="margin-left:35px">{{client.birthday|date}}</span> (E.g. DD/MM/YYYY)
+            <p-calendar [(ngModel)]="client.birthday" [showIcon]="true" dateFormat="dd/mm/yy" (ngModelChange)="onDateChange(client.birthday)"></p-calendar> <span style="margin-left:35px"></span> (DD/MM/YYYY)
           </div>
         </div>
         <div class="form-group">
@@ -275,7 +276,11 @@
                         <option value="International Student">International Student</option>
                         <option value="Crown Ward">Crown Ward</option>
                         <option value="Second Career">Second Career</option>
+                        <option value="Other">Other</option>
                       </select>
+                      <div *ngIf="suitabilityForm.incomeSource == 'Other'">
+                        <input class="form-control" type="text" [(ngModel)]="suitabilityForm.incomeSourceOther" placeholder="Please specify..." />
+                      </div>
             <!-- <div *ngIf="income.errors && income.touched" class="alert alert-danger">
                             <div [hidden]="!income.errors.required">Please Select Income Option</div>
                         </div> -->

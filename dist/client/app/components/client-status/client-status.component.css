@@ -12,7 +12,7 @@
 }
 
 .sticky {
-  top: 265px;
+  top: 280px;
   bottom:0;
   position:fixed;
   overflow-y:scroll;
@@ -32,6 +32,10 @@
 
 .deleteClient>a {
   color: #E32F26;
+}
+
+.element {
+  overflow: -moz-scrollbars-none;
 }
 
 .booleanBtn {
