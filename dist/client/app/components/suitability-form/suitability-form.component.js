@@ -45,18 +45,20 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                     this.route = route;
                     this.authService = authService;
                     this.navigated = false; // true if navigated here
-                    this.showSection1 = true;
-                    this.showSection2 = false;
-                    this.showSection3 = false;
-                    this.showSection4 = false;
-                    this.showSection5 = false;
-                    this.showSection6 = false;
-                    this.showSectionBtn1 = true;
-                    this.showSectionBtn2 = false;
-                    this.showSectionBtn3 = false;
-                    this.showSectionBtn4 = false;
-                    this.showSectionBtn5 = false;
-                    this.showSectionBtn6 = false;
+                    // showSection1 = true;
+                    // showSection2 = false;
+                    // showSection3 = false;
+                    // showSection4 = false;
+                    // showSection5 = false;
+                    // showSection6 = false;
+                    //
+                    // showSectionBtn1 = true;
+                    // showSectionBtn2 = false;
+                    // showSectionBtn3 = false;
+                    // showSectionBtn4 = false;
+                    // showSectionBtn5 = false;
+                    // showSectionBtn6 = false;
+                    this.selectedSection = 1;
                     this.warning = false;
                     this.partAPoints = 0;
                     this.partBPoints = 0;
@@ -100,66 +102,66 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                         }
                     });
                 }
-                clicked(item) {
-                    switch (item) {
-                        case 'section1':
-                            this.showSection1 = true;
-                            this.showSection2 = false;
-                            this.showSection3 = false;
-                            this.showSection4 = false;
-                            this.showSection5 = false;
-                            this.showSection6 = false;
-                            break;
-                        case 'section2':
-                            this.showSection1 = false;
-                            this.showSection2 = true;
-                            this.showSection3 = false;
-                            this.showSection4 = false;
-                            this.showSection5 = false;
-                            this.showSection6 = false;
-                            break;
-                        case 'section3':
-                            this.showSection1 = false;
-                            this.showSection2 = false;
-                            this.showSection3 = true;
-                            this.showSection4 = false;
-                            this.showSection5 = false;
-                            this.showSection6 = false;
-                            break;
-                        case 'section4':
-                            this.showSection1 = false;
-                            this.showSection2 = false;
-                            this.showSection3 = false;
-                            this.showSection4 = true;
-                            this.showSection5 = false;
-                            this.showSection6 = false;
-                            break;
-                        case 'section5':
-                            this.showSection1 = false;
-                            this.showSection2 = false;
-                            this.showSection3 = false;
-                            this.showSection4 = false;
-                            this.showSection5 = true;
-                            this.showSection6 = false;
-                            break;
-                        case 'section6':
-                            this.showSection1 = false;
-                            this.showSection2 = false;
-                            this.showSection3 = false;
-                            this.showSection4 = false;
-                            this.showSection5 = false;
-                            this.showSection6 = true;
-                            this.tallyPoints();
-                            break;
-                        default:
-                            this.showSection1 = true;
-                            this.showSection2 = false;
-                            this.showSection3 = false;
-                            this.showSection4 = false;
-                            this.showSection5 = false;
-                            this.showSection6 = false;
-                    }
-                }
+                // clicked(item) {
+                //     switch (item) {
+                //         case 'section1':
+                //             this.showSection1 = true;
+                //             this.showSection2 = false;
+                //             this.showSection3 = false;
+                //             this.showSection4 = false;
+                //             this.showSection5 = false;
+                //             this.showSection6 = false;
+                //             break;
+                //         case 'section2':
+                //             this.showSection1 = false;
+                //             this.showSection2 = true;
+                //             this.showSection3 = false;
+                //             this.showSection4 = false;
+                //             this.showSection5 = false;
+                //             this.showSection6 = false;
+                //             break;
+                //         case 'section3':
+                //             this.showSection1 = false;
+                //             this.showSection2 = false;
+                //             this.showSection3 = true;
+                //             this.showSection4 = false;
+                //             this.showSection5 = false;
+                //             this.showSection6 = false;
+                //             break;
+                //         case 'section4':
+                //             this.showSection1 = false;
+                //             this.showSection2 = false;
+                //             this.showSection3 = false;
+                //             this.showSection4 = true;
+                //             this.showSection5 = false;
+                //             this.showSection6 = false;
+                //             break;
+                //         case 'section5':
+                //             this.showSection1 = false;
+                //             this.showSection2 = false;
+                //             this.showSection3 = false;
+                //             this.showSection4 = false;
+                //             this.showSection5 = true;
+                //             this.showSection6 = false;
+                //             break;
+                //         case 'section6':
+                //             this.showSection1 = false;
+                //             this.showSection2 = false;
+                //             this.showSection3 = false;
+                //             this.showSection4 = false;
+                //             this.showSection5 = false;
+                //             this.showSection6 = true;
+                //             this.tallyPoints();
+                //             break;
+                //         default:
+                //             this.showSection1 = true;
+                //             this.showSection2 = false;
+                //             this.showSection3 = false;
+                //             this.showSection4 = false;
+                //             this.showSection5 = false;
+                //             this.showSection6 = false;
+                //     }
+                // }
                 tallyPoints() {
                     var factorPoints = 0;
                     this.partAPoints = 0;
@@ -323,31 +325,31 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                         this.warning = true;
                     }
                 }
-                next(event, nextSection) {
-                    switch (nextSection) {
-                        case 'section2':
-                            this.showSectionBtn2 = true;
-                            this.clicked(nextSection);
-                            break;
-                        case 'section3':
-                            this.showSectionBtn3 = true;
-                            this.clicked(nextSection);
-                            break;
-                        case 'section4':
-                            this.showSectionBtn4 = true;
-                            this.clicked(nextSection);
-                            break;
-                        case 'section5':
-                            this.showSectionBtn5 = true;
-                            this.clicked(nextSection);
-                            break;
-                        case 'section6':
-                            this.showSectionBtn6 = true;
-                            this.clicked(nextSection);
-                            break;
-                        default:
-                    }
-                }
+                // next(event, nextSection) {
+                //     switch (nextSection) {
+                //         case 'section2':
+                //             this.showSectionBtn2 = true;
+                //             this.clicked(nextSection);
+                //             break;
+                //         case 'section3':
+                //             this.showSectionBtn3 = true;
+                //             this.clicked(nextSection);
+                //             break;
+                //         case 'section4':
+                //             this.showSectionBtn4 = true;
+                //             this.clicked(nextSection);
+                //             break;
+                //         case 'section5':
+                //             this.showSectionBtn5 = true;
+                //             this.clicked(nextSection);
+                //             break;
+                //         case 'section6':
+                //             this.showSectionBtn6 = true;
+                //             this.clicked(nextSection);
+                //             break;
+                //         default:
+                //     }
+                // }
                 validate() {
                     if (this.client.firstName && this.client.lastName && this.client.campus) {
                         var birthday = new Date(this.client.birthday);
@@ -376,7 +378,7 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                         }
                         if (this.client.studentNumber == null) {
                             swal('Whoops...', "Please enter a student number or select 'No' for 'Attended Gerogian?'", 'warning');
-                            this.clicked('section1');
+                            this.selectedSection = 1;
                         }
                         if (this.client.email == null || this.client.email === "") {
                             if (this.client.campus === 'Barrie') {
@@ -400,7 +402,7 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                             }).then(isConfirm => {
                                 if (isConfirm.dismiss === "cancel" || isConfirm.dismiss === "overlay") {
                                     this.client.email = "";
-                                    this.clicked('section1');
+                                    this.selectedSection = 1;
                                 }
                                 else if (isConfirm) {
                                     this.checkSuitability();
@@ -415,7 +417,7 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                     }
                     else {
                         swal('Whoops...', "Please complete the first three fields in the 'Client Info' section", 'warning');
-                        this.clicked('section1');
+                        this.selectedSection = 1;
                     }
                 }
                 checkSuitability() {
@@ -431,7 +433,7 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                             allowOutsideClick: false
                         }).then(isConfirm => {
                             if (isConfirm.dismiss === "cancel" || isConfirm.dismiss === "overlay") {
-                                this.clicked('section2');
+                                this.selectedSection = 2;
                             }
                             else if (isConfirm) {
                                 this.saveClient();
@@ -461,11 +463,11 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                         }
                         else if (client.msg === "username in use") {
                             swal('Username taken', 'Please enter a different first and last name.', 'warning');
-                            this.clicked('section1');
+                            this.selectedSection = 1;
                         }
                         else if (client.msg === "email in use") {
                             swal('Email already in use', 'Please enter a different email.', 'warning');
-                            this.clicked('section1');
+                            this.selectedSection = 1;
                         }
                         else if (client.msg === "incorrect email format") {
                             if (this.client.email == null) {
@@ -474,7 +476,7 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                             }
                             else {
                                 swal('Incorrect email format', 'Please enter a proper email.', 'warning');
-                                this.clicked('section1');
+                                this.selectedSection = 1;
                             }
                         }
                         else if (client.result === "success") {
@@ -503,7 +505,7 @@ System.register(["@angular/core", "@angular/router", "../../models/client", "../
                         }
                         else {
                             swal('Error', 'Something went wrong, please try again.', 'warning');
-                            this.clicked('section1');
+                            this.selectedSection = 1;
                         }
                     })
                         .catch(error => {
