@@ -4,7 +4,7 @@ html, body {
 }
 
 .h1, .h2, .h3, h1, h2, h3 {
-
+  margin: 10px 0px;
 }
 
 .navbar {
@@ -25,7 +25,7 @@ html, body {
 
 .well {
   border-radius: 0px;
-  padding: 0px 20px 20px 20px !important;
+  padding: 20px;
 }
 
 .form-control {

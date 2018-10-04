@@ -1,15 +1,7 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var Client;
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters: [],
-        execute: function () {
-            Client = class Client {
-            };
-            exports_1("Client", Client);
-        }
-    };
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Client {
+}
+exports.Client = Client;
 
-//# sourceMappingURL=client.js.map
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2NsaWVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBO0NBbUNDO0FBbkNELHdCQW1DQyIsImZpbGUiOiJhcHAvbW9kZWxzL2NsaWVudC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBDbGllbnQge1xyXG4gICAgc3R1ZGVudE51bWJlcjogc3RyaW5nO1xyXG4gICAgY2xpZW50SUQ6IHN0cmluZztcclxuICAgIHVzZXJJRDogc3RyaW5nO1xyXG4gICAgYXV0aExldmVsOiBzdHJpbmc7XHJcbiAgICBpbnF1aXJ5RGF0ZTogc3RyaW5nO1xyXG4gICAgY291cnNlVHlwZTogc3RyaW5nO1xyXG4gICAgdXNlcm5hbWU6IHN0cmluZztcclxuICAgIHBhc3N3b3JkOiBzdHJpbmc7XHJcbiAgICBmdWxsTmFtZTogc3RyaW5nO1xyXG4gICAgZmlyc3ROYW1lOiBzdHJpbmc7XHJcbiAgICBsYXN0TmFtZTogc3RyaW5nO1xyXG4gICAgYmlydGhkYXk6IHN0cmluZztcclxuICAgIGVtYWlsOiBzdHJpbmc7XHJcbiAgICBwaG9uZTogc3RyaW5nO1xyXG4gICAgb2theVRvVGV4dDogYm9vbGVhbjtcclxuICAgIGFsbG93RGV0YWlsZWRNZXNzYWdlOiBib29sZWFuO1xyXG4gICAgbG9uZ0Rpc3RhbmNlOiBib29sZWFuO1xyXG4gICAgYWx0ZXJuYXRlTnVtYmVyOiBzdHJpbmc7XHJcbiAgICBva2F5VG9UZXh0QWx0ZXJuYXRlOiBib29sZWFuO1xyXG4gICAgYWxsb3dEZXRhaWxlZE1lc3NhZ2VBbHRlcm5hdGU6IGJvb2xlYW47XHJcbiAgICBsb25nRGlzdGFuY2VBbHRlcm5hdGU6IGJvb2xlYW47XHJcbiAgICBzdWl0YWJpbGl0eTogYm9vbGVhbjtcclxuICAgIGNvbnNlbnQ6IGJvb2xlYW47XHJcbiAgICBsZWFybmluZ1N0eWxlOiBib29sZWFuO1xyXG4gICAgZXJyb3I6IHN0cmluZztcclxuICAgIG1zZzogc3RyaW5nO1xyXG4gICAgcmVzdWx0OiBzdHJpbmc7XHJcbiAgICBzdWNjZXNzOiBzdHJpbmc7XHJcbiAgICBiYW5uZXI6IGJvb2xlYW47XHJcbiAgICBjYW06IGJvb2xlYW47XHJcbiAgICBjb21tZW50czogc3RyaW5nO1xyXG4gICAgY2FtcHVzOiBzdHJpbmc7XHJcbiAgICBlZGl0Q29uc2VudFJlcXVlc3Q6IGJvb2xlYW47XHJcbiAgICBlZGl0Q29uc2VudFBlcm1pc3Npb246IGJvb2xlYW47XHJcbn1cclxuIl19

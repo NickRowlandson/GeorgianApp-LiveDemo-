@@ -26,8 +26,8 @@
           <h4>Review</h4>
         </li>
       </ul>
-      <button *ngIf="selectedSection >= 3" (click)="validate()" class="greenButton" title="Next Section"><h4><i class="fas fa-save"></i> Create</h4></button>
-      <button *ngIf="selectedSection < 6" (click)="selectedSection = selectedSection + 1" class="nextButton" style="margin-left: 15px;" title="Create Client"><h4>Next <i class="fa fa-arrow-right" aria-hidden="true"></i></h4></button>
+      <button *ngIf="selectedSection >= 3" (click)="validate()" class="greenButton" title="Create Client"><h4><i class="fas fa-save"></i> Create</h4></button>
+      <button *ngIf="selectedSection < 6" (click)="selectedSection = selectedSection + 1" class="nextButton" style="margin-left: 15px;" title="Next Section"><h4>Next <i class="fa fa-arrow-right" aria-hidden="true"></i></h4></button>
     </div>
     <div class="row">
       <div id="section1" *ngIf="selectedSection === 1" class="col-md-12">

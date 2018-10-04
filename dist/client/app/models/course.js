@@ -1,15 +1,7 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var Course;
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters: [],
-        execute: function () {
-            Course = class Course {
-            };
-            exports_1("Course", Course);
-        }
-    };
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Course {
+}
+exports.Course = Course;
 
-//# sourceMappingURL=course.js.map
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2NvdXJzZS50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBO0NBYUM7QUFiRCx3QkFhQyIsImZpbGUiOiJhcHAvbW9kZWxzL2NvdXJzZS5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBDb3Vyc2Uge1xyXG4gICAgY291cnNlSUQ6IHN0cmluZztcclxuICAgIGNvdXJzZVR5cGU6IHN0cmluZztcclxuICAgIHByb2Zlc3NvcklkOiBzdHJpbmc7XHJcbiAgICBhdXRoTGV2ZWw6IHN0cmluZztcclxuICAgIGNvdXJzZU5hbWU6IHN0cmluZztcclxuICAgIGNsYXNzcm9vbTpzdHJpbmc7XHJcbiAgICBjYW1wdXNJZDpzdHJpbmc7XHJcbiAgICBjbGFzc0RheTpzdHJpbmc7IC8vIHdpbGwgc2F2ZSB3ZWVrIGRheXMgYXMgJ01vbixGcmknIGFzIGV4YW1wbGUuXHJcbiAgICBjb3Vyc2VTdGFydDogRGF0ZTsgLy8gaW5pdGFsIHN0YXJ0IGRheSBvZiB0aGF0IGNvdXJzZVxyXG4gICAgY291cnNlRW5kOiBEYXRlOyAvLyBvZmZjaWFsIGVuZCBkYXlcclxuICAgIGNsYXNzVGltZVN0cjpzdHJpbmc7IC8vIGZvcm1hdCAnWVlZWS1NTS1ERCBISDptbS1ISDptbSxZWVlZLU1NLUREIEhIOm1tLUhIOm1tLC4uLi4uJ1xyXG4gICAgYXR0ZW5kYW5jZURhdGU6IERhdGU7XHJcbn1cclxuIl19

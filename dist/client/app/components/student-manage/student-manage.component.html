@@ -100,7 +100,10 @@
                     <br />
                     <div class="form-group">
                       <h3>Viewing General Info for {{ studentView.firstName }} <i class="fas fa-pencil-alt editIcon" (click)="editGeneralInfo(studentView)" aria-hidden="true" title="Edit general info for {{ studentView.firstName }}"></i></h3>
+<<<<<<< HEAD
+=======
                       <hr>
+>>>>>>> development
                       <!-- <label class="control-label">id: </label> {{studentView.userID}} <hr/> -->
                       <label class="control-label">Inquiry Date:</label><span *ngIf="studentView.inquiryDate !== 'undefined'"> {{studentView.inquiryDate | date}}</span><div class="info_seperate"></div>
                       <label class="control-label">Student Number: </label> {{studentView.studentNumber}} <div class="info_seperate"></div>
@@ -284,7 +287,10 @@
                   </div>
                   <div *ngIf="showFiles">
                     <h3>Viewing Files for {{ studentView.firstName }} <i class="fa fa-plus addIcon" (click)="addFile()" aria-hidden="true" title="Upload new file for {{ studentView.firstName }}"></i></h3>
+<<<<<<< HEAD
+=======
                     <hr>
+>>>>>>> development
                     <div style="overflow:visible; position:relative;">
                       <p-dataTable [value]="studentsFiles | userFilter : filterQuery" [responsive]="true">
                         <p-column field="userID" header="UserID" [sortable]="true"></p-column>
