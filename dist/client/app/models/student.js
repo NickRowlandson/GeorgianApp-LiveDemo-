@@ -1,7 +1,15 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-class Student {
-}
-exports.Student = Student;
+System.register([], function (exports_1, context_1) {
+    "use strict";
+    var Student;
+    var __moduleName = context_1 && context_1.id;
+    return {
+        setters: [],
+        execute: function () {
+            Student = class Student {
+            };
+            exports_1("Student", Student);
+        }
+    };
+});
 
-//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL3N0dWRlbnQudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7QUFBQTtDQStCQztBQS9CRCwwQkErQkMiLCJmaWxlIjoiYXBwL21vZGVscy9zdHVkZW50LmpzIiwic291cmNlc0NvbnRlbnQiOlsiZXhwb3J0IGNsYXNzIFN0dWRlbnQge1xyXG4gICAgc3R1ZGVudElEOiBzdHJpbmc7XHJcbiAgICB1c2VySUQ6IHN0cmluZztcclxuICAgIGF1dGhMZXZlbDogc3RyaW5nO1xyXG4gICAgaW5xdWlyeURhdGU6IHN0cmluZztcclxuICAgIHVzZXJuYW1lOiBzdHJpbmc7XHJcbiAgICBwYXNzd29yZDogc3RyaW5nO1xyXG4gICAgZnVsbE5hbWU6IHN0cmluZztcclxuICAgIGZpcnN0TmFtZTogc3RyaW5nO1xyXG4gICAgbGFzdE5hbWU6IHN0cmluZztcclxuICAgIGJpcnRoZGF0ZTogc3RyaW5nO1xyXG4gICAgY291cnNlSUQ6IHN0cmluZztcclxuICAgIHByb2Zlc3NvcklkOiBzdHJpbmc7XHJcbiAgICBjb3Vyc2VOYW1lIDogc3RyaW5nO1xyXG4gICAgZW1haWw6IHN0cmluZztcclxuICAgIHBob25lOiBzdHJpbmc7XHJcbiAgICBva2F5VG9UZXh0OiBib29sZWFuO1xyXG4gICAgYWxsb3dEZXRhaWxlZE1lc3NhZ2U6IGJvb2xlYW47XHJcbiAgICBsb25nRGlzdGFuY2U6IGJvb2xlYW47XHJcbiAgICBhbHRlcm5hdGVOdW1iZXI6IHN0cmluZztcclxuICAgIG9rYXlUb1RleHRBbHRlcm5hdGU6IGJvb2xlYW47XHJcbiAgICBhbGxvd0RldGFpbGVkTWVzc2FnZUFsdGVybmF0ZTogYm9vbGVhbjtcclxuICAgIGxvbmdEaXN0YW5jZUFsdGVybmF0ZTogYm9vbGVhbjtcclxuICAgIGNvbW1lbnRzOiBzdHJpbmc7XHJcbiAgICBlbnJvbGxlZDogYm9vbGVhbjtcclxuICAgIGFic2VudDogYm9vbGVhbjtcclxuICAgIHN0dWRlbnRTdGFydERhdGU6IERhdGU7XHJcbiAgICBzdHVkZW50RW5kRGF0ZTogRGF0ZTtcclxuICAgIGF0dGVuZGFuY2VWYWx1ZTogYW55O1xyXG4gICAgZWRpdENvbnNlbnRSZXF1ZXN0OiBib29sZWFuO1xyXG4gICAgZWRpdENvbnNlbnRQZXJtaXNzaW9uOiBib29sZWFuO1xyXG59XHJcbiJdfQ==
+//# sourceMappingURL=student.js.map
