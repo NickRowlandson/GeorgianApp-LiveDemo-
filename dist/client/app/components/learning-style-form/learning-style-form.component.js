@@ -39,6 +39,7 @@ System.register(["@angular/core", "@angular/router", "../../models/learningStyle
                     this.studentService = studentService;
                     this.router = router;
                     this.authService = authService;
+                    this.showThreeChoices = false;
                     this.submitVisible = true;
                     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
                     this.learningStyleForm = new learningStyleForm_1.LearningStyleForm();
@@ -103,12 +104,28 @@ System.register(["@angular/core", "@angular/router", "../../models/learningStyle
                     }
                 }
                 saveLearningStyle() {
-                    if (!this.learnBy && !this.multiChoice) {
+                    if (!this.learnBy && !this.doubleChoice) {
                         swal('Incomplete form', 'Please fill out the form', 'warning');
                     }
-                    else if (this.multiChoice) {
+                    else if (this.tripleChoice) {
                         swal({
-                            title: 'You learn best by ' + this.multiChoice.firstChoice + ' and ' + this.multiChoice.secondChoice + '',
+                            title: 'You learn best by  ' + this.tripleChoice.firstChoice + ' and ' + this.tripleChoice.secondChoice + ' and ' + this.tripleChoice.thirdChoice,
+                            text: "Is this correct?",
+                            type: 'question',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            allowOutsideClick: false,
+                            confirmButtonText: 'Yes!'
+                        }).then(isConfirm => {
+                            this.showThreeChoices = true;
+                        }).catch(error => {
+                            console.log(error);
+                        });
+                    }
+                    else if (this.doubleChoice) {
+                        swal({
+                            title: 'You learn best by ' + this.doubleChoice.firstChoice + ' and ' + this.doubleChoice.secondChoice,
                             text: "Is this correct?",
                             type: 'question',
                             showCancelButton: true,
@@ -129,11 +146,11 @@ System.register(["@angular/core", "@angular/router", "../../models/learningStyle
                                     confirmButtonColor: '#3085d6',
                                     cancelButtonColor: '#3085d6',
                                     allowOutsideClick: false,
-                                    cancelButtonText: this.multiChoice.firstChoice,
-                                    confirmButtonText: this.multiChoice.secondChoice
+                                    cancelButtonText: this.doubleChoice.firstChoice,
+                                    confirmButtonText: this.doubleChoice.secondChoice
                                 }).then(isConfirm => {
                                     if (isConfirm) {
-                                        this.learningStyleForm.learnBy = this.multiChoice.secondChoice;
+                                        this.learningStyleForm.learnBy = this.doubleChoice.secondChoice;
                                         this.clientService
                                             .saveLearningStyle(this.learningStyleForm)
                                             .then(client => {
@@ -142,7 +159,7 @@ System.register(["@angular/core", "@angular/router", "../../models/learningStyle
                                             .catch(error => this.error = error);
                                     }
                                 }).catch(error => {
-                                    this.learningStyleForm.learnBy = this.multiChoice.firstChoice;
+                                    this.learningStyleForm.learnBy = this.doubleChoice.firstChoice;
                                     this.clientService
                                         .saveLearningStyle(this.learningStyleForm)
                                         .then(client => {
@@ -182,6 +199,15 @@ System.register(["@angular/core", "@angular/router", "../../models/learningStyle
                             console.log(error);
                         });
                     }
+                }
+                choosePreference(preference) {
+                    this.learningStyleForm.learnBy = preference;
+                    this.clientService
+                        .saveLearningStyle(this.learningStyleForm)
+                        .then(client => {
+                        this.router.navigate(['/dashboard']);
+                    })
+                        .catch(error => this.error = error);
                 }
                 tallyPoints() {
                     var seeingPoints = 0;
@@ -257,34 +283,49 @@ System.register(["@angular/core", "@angular/router", "../../models/learningStyle
                     this.totalDoingPoints = doingPoints;
                     this.learningStyleForm.doing = this.totalDoingPoints;
                     if (this.totalSeeingPoints > this.totalHearingPoints && this.totalSeeingPoints > this.totalDoingPoints) {
-                        this.multiChoice = null;
+                        this.doubleChoice = null;
+                        this.tripleChoice = null;
                         this.learnBy = "Seeing";
                     }
                     else if (this.totalHearingPoints > this.totalSeeingPoints && this.totalHearingPoints > this.totalDoingPoints) {
-                        this.multiChoice = null;
+                        this.doubleChoice = null;
+                        this.tripleChoice = null;
                         this.learnBy = "Hearing";
                     }
                     else if (this.totalDoingPoints > this.totalHearingPoints && this.totalDoingPoints > this.totalSeeingPoints) {
-                        this.multiChoice = null;
+                        this.doubleChoice = null;
+                        this.tripleChoice = null;
                         this.learnBy = "Doing";
+                    }
+                    else if ((this.totalDoingPoints === this.totalSeeingPoints) && (this.totalHearingPoints === this.totalSeeingPoints)) {
+                        this.learnBy = null;
+                        this.doubleChoice = null;
+                        this.tripleChoice = {
+                            firstChoice: 'Seeing',
+                            secondChoice: 'Doing',
+                            thirdChoice: 'Hearing'
+                        };
                     }
                     else if (this.totalDoingPoints === this.totalSeeingPoints) {
                         this.learnBy = null;
-                        this.multiChoice = {
+                        this.tripleChoice = null;
+                        this.doubleChoice = {
                             firstChoice: 'Doing',
                             secondChoice: 'Seeing'
                         };
                     }
                     else if (this.totalDoingPoints === this.totalHearingPoints) {
                         this.learnBy = null;
-                        this.multiChoice = {
+                        this.tripleChoice = null;
+                        this.doubleChoice = {
                             firstChoice: 'Doing',
                             secondChoice: 'Hearing'
                         };
                     }
                     else if (this.totalSeeingPoints === this.totalHearingPoints) {
                         this.learnBy = null;
-                        this.multiChoice = {
+                        this.tripleChoice = null;
+                        this.doubleChoice = {
                             firstChoice: 'Seeing',
                             secondChoice: 'Hearing'
                         };
