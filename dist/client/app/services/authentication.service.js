@@ -72,6 +72,8 @@ System.register(["@angular/core", "@angular/http", "rxjs/ReplaySubject", "rxjs/a
                     localStorage.removeItem('currentUser');
                     this.loggedUser.next(null);
                 }
+                authUser() {
+                }
                 resetPassword(userID, password) {
                     let headers = new http_1.Headers({ 'Content-Type': 'application/json' });
                     var credentials = JSON.stringify({ userID: userID, password: password });

@@ -28,7 +28,8 @@ System.register(["@angular/core", "../../models/User", "@angular/router", "../..
         ],
         execute: function () {
             StaffDetailsComponent = class StaffDetailsComponent {
-                constructor(staffService, route) {
+                constructor(router, staffService, route) {
+                    this.router = router;
                     this.staffService = staffService;
                     this.route = route;
                     this.newUser = false;
@@ -138,7 +139,13 @@ System.register(["@angular/core", "../../models/User", "@angular/router", "../..
                     }
                 }
                 displayErrorAlert(error) {
-                    swal(error.title, error.msg, 'error');
+                    if (error.title === "Auth Error") {
+                        this.router.navigate(['/login']);
+                        swal(error.title, error.msg, 'info');
+                    }
+                    else {
+                        swal(error.title, error.msg, 'error');
+                    }
                 }
                 goBack() {
                     window.history.back();
@@ -154,7 +161,7 @@ System.register(["@angular/core", "../../models/User", "@angular/router", "../..
                     templateUrl: './app/components/staff-details/staff-details.component.html',
                     styleUrls: ['./app/components/staff-details/staff-details.component.css']
                 }),
-                __metadata("design:paramtypes", [staff_service_1.StaffService, router_1.ActivatedRoute])
+                __metadata("design:paramtypes", [router_1.Router, staff_service_1.StaffService, router_1.ActivatedRoute])
             ], StaffDetailsComponent);
             exports_1("StaffDetailsComponent", StaffDetailsComponent);
         }

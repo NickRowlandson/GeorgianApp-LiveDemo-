@@ -510,7 +510,13 @@ System.register(["@angular/core", "../../models/assessmentResults", "@angular/ro
                         .catch(error => this.error = error);
                 }
                 displayErrorAlert(error) {
-                    swal(error.title, error.msg, 'error');
+                    if (error.title === "Auth Error") {
+                        this.router.navigate(['/login']);
+                        swal(error.title, error.msg, 'info');
+                    }
+                    else {
+                        swal(error.title, error.msg, 'error');
+                    }
                 }
                 goBack() {
                     window.history.back();

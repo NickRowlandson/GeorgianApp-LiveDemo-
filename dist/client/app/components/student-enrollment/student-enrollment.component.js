@@ -28,7 +28,8 @@ System.register(["@angular/core", "@angular/router", "../../services/course.serv
         ],
         execute: function () {
             StudentEnrollmentComponent = class StudentEnrollmentComponent {
-                constructor(studentService, courseService, route) {
+                constructor(router, studentService, courseService, route) {
+                    this.router = router;
                     this.studentService = studentService;
                     this.courseService = courseService;
                     this.route = route;
@@ -235,7 +236,13 @@ System.register(["@angular/core", "@angular/router", "../../services/course.serv
                         .catch(error => error);
                 }
                 displayErrorAlert(error) {
-                    swal(error.title, error.msg, 'error');
+                    if (error.title === "Auth Error") {
+                        this.router.navigate(['/login']);
+                        swal(error.title, error.msg, 'info');
+                    }
+                    else {
+                        swal(error.title, error.msg, 'error');
+                    }
                 }
                 goBack() {
                     window.history.back();
@@ -247,7 +254,7 @@ System.register(["@angular/core", "@angular/router", "../../services/course.serv
                     templateUrl: './app/components/student-enrollment/student-enrollment.component.html',
                     styleUrls: ['./app/components/student-enrollment/student-enrollment.component.css']
                 }),
-                __metadata("design:paramtypes", [student_service_1.StudentService, course_service_1.CourseService, router_1.ActivatedRoute])
+                __metadata("design:paramtypes", [router_1.Router, student_service_1.StudentService, course_service_1.CourseService, router_1.ActivatedRoute])
             ], StudentEnrollmentComponent);
             exports_1("StudentEnrollmentComponent", StudentEnrollmentComponent);
         }

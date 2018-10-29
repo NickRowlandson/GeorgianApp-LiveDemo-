@@ -505,13 +505,12 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                     this.statusReport = false;
                     this.clientEdit = client;
                     var splitPhone = this.clientEdit.phone.split(' ');
-                    if (this.clientEdit.birthdate === 'undefined') {
-                        this.clientEdit.birthdate = '';
-                    }
-                    else {
-                        var birthdate = new Date(this.clientEdit.birthdate);
-                        this.clientEdit.birthdate = moment(birthdate).format('DD/MM/YYYY');
-                    }
+                    // if (this.clientEdit.birthdate === 'undefined' || this.clientEdit.birthdate === 'Invalid date') {
+                    //   this.clientEdit.birthdate = '';
+                    // } else {
+                    //   var birthdate = new Date(this.clientEdit.birthdate);
+                    //   this.clientEdit.birthdate = moment(birthdate).format('DD/MM/YYYY');
+                    // }
                     if (this.clientEdit.phone.indexOf('+1') !== -1) {
                         this.long1 = true;
                         this.clientEdit.phone = splitPhone[1] + " " + splitPhone[2];
@@ -561,6 +560,8 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                         title: 'Updating...'
                     });
                     swal.showLoading();
+                    // var birthdate = new Date(this.clientEdit.birthdate);
+                    // this.clientEdit.birthdate = moment(birthdate).format('MM/DD/YYYY');
                     var phoneSplit = this.clientEdit.phone.split(' ');
                     this.clientEdit.phone = phoneSplit[0] + " " + phoneSplit[1];
                     if (this.phone1 === true) {
@@ -964,7 +965,13 @@ System.register(["@angular/core", "@angular/router", "../../models/suitabilityFo
                         .catch(error => this.error = error);
                 }
                 displayErrorAlert(error) {
-                    swal(error.title, error.msg, 'error');
+                    if (error.title === "Auth Error") {
+                        this.router.navigate(['/login']);
+                        swal(error.title, error.msg, 'info');
+                    }
+                    else {
+                        swal(error.title, error.msg, 'error');
+                    }
                 }
                 goBack() {
                     window.history.back();
