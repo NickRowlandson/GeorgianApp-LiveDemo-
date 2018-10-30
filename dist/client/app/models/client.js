@@ -1,15 +1,7 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var Client;
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters: [],
-        execute: function () {
-            Client = class Client {
-            };
-            exports_1("Client", Client);
-        }
-    };
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class Client {
+}
+exports.Client = Client;
 
-//# sourceMappingURL=client.js.map
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2NsaWVudC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBO0NBb0NDO0FBcENELHdCQW9DQyIsImZpbGUiOiJhcHAvbW9kZWxzL2NsaWVudC5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBjbGFzcyBDbGllbnQge1xyXG4gICAgc3R1ZGVudE51bWJlcjogc3RyaW5nO1xyXG4gICAgY2xpZW50SUQ6IHN0cmluZztcclxuICAgIHVzZXJJRDogc3RyaW5nO1xyXG4gICAgYXV0aExldmVsOiBzdHJpbmc7XHJcbiAgICBpbnF1aXJ5RGF0ZTogc3RyaW5nO1xyXG4gICAgY291cnNlVHlwZTogc3RyaW5nO1xyXG4gICAgdXNlcm5hbWU6IHN0cmluZztcclxuICAgIHBhc3N3b3JkOiBzdHJpbmc7XHJcbiAgICBmdWxsTmFtZTogc3RyaW5nO1xyXG4gICAgZmlyc3ROYW1lOiBzdHJpbmc7XHJcbiAgICBsYXN0TmFtZTogc3RyaW5nO1xyXG4gICAgYmlydGhkYXRlOiBzdHJpbmc7XHJcbiAgICBwbGFjZWhvbGRlckJpcnRoZGF0ZTogc3RyaW5nO1xyXG4gICAgZW1haWw6IHN0cmluZztcclxuICAgIHBob25lOiBzdHJpbmc7XHJcbiAgICBva2F5VG9UZXh0OiBib29sZWFuO1xyXG4gICAgYWxsb3dEZXRhaWxlZE1lc3NhZ2U6IGJvb2xlYW47XHJcbiAgICBsb25nRGlzdGFuY2U6IGJvb2xlYW47XHJcbiAgICBhbHRlcm5hdGVOdW1iZXI6IHN0cmluZztcclxuICAgIG9rYXlUb1RleHRBbHRlcm5hdGU6IGJvb2xlYW47XHJcbiAgICBhbGxvd0RldGFpbGVkTWVzc2FnZUFsdGVybmF0ZTogYm9vbGVhbjtcclxuICAgIGxvbmdEaXN0YW5jZUFsdGVybmF0ZTogYm9vbGVhbjtcclxuICAgIHN1aXRhYmlsaXR5OiBib29sZWFuO1xyXG4gICAgY29uc2VudDogYm9vbGVhbjtcclxuICAgIGxlYXJuaW5nU3R5bGU6IGJvb2xlYW47XHJcbiAgICBlcnJvcjogc3RyaW5nO1xyXG4gICAgbXNnOiBzdHJpbmc7XHJcbiAgICByZXN1bHQ6IHN0cmluZztcclxuICAgIHN1Y2Nlc3M6IHN0cmluZztcclxuICAgIGJhbm5lcjogYm9vbGVhbjtcclxuICAgIGNhbTogYm9vbGVhbjtcclxuICAgIGNvbW1lbnRzOiBzdHJpbmc7XHJcbiAgICBjYW1wdXM6IHN0cmluZztcclxuICAgIGVkaXRDb25zZW50UmVxdWVzdDogYm9vbGVhbjtcclxuICAgIGVkaXRDb25zZW50UGVybWlzc2lvbjogYm9vbGVhbjtcclxufVxyXG4iXX0=

@@ -1,15 +1,7 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var LearningStyleForm;
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters: [],
-        execute: function () {
-            LearningStyleForm = class LearningStyleForm {
-            };
-            exports_1("LearningStyleForm", LearningStyleForm);
-        }
-    };
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class LearningStyleForm {
+}
+exports.LearningStyleForm = LearningStyleForm;
 
-//# sourceMappingURL=learningStyleForm.js.map
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2xlYXJuaW5nU3R5bGVGb3JtLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUE7Q0EyQkM7QUEzQkQsOENBMkJDIiwiZmlsZSI6ImFwcC9tb2RlbHMvbGVhcm5pbmdTdHlsZUZvcm0uanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgTGVhcm5pbmdTdHlsZUZvcm0ge1xyXG4gIHVzZXJJRDogbnVtYmVyO1xyXG4gIHNlZWluZzogbnVtYmVyO1xyXG4gIGhlYXJpbmc6IG51bWJlcjtcclxuICBkb2luZzogbnVtYmVyO1xyXG4gIHNlZWluZzE6IG51bWJlcjtcclxuICBzZWVpbmcyOiBudW1iZXI7XHJcbiAgc2VlaW5nMzogbnVtYmVyO1xyXG4gIHNlZWluZzQ6IG51bWJlcjtcclxuICBzZWVpbmc1OiBudW1iZXI7XHJcbiAgc2VlaW5nNjogbnVtYmVyO1xyXG4gIHNlZWluZzc6IG51bWJlcjtcclxuICBoZWFyaW5nMTogbnVtYmVyO1xyXG4gIGhlYXJpbmcyOiBudW1iZXI7XHJcbiAgaGVhcmluZzM6IG51bWJlcjtcclxuICBoZWFyaW5nNDogbnVtYmVyO1xyXG4gIGhlYXJpbmc1OiBudW1iZXI7XHJcbiAgaGVhcmluZzY6IG51bWJlcjtcclxuICBoZWFyaW5nNzogbnVtYmVyO1xyXG4gIGRvaW5nMTogbnVtYmVyO1xyXG4gIGRvaW5nMjogbnVtYmVyO1xyXG4gIGRvaW5nMzogbnVtYmVyO1xyXG4gIGRvaW5nNDogbnVtYmVyO1xyXG4gIGRvaW5nNTogbnVtYmVyO1xyXG4gIGRvaW5nNjogbnVtYmVyO1xyXG4gIGRvaW5nNzogbnVtYmVyO1xyXG4gIGxlYXJuQnk6IGFueTtcclxufVxyXG4iXX0=

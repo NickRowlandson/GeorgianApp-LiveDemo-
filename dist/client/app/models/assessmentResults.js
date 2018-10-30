@@ -1,15 +1,7 @@
-System.register([], function (exports_1, context_1) {
-    "use strict";
-    var AssessmentResults;
-    var __moduleName = context_1 && context_1.id;
-    return {
-        setters: [],
-        execute: function () {
-            AssessmentResults = class AssessmentResults {
-            };
-            exports_1("AssessmentResults", AssessmentResults);
-        }
-    };
-});
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class AssessmentResults {
+}
+exports.AssessmentResults = AssessmentResults;
 
-//# sourceMappingURL=assessmentResults.js.map
+//# sourceMappingURL=data:application/json;charset=utf8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi4uLy4uLy4uL2NsaWVudC9hcHAvbW9kZWxzL2Fzc2Vzc21lbnRSZXN1bHRzLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiI7O0FBQUE7Q0FPQztBQVBELDhDQU9DIiwiZmlsZSI6ImFwcC9tb2RlbHMvYXNzZXNzbWVudFJlc3VsdHMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJleHBvcnQgY2xhc3MgQXNzZXNzbWVudFJlc3VsdHMge1xyXG4gICAgdXNlcklEOiBudW1iZXI7XHJcbiAgICByZWFkaW5nQ29tcDE6IHN0cmluZztcclxuICAgIHJlYWRpbmdDb21wMjogc3RyaW5nO1xyXG4gICAgcmVhZGluZ0NvbXAzOiBzdHJpbmc7XHJcbiAgICBudW1lcmFjeTogc3RyaW5nO1xyXG4gICAgZGlnaXRhbDogc3RyaW5nO1xyXG59XHJcbiJdfQ==
